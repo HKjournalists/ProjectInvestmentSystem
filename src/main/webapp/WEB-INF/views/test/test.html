@@ -1,0 +1,36 @@
+<!doctype html>
+<html ng-app="phonecatApp">
+<head>
+  <meta charset="utf-8">
+  <title>Google Phone Gallery</title>
+  <base href="index.html">
+  <link rel="stylesheet" href="./css/app.css"/>
+  <script src="./lib/angular/angular.js"></script>
+  <script src="../js/dashborad.js" /></script>
+</head>
+<body>
+
+  <ul class="controls">
+  <li>
+    Search: <input ng-model="query" ng-model-instant>
+  </li>
+  <li>
+    Sort by:
+    <select ng-model="orderProp">
+      <option value="name">Alphabetical</option>
+      <option value="age">Newest</option>
+    </select>
+  </li>
+</ul>
+
+
+<ul class="phones">
+  <li ng-repeat="phone in phones | filter:query | orderBy:orderProp">
+    <a href="#/phones/{{phone.id}}">{{phone.name}}</a>
+    <a href="#/phones/{{phone.id}}" class="thumb"><img ng-src="{{phone.imageUrl}}"></a>
+    <p>{{phone.snippet}}</p>
+  </li>
+</ul>
+
+</body>
+</html>
