@@ -70,6 +70,7 @@
 	<mvc:resources mapping="/fonts/**" location="/WEB-INF/fonts/" cache-period="0" />
 	<mvc:resources mapping="/scripts/**" location="/WEB-INF/scripts/" cache-period="0" />
 	<mvc:resources mapping="/styles/**" location="/WEB-INF/styles/" cache-period="0" />
+	<mvc:resources mapping="/css/**" location="/WEB-INF/css/" cache-period="0" />
 	<!-- static resources config end -->	
 
 	<!-- database config begin -->

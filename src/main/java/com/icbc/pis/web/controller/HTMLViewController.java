@@ -15,7 +15,7 @@ public class HTMLViewController {
 	@RequestMapping("/")
 	public String getRootHtml() {
 		System.out.println("222");
-		return "redirect:/index.html";
+		return "redirect:/views/index.html";
 	}
 	
 	@RequestMapping("/error")

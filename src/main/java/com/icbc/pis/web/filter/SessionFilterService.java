@@ -23,7 +23,7 @@ public class SessionFilterService extends OncePerRequestFilter {
 	private String[] filterUrls;
 
 	public SessionFilterService() {
-		filterUrls = new String[] { "index","login", "bower_components","dist","js","less","other","checkUserLogin"};
+		filterUrls = new String[] {"login", "bower_components","dist","js","less","other","checkUserLogin"};
 	}
 
 	@Override
@@ -53,7 +53,7 @@ public class SessionFilterService extends OncePerRequestFilter {
 							"Unauthorized!");
 					return;
 				}
-				response.sendRedirect("./index.html");
+				response.sendRedirect("./views/index.html#/login");
 				return;
 			} else {
 				boolean noAuth = false;
