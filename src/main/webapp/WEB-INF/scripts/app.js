@@ -11,11 +11,11 @@
 var app=angular
 .module('sbAdminApp', [
   'oc.lazyLoad',
-  'ngRoute',
+  'ui.router',
   'ui.bootstrap',
   'angular-loading-bar'
 ])
-.config(['$routeProvider',function ($routeProvider) {
+.config(['$stateProvider', '$urlRouterProvider',function ($routeProvider) {
   
 
  
