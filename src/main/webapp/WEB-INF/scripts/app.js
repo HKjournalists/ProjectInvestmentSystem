@@ -104,7 +104,17 @@ angular
     })
       .state('login',{
         templateUrl:'./pages/login.html',
-        url:'/login'
+        controller: 'loginController',
+        url:'/login',
+        resolve: {
+                loadMyFiles:function($ocLazyLoad) {
+                  return $ocLazyLoad.load({
+                    name:'sbAdminApp',
+                    files:['../scripts/controllers/login.js'
+                    ]
+                  })
+                }
+              }
     })
       .state('dashboard.chart',{
         templateUrl:'./chart.html',
@@ -154,8 +164,8 @@ angular
        templateUrl:'./ui-elements/grid.html',
        url:'/grid'
    })
-         .state('dashboard.userManagement',{
-        url:'userManagement',
+   .state('dashboard.userManagement',{
+        url:'/userManagement',
         controller: 'paginationCtrl',
         templateUrl:'./sysAdmin/user/userManagement.html',
         resolve: {
@@ -169,6 +179,21 @@ angular
           }
         }
       })
-  }]);
+     .state('dashboard.sysConfig',{
+        url:'/sysConfig',
+        controller: 'sysConfigCtrl',
+        templateUrl:'./sysAdmin/sysConfig/sysConfig.html',
+        resolve: {
+          loadMyFiles:function($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name:'sbAdminApp',
+              files:[
+              '../scripts/controllers/Sysadmin/sysConfigController.js'
+              ]
+            })
+          }
+        }
+      })
+  }])
 
     
