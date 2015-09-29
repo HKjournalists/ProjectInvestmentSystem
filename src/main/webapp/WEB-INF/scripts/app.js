@@ -156,7 +156,7 @@ angular
    })
          .state('dashboard.userManagement',{
         url:'userManagement',
-        controller: 'paginationCtrl',
+        controller: 'pipeCtrl',
         templateUrl:'./sysAdmin/user/userManagement.html',
         resolve: {
           loadMyFiles:function($ocLazyLoad) {
