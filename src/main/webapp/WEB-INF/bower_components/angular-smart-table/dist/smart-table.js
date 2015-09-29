@@ -22,7 +22,7 @@ ng.module('smart-table')
     },
     search: {
       delay: 400, // ms
-      inputEvent: 'input'
+      inputEvent: 'propertychange'
     },
     select: {
       mode: 'single',
@@ -134,7 +134,7 @@ ng.module('smart-table')
       var predicateObject = tableState.search.predicateObject || {};
       var prop = predicate ? predicate : '$';
 
-      input = ng.isString(input) ? input.trim() : input;
+      //input = ng.isString(input) ? input.trim() : input;
       $parse(prop).assign(predicateObject, input);
       // to avoid to filter out null value
       if (!input) {
@@ -280,7 +280,7 @@ ng.module('smart-table')
 
         // view -> table state
         element.bind(event, function (evt) {
-          evt = evt.originalEvent || evt;
+          //evt = evt.originalEvent || evt;
           if (promise !== null) {
             $timeout.cancel(promise);
           }
