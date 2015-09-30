@@ -115,7 +115,6 @@ angular
                   })
                 }
               }
-        url:'/login'
     })
       .state('dashboard.chart',{
         templateUrl:'./chart.html',

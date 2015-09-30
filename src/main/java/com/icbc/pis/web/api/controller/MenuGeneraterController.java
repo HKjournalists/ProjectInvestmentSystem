@@ -28,42 +28,8 @@ public class MenuGeneraterController {
 		String UserId=(String) httpSession.getAttribute("UserId");
 		Map<String, String> retMap = new HashMap<String, String>();
 		logger.debug("checkUserLogin");
-		if (userId != null && !userId.isEmpty() && userPwd != null
-				&& !userPwd.isEmpty()) {
-			String userTypeId="1";
-					httpSession.setAttribute(SessionConstant.SESSION_USER_ID,
-							userId);
-					httpSession.setAttribute(SessionConstant.SESSION_USER_TYPE,
-							userTypeId);
-					retMap.put("error_code", "0");
-					retMap.put("user_type", String.valueOf(userTypeId));
-				}
-			
-		else {
-			retMap.put("error_code", "-1");
-		}
-		logger.debug("finish checkUserLogin");
+		
 		return retMap;
 	}
 
-	
-	@RequestMapping("/accounter/admin")
-	public String getAccounterAdminHtml(HttpSession httpSession) {
-		return "redirect:/views/webviews/accounter/admin.html";
-	}
-	
-	@RequestMapping("/company/expenseAccountUpload")
-	public String getCompanyAdminHtml(HttpSession httpSession) {
-		return "redirect:/views/webviews/company/expense_account_upload.html";
-	}
-	
-	@RequestMapping("/companyUser/expenseAccountUpload")
-	public String getCompanyUserAdminHtml(HttpSession httpSession) {
-		return "redirect:/views/webviews/companyUser/expense_account_upload.html";
-	}
-	
-	@RequestMapping("/admin/admin")
-	public String getAdminAdminHtml(HttpSession httpSession) {
-		return "redirect:/views/webviews/admin/admin.html";
-	}
 }
