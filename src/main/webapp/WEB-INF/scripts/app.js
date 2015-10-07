@@ -176,7 +176,8 @@ angular
               '../scripts/controllers/Sysadmin/UserMgmt/userMgmtContoller.js',
               '../scripts/controllers/Sysadmin/UserMgmt/userMgmtQryController.js',
               '../scripts/controllers/Sysadmin/UserMgmt/userMgmtEditController.js',
-              '../scripts/directives/multiselect/multiselect.js'
+              '../scripts/directives/multiselect/multiselect.js',
+              '../scripts/factory/qhttp.js'
               ]
             })
           }

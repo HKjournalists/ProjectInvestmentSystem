@@ -7,8 +7,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.icbc.pis.common.service.ICommonOperService;
+import com.icbc.pis.datastruct.UserInfo;
 import com.icbc.pis.user.dao.impl.UserDao;
+import com.icbc.pis.user.dao.impl.UserRoleDao;
 import com.icbc.pis.user.service.IUserService;
 import com.icbc.pis.web.model.User;
 import com.icbc.pis.web.model.UserRole;
@@ -23,74 +27,122 @@ public class UserService implements ICommonOperService,IUserService  {
 	@Autowired
 	private UserDao userDao;
 	
+	@Autowired
+	private UserRoleDao userRoleDao;
+	
+	private final String defaultPswd = "111111";
+	
 	@Override
 	public String getUserPwdByUserId(String userId) {
 		
-		// TODO Auto-generated method stub
 		return this.userDao.getUserPswdById(userId);
 	}
 
 	@Override
 	public User getUserById(String userId) {
 		
-		// TODO Auto-generated method stub
 		return this.userDao.getUserById(userId);
 	}
 
 	@Override
 	public List<User> getAllUserList() {
 		
-		// TODO Auto-generated method stub
 		return this.userDao.getAllUserList();
 	}
 
 	@Override
 	public List<User> getUsersByCondition(Map<String, String[]> filterCond) {
 		
-		// TODO Auto-generated method stub
 		return this.userDao.getUsersByCondition(filterCond);
 	}
 
 
 	@Override
-	public boolean add(Object user) {
+	@Transactional
+	public boolean add(Object userInfo) {
 		
-		// TODO Auto-generated method stub
-		User cast_user = (User)user;
-		if(StringUtil.isNullOrEmpty(cast_user.getPswd()))
+		boolean retFlag = false;
+		
+		UserInfo userinfo = (UserInfo)userInfo;
+		if(StringUtil.isNullOrEmpty(userinfo.getUserBasicInfo().getPswd()))
 		{
-			return false;
+			userinfo.getUserBasicInfo().setPswd(this.defaultPswd);
 		}
 		
-		return this.userDao.add(user);
+		for(UserRole ur : userinfo.getRoleList())
+		{
+			retFlag = this.userRoleDao.add(ur);
+			
+			if(retFlag == false)
+			{
+				return retFlag;
+			}
+		}
+		
+		retFlag = this.userDao.add(userinfo.getUserBasicInfo());
+		
+		return retFlag;
 	}
 
 	@Override
-	public boolean update(Object user) {
+	@Transactional
+	public boolean update(Object userInfo) {
 		
-		// TODO Auto-generated method stub
-		User cast_user = (User)user;
-		return this.userDao.update(cast_user);
+		boolean retFlag = false;
+		
+		UserInfo userinfo = (UserInfo)userInfo;
+		
+		retFlag = this.userRoleDao.delete(userinfo.getUserBasicInfo().getUserId());
+		
+		if(retFlag == false)
+		{
+			return retFlag;
+		}
+		
+		for(UserRole ur : userinfo.getRoleList())
+		{
+			retFlag = this.userRoleDao.add(ur);
+			
+			if(retFlag == false)
+			{
+				return retFlag;
+			}
+		}
+		
+		retFlag = this.userDao.update(userinfo.getUserBasicInfo());
+		
+		return retFlag;
 	}
 
 	@Override
-	public boolean deleteById(String userId) {
+	@Transactional
+	public boolean deleteById(String userId) 
+	{
 		
-		// TODO Auto-generated method stub
-		return this.userDao.delete(userId);
+		boolean retFlag = false;
+		
+		retFlag = this.userRoleDao.delete(userId);
+		
+		if(retFlag == false)
+		{
+			return retFlag;
+		}
+		
+		retFlag = this.userDao.delete(userId);
+		
+		
+		return retFlag;
 	}
 
 	@Override
 	public boolean isExists(String userId) {
 		
-		// TODO Auto-generated method stub
 		return this.userDao.isExists(userId);
 	}
 
 	@Override
 	public boolean updateUserPswd(String userId, String pswd) {
 		
-		// TODO Auto-generated method stub
 		return this.userDao.updateUserPswd(userId, pswd);
 	}
 	

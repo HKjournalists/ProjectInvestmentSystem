@@ -38,6 +38,21 @@ public class UserAdminController {
 	@Autowired
 	private UserRoleService userRoleService;
 	
+	
+	@RequestMapping("/addNewUser")
+	@ResponseBody
+	public String addNewUser(HttpServletRequest request)
+	{
+		
+		logger.debug("begin addNewUser");
+		
+		
+		
+		logger.debug("end addNewUser");
+		return null;
+		
+	}
+	
 	@RequestMapping("/getUsersByCondition")
 	@ResponseBody
 	public PaginationStruct getUsersByCondition(HttpServletRequest request) {

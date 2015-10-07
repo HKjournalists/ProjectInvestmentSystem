@@ -11,30 +11,25 @@
 
 
 angular.module('sbAdminApp')
-.controller('userEditCtrl', ['$scope', function($scope){
+.controller('userEditCtrl', ['$scope','RoleInfo', function($scope,RoleInfo){
+	
 	
 	$scope.user = {};
-	
-//	$http({url:'../role/getAllRoleList',params:{},method:'GET'})
-//	.success(function(result,header,config,status){
-//		//响应成功
-//		$scope.options = result;
-//
-//	})
-//	.error(function(result,header,config,status){
-//		//处理响应失败
-//		$scope.options = [];
-//		alert('get role list failed');
-//	});
-//			
-
-
-	$scope.options = [{"id": 1, "name": "Manager", "assignable": true},
-	                   {"id": 2, "name": "Developer", "assignable": true},
-	                   {"id": 3, "name": "Reporter", "assignable": true},
-	                   {"id": 4, "name": "Boss", "assignable": true},
-	                   {"id": 5, "name": "QA", "assignable": true},
-	                   {"id": 6, "name": "DEV", "assignable": true}];
+	$scope.$watch('operType',function()
+			{
+				var assignOption = function(result){
+										$scope.options = result;
+								   };
+			
+				if('add' == $scope.operType)
+				{
+					RoleInfo.queryall().then(assignOption(result),assignOption(result));
+				}
+				else if('edit' == $scope.operType)
+				{
+					RoleInfo.query().then(assignOption(result),assignOption(result));
+				}
+			});
 	
 	//alert(1);
 	$scope.selected_items = [];
@@ -42,8 +37,11 @@ angular.module('sbAdminApp')
 	$scope.pre_selected = [];
 	
 	$scope.save = function(){
-		
+		alert("save");
 	}
  
 
+	$scope.add = function(){
+		
+	}
 }]);
