@@ -95,8 +95,18 @@
  	 </bean--> 
  	 <!--tx:annotation-driven transaction-manager="txManager"></tx:annotation-driven-->
 
-	<!-- wen component-scan begin-->
+	<!-- web component-scan begin-->
 	<context:component-scan base-package="com.icbc.pis.web" />
+	
+	<!-- user component-scan begin-->
+	<context:component-scan base-package="com.icbc.pis.user.dao.impl" />
+	<context:component-scan base-package="com.icbc.pis.user.service.impl" />
 	<!-- user component-scan end-->
+	
+	<!-- role component-scan begin-->
+	<context:component-scan base-package="com.icbc.pis.role.dao.impl" />
+	<context:component-scan base-package="com.icbc.pis.role.service.impl" />
+	<!-- role component-scan end-->
+	
 	
 </beans>

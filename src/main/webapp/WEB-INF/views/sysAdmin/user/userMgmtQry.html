@@ -1,0 +1,79 @@
+
+<div ng-controller="userQryCtrl">
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+           <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion">查询条件</a>
+                </h4>
+           </div>
+        	<div id="collapseOne" class="panel-collapse collapse in">
+           	<div class="panel-body">
+           		<p>
+           			<lable>统一认证号：</lable>
+            		<input ng-model="id"/>
+            		<lable>用户姓名：</lable>
+            		<input ng-model="name"/>
+            		
+           		</p>
+            	</div>
+        	</div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion">用户列表</a>
+                </h4>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse in">
+                <div class="panel-body">
+                
+                	 
+	 <table class="table" st-pipe="getUserList" st-table="displayed">
+		<thead>
+			<tr>
+				<th st-sort="id">统一认证号</th>
+				<th st-sort="name">姓名</th>
+				<th st-sort="email">e-mail</th>
+				<th st-sort="ext">分机</th>
+				<th st-sort="mobile">手机</th>
+				<th st-sort="role">角色</th>
+				<th st-sort="createtime">创建时间</th>
+				<td><a href="" ng-click="addUser()">新增</a></td>
+			</tr>
+			<tr>
+				<th colspan="2"><input class="hidden" st-search="id" ng-model="id"/></th>
+				<th colspan="2"><input class="hidden" st-search="name" ng-model="name"/></th>
+			</tr>
+		</thead>
+		<tbody ng-show="!isLoading">
+			<tr ng-repeat="row in displayed">
+				<td>{{row.id}}</td>
+				<td>{{row.name}}</td>
+				<td>{{row.email}}</td>
+				<td>{{row.ext}}</td>
+				<td>{{row.mobile}}</td>
+				<td>{{row.role}}</td>
+				<td>{{row.createtime}}</td>
+				<td><a href="" >修改</a></td>
+			</tr>
+		</tbody>
+		<tbody ng-show="isLoading">
+			<tr>
+				<td colspan="6" class="text-center">Loading ... </td>
+			</tr>
+		</tbody>
+		<tfoot>
+		<tr>
+			<td class="text-center" st-pagination="" st-items-by-page="10" colspan="6">
+			</td>
+		</tr>
+		</tfoot>
+	</table>	
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

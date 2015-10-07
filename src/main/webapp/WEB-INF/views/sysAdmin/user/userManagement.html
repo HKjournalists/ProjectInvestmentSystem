@@ -1,62 +1,19 @@
-<div class="row">
-    <div class="col-lg-12">
-        <h2 class="page-header">系统管理</h2>
-    </div>
-    <!-- /.col-lg-12 -->
-</div>
-<!-- /.row -->
-<div class="row">
-    <div class="col-lg-12">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-            <h4>用户管理</h4>
-            </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body">
- 
-<div ng-controller="pipeCtrl as mc">
- <table class="table" st-pipe="mc.callServer" st-table="mc.displayed">
-	<thead>
-	<tr>
-		<th st-sort="id">id</th>
-		<th st-sort="name">name</th>
-		<th st-sort="age">age</th>
-		<th st-sort="saved">saved people</th>
-	</tr>
-	<tr>
-		<th><input st-search="id"/></th>
-		<th><input st-search="name"/></th>
-		<th><input st-search="age"/></th>
-		<th><input st-search="saved"/></th>
-		<th><button stSearchurl="/aaa/bbb"/>search</th>
-	</tr>
-	</thead>
-	<tbody ng-show="!mc.isLoading">
-	<tr ng-repeat="row in mc.displayed">
-		<td>{{row.id}}</td>
-		<td>{{row.name}}</td>
-		<td>{{row.age}}</td>
-		<td>{{row.saved}}</td>
-	</tr>
-	</tbody>
-	<tbody ng-show="mc.isLoading">
-	<tr>
-		<td colspan="4" class="text-center">Loading ... </td>
-	</tr>
-	</tbody>
-	<tfoot>
-	<tr>
-		<td class="text-center" st-pagination="" st-items-by-page="10" colspan="4">
-		</td>
-	</tr>
-	</tfoot>
-</table>	
+ <div class="row">
+     <div class="col-lg-12">
+         <div class="panel panel-default" ng-controller="userCtrl">
+             <div class="panel-heading">
+                 	用户管理
+             </div>
+             <!-- .panel-heading -->
+             <div class="panel-body">
+				<div ng-include="'sysAdmin/user/userMgmtQry.html'"  ng-class="{'qry': 'show', 'add': 'hidden'}[operType]"></div>
+				<div ng-include="'sysAdmin/user/userMgmtEdit.html'" ng-class="{'qry': 'hidden', 'add': 'show'}[operType]"></div>
+             	 
+             </div>
+             <!-- .panel-body -->
+         </div>
+         <!-- /.panel -->
+     </div>
+     <!-- /.col-lg-12 -->
  </div>
-	</div>
-            </div>
-            <!-- /.panel-body -->
-        </div>
-        <!-- /.panel -->
-    </div>
-    <!-- /.col-lg-12 -->
-</div>
+

@@ -166,14 +166,17 @@ angular
    })
    .state('dashboard.userManagement',{
         url:'/userManagement',
-        controller: 'pipeCtrl',
+        controller: 'userCtrl',
         templateUrl:'./sysAdmin/user/userManagement.html',
         resolve: {
           loadMyFiles:function($ocLazyLoad) {
             return $ocLazyLoad.load({
               name:'sbAdminApp',
               files:[
-              '../scripts/controllers/Sysadmin/userManagementContoller.js'
+              '../scripts/controllers/Sysadmin/UserMgmt/userMgmtContoller.js',
+              '../scripts/controllers/Sysadmin/UserMgmt/userMgmtQryController.js',
+              '../scripts/controllers/Sysadmin/UserMgmt/userMgmtEditController.js',
+              '../scripts/directives/multiselect/multiselect.js'
               ]
             })
           }
