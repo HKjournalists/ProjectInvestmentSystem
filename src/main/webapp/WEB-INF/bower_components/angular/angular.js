@@ -745,7 +745,7 @@ function size(obj, ownPropsOnly) {
       if (!ownPropsOnly || obj.hasOwnProperty(key))
         count++;
   }
-
+jiale
   return count;
 }
 
@@ -762,7 +762,6 @@ function indexOf(array, obj) {
   }
   return -1;
 }
-
 function arrayRemove(array, value) {
   var index = indexOf(array, value);
   if (index >=0)
@@ -1275,6 +1274,7 @@ function angularInit(element, bootstrap) {
     element && elements.push(element);
   }
 
+
   forEach(names, function(name) {
     names[name] = true;
     append(document.getElementById(name));
@@ -1365,17 +1365,18 @@ function angularInit(element, bootstrap) {
 function bootstrap(element, modules) {
   var doBootstrap = function() {
     element = jqLite(element);
-
     if (element.injector()) {
       var tag = (element[0] === document) ? 'document' : startingTag(element);
       throw ngMinErr('btstrpd', "App Already Bootstrapped with this Element '{0}'", tag);
     }
 
     modules = modules || [];
+
     modules.unshift(['$provide', function($provide) {
       $provide.value('$rootElement', element);
     }]);
     modules.unshift('ng');
+    alert(modules);
     var injector = createInjector(modules);
     injector.invoke(['$rootScope', '$rootElement', '$compile', '$injector', '$animate',
        function(scope, element, compile, injector, animate) {
@@ -3710,7 +3711,7 @@ function createInjector(modulesToLoad) {
             var provider = providerInjector.get(servicename + providerSuffix);
             return instanceInjector.invoke(provider.$get, provider);
           }));
-
+  alert(JSON.stringify());
 
   forEach(loadModules(modulesToLoad), function(fn) { instanceInjector.invoke(fn || noop); });
 
@@ -21457,6 +21458,7 @@ var styleDirective = valueFn({
 
   jqLite(document).ready(function() {
     angularInit(document, bootstrap);
+
   });
 
 })(window, document);

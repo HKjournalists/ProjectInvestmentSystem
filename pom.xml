@@ -152,7 +152,7 @@
  </dependencies>
 
 	<build>
-		<finalName>bbzweb</finalName>
+		<finalName>pis</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>

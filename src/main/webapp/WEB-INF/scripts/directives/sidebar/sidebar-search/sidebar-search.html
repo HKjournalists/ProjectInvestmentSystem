@@ -1,8 +1,8 @@
 <li class="sidebar-search">
     <div class="input-group custom-search-form">
-        <input type="text" class="form-control" placeholder="查询菜单" ng-model="barSearch">
+        <input type="text" class="form-control" placeholder="查询菜单" ng-model="barSearch" ng-change="OnSereash()">
         <span class="input-group-btn">
-            <button class="btn btn-default" type="button">
+            <button class="btn btn-default" type="button" ng-clike="OnSereashClick()">
                 <i class="fa fa-search"></i>
             </button>
         </span>
