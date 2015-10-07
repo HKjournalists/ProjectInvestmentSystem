@@ -15,9 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.icbc.pis.datastruct.PaginationStruct;
+import com.icbc.pis.role.service.impl.RoleService;
+import com.icbc.pis.user.service.impl.UserRoleService;
 import com.icbc.pis.user.service.impl.UserService;
 import com.icbc.pis.web.api.controller.SysConfigController;
+import com.icbc.pis.web.model.Role;
 import com.icbc.pis.web.model.User;
+import com.icbc.pis.web.model.UserRole;
 
 @Controller
 @RequestMapping("/user")
@@ -27,6 +31,12 @@ public class UserAdminController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private RoleService roleService;
+	
+	@Autowired
+	private UserRoleService userRoleService;
 	
 	@RequestMapping("/getUsersByCondition")
 	@ResponseBody
@@ -44,6 +54,17 @@ public class UserAdminController {
 		{
 			for(User user : userList)
 			{
+				List<UserRole> userRoleList = this.userRoleService.getUserRole(user.getUserId());
+				
+				StringBuilder roleNameList = new StringBuilder();
+				
+				for(UserRole ur : userRoleList)
+				{
+					String roleName = this.roleService.getRoleById(ur.getRoleId()).getRoleName();
+					
+					roleNameList.append(roleName + ",");
+				}
+				
 				Map<String, String> map = new HashMap<String, String>();
 				
 				map.put("id", user.getUserId());
@@ -56,15 +77,15 @@ public class UserAdminController {
 				
 				map.put("mobile", user.getMobile());
 				
+				map.put("role",roleNameList.toString());
+				
 				map.put("createtime", user.getCreateTime().toString());
 				
 				resList.add(map);
 			}
 		}
 		
-		PaginationStruct paginationStruct = new PaginationStruct(5,resList);
-		
-		
+		PaginationStruct paginationStruct = new PaginationStruct(this.userService.count(),resList);
 		
 		logger.debug("finish getUsersByCondition");
 		

@@ -8,4 +8,6 @@ public interface IRoleDao {
 	
 	public List<Role> getAllRoleList();
 	
+	public Role getRoleById(String roleId);
+	 
 }

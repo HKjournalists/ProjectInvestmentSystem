@@ -15,26 +15,26 @@ angular.module('sbAdminApp')
 	
 	$scope.user = {};
 	
-	$http({url:'../role/getAllRoleList',params:{},method:'GET'})
-	.success(function(result,header,config,status){
-		//响应成功
-		$scope.options = result;
+//	$http({url:'../role/getAllRoleList',params:{},method:'GET'})
+//	.success(function(result,header,config,status){
+//		//响应成功
+//		$scope.options = result;
+//
+//	})
+//	.error(function(result,header,config,status){
+//		//处理响应失败
+//		$scope.options = [];
+//		alert('get role list failed');
+//	});
+//			
 
-	})
-	.error(function(result,header,config,status){
-		//处理响应失败
-		$scope.options = [];
-		alert('get role list failed');
-	});
-			
 
-
-//	$scope.options = [{"id": 1, "name": "Manager", "assignable": true},
-//	                   {"id": 2, "name": "Developer", "assignable": true},
-//	                   {"id": 3, "name": "Reporter", "assignable": true},
-//	                   {"id": 4, "name": "Boss", "assignable": true},
-//	                   {"id": 5, "name": "QA", "assignable": true},
-//	                   {"id": 6, "name": "DEV", "assignable": true}];
+	$scope.options = [{"id": 1, "name": "Manager", "assignable": true},
+	                   {"id": 2, "name": "Developer", "assignable": true},
+	                   {"id": 3, "name": "Reporter", "assignable": true},
+	                   {"id": 4, "name": "Boss", "assignable": true},
+	                   {"id": 5, "name": "QA", "assignable": true},
+	                   {"id": 6, "name": "DEV", "assignable": true}];
 	
 	//alert(1);
 	$scope.selected_items = [];

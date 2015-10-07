@@ -9,4 +9,7 @@ public interface IRoleService {
 
 	public List<Role> getAllRoleList();
 	
+	public Role getRoleById(String roleId);
+	
+	public List<Role> getRoles(List<String> roleIdList);
 }

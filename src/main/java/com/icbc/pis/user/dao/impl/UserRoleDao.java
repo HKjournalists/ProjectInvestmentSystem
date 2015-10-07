@@ -1,5 +1,6 @@
 package com.icbc.pis.user.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -14,7 +15,16 @@ public class UserRoleDao implements IUserRoleDao,ICommonOperDao {
 	@Override 
 	public List<UserRole> getALLRoleListByUserId(String userId) {
 		// TODO Auto-generated method stub
-		return null;
+		
+		List<UserRole> urList = new ArrayList<UserRole>();
+		
+		urList.add(new UserRole(userId,userId));
+		
+		Integer id = Integer.parseInt(userId) + 1;
+		
+		urList.add(new UserRole(id.toString(),id.toString()));
+		
+		return urList;
 	}
 
 	@Override

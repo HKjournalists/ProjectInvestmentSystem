@@ -32,6 +32,19 @@ public class RoleDao implements IRoleDao{
 		
 		return rolelist;
 	}
-	
+
+	@Override
+	public Role getRoleById(String roleId) {
+		// TODO Auto-generated method stub
+		
+		String names[] = {"风控管理员","合规审核员","信用评级人员","老板","项目经理","傻傻的你","痴痴的我","董事长","合规分析员","系统管理员"};
+		
+		Role role = new Role(roleId,names[Integer.parseInt(roleId) % names.length],names[Integer.parseInt(roleId) % names.length]);
+		
+		return role;
+		
+	}
+
+
 	
 }

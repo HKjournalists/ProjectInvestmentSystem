@@ -93,5 +93,11 @@ public class UserService implements ICommonOperService,IUserService  {
 		// TODO Auto-generated method stub
 		return this.userDao.updateUserPswd(userId, pswd);
 	}
+	
+	@Override
+	public int count(){
+		
+		return this.userDao.count();
+	}
 
 }

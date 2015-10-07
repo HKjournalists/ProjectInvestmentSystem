@@ -77,6 +77,12 @@ public class UserDao implements IUserDao,ICommonOperDao{
 	}
 
 	@Override
+	public int count(){
+		
+		return 5;
+	}
+	
+	@Override
 	public List<User> getUsersByCondition(Map<String, String[]> filterMap) {
 		// TODO Auto-generated method stub
 		

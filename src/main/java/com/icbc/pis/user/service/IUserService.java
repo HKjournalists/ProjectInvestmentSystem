@@ -17,4 +17,6 @@ public interface IUserService {
 	public List<User> getUsersByCondition(Map<String,String[]> filterMap);
 
 	public boolean updateUserPswd(String userId,String pswd);
+
+	public int count();
 }
