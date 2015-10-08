@@ -7,11 +7,14 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.icbc.pis.common.dao.ICommonOperDao;
 import com.icbc.pis.user.dao.IUserDao;
 import com.icbc.pis.user.service.impl.UserService;
+import com.icbc.pis.web.mapper.UserMapper;
 import com.icbc.pis.web.model.User;
 import com.icbc.pis.web.model.UserRole;
 import com.icbc.pis.web.utils.StringUtil;
@@ -20,7 +23,8 @@ import com.icbc.pis.web.utils.StringUtil;
 public class UserDao implements IUserDao,ICommonOperDao{
 
 	private static final Logger logger = LoggerFactory.getLogger(UserService.class);
-	
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
 	@Override
 	public User getUserByUserId(String userId) {
 		// TODO Auto-generated method stub
@@ -35,8 +39,10 @@ public class UserDao implements IUserDao,ICommonOperDao{
 
 	@Override
 	public User getUserById(String userId) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "select * from pis_user where id=?";
+		User user=jdbcTemplate.queryForObject(sql, new Object[] { userId },
+		new UserMapper());
+		return user;
 	}
 
 	@Override
@@ -73,6 +79,7 @@ public class UserDao implements IUserDao,ICommonOperDao{
 	@Override
 	public boolean isExists(String id) {
 		// TODO Auto-generated method stub
+		String sql = "select * from accounter_career";
 		return false;
 	}
 
@@ -117,9 +124,9 @@ public class UserDao implements IUserDao,ICommonOperDao{
 			
 			int id = iStart + i;
 			
-			User u = new User(((Integer)id).toString(), names[randomIndex], names[randomIndex] + "@icbc.com", mobile[randomIndex], ext[randomIndex], new Timestamp(System.currentTimeMillis()));
+			//User u = new User(((Integer)id).toString(), names[randomIndex], names[randomIndex] + "@icbc.com", mobile[randomIndex], ext[randomIndex], new Timestamp(System.currentTimeMillis()));
 		
-			userlist.add(u);
+			//userlist.add(u);
 		}
 		
 		return userlist;

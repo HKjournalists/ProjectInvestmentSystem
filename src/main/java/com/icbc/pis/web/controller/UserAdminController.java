@@ -69,7 +69,7 @@ public class UserAdminController {
 		{
 			for(User user : userList)
 			{
-				List<UserRole> userRoleList = this.userRoleService.getUserRole(user.getUserId());
+				List<UserRole> userRoleList = this.userRoleService.getUserRole(user.getID());
 				
 				StringBuilder roleNameList = new StringBuilder();
 				
@@ -82,15 +82,15 @@ public class UserAdminController {
 				
 				Map<String, String> map = new HashMap<String, String>();
 				
-				map.put("id", user.getUserId());
+				map.put("id", user.getID());
 				
-				map.put("name",user.getUserName());
+				map.put("name",user.getNAME());
 				
-				map.put("ext", user.getExt());
+				map.put("ext", user.getBRANCH_ID());
 				
-				map.put("email",user.getEmail());
+				map.put("email",user.getEMAIL());
 				
-				map.put("mobile", user.getMobile());
+				map.put("mobile", user.getMOBILE());
 				
 				map.put("role",roleNameList.toString());
 				

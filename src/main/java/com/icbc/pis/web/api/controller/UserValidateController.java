@@ -13,6 +13,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.icbc.pis.user.service.IUserService;
+import com.icbc.pis.user.service.impl.UserService;
+import com.icbc.pis.web.model.User;
 import com.icbc.pis.web.utils.SessionConstant;
 
 @Controller
@@ -20,17 +23,19 @@ public class UserValidateController {
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(UserValidateController.class);
-
+	@Autowired
+	IUserService userService;
+	
 	@RequestMapping("/checkUserLogin")
 	@ResponseBody
 	public Map<String, String> checkUserLogin(HttpSession httpSession,
 			HttpServletRequest request) {
 		String userId = request.getParameter("userId");
 		String userPwd = request.getParameter("userPwd");
+		User user=userService.getUserById(userId);
 		Map<String, String> retMap = new HashMap<String, String>();
 		logger.debug("checkUserLogin");
-		if (userId != null && !userId.isEmpty() && userPwd != null
-				&& !userPwd.isEmpty()) {
+		if (user != null) {
 			String userTypeId="1";
 					httpSession.setAttribute(SessionConstant.SESSION_USER_ID,
 							userId);

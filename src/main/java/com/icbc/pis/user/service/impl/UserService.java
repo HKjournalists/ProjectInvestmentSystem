@@ -64,10 +64,6 @@ public class UserService implements ICommonOperService,IUserService  {
 		boolean retFlag = false;
 		
 		UserInfo userinfo = (UserInfo)userInfo;
-		if(StringUtil.isNullOrEmpty(userinfo.getUserBasicInfo().getPswd()))
-		{
-			userinfo.getUserBasicInfo().setPswd(this.defaultPswd);
-		}
 		
 		for(UserRole ur : userinfo.getRoleList())
 		{
@@ -92,7 +88,7 @@ public class UserService implements ICommonOperService,IUserService  {
 		
 		UserInfo userinfo = (UserInfo)userInfo;
 		
-		retFlag = this.userRoleDao.delete(userinfo.getUserBasicInfo().getUserId());
+		//retFlag = this.userRoleDao.delete(userinfo.getUserBasicInfo().getUserId());
 		
 		if(retFlag == false)
 		{

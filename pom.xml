@@ -149,6 +149,11 @@
     <artifactId>maven-resources-plugin</artifactId>
     <version>2.4.3</version>
 </dependency>
+ 	<dependency>
+ 		<groupId>com.oracle</groupId>
+ 		<artifactId>ojdbc6</artifactId>
+ 		<version>11.1.0.7.0</version>
+ 	</dependency>
  </dependencies>
 
 	<build>

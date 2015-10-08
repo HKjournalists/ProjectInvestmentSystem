@@ -15,9 +15,13 @@ public class UserMapper implements RowMapper<User>{
 		
 		// TODO Auto-generated method stub
 		
-		User obj = new User(rs.getString("user_id"),rs.getString("user_name"),rs.getString("email"),rs.getString("mobile"),rs.getString("ext"), rs.getTimestamp("create_time"));
-		
-		return obj;
+		User u = new User(rs.getString("ID"), rs.getString("BRANCH_ID"), rs.getString("NAME"),
+				rs.getString("STATUS"), rs.getString("PHONE_NO"),
+				rs.getString("EMAIL"), rs.getString("MOBILE"), 
+				rs.getString("INTERIOR_FLAG"), rs.getString("CARD_TYPE"), 
+				rs.getString("CARD_NO"), rs.getString("MODI_USER"),rs.getTimestamp("MODI_TIME"),
+				rs.getTimestamp("LAST_LOGIN"),rs.getString("WHITE_LIST"));
+		return u;
 	}
 
 }

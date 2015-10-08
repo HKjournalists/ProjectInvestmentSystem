@@ -74,25 +74,25 @@
 	<!-- static resources config end -->	
 
 	<!-- database config begin -->
-	<!--bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
 		destroy-method="close">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver">
 		</property>
 		<property name="url"
-			value="jdbc:mysql://121.40.63.208:3306/bbz?useUnicode=true&amp;characterEncoding=UTF-8"></property>
-		<property name="username" value="root"></property>
-		<property name="password" value="Cckzcbm110"></property>
+			value="jdbc:oracle:thin:@122.18.157.91:1521:iim2"></property>
+		<property name="username" value="pis"></property>
+		<property name="password" value="pis"></property>
 		<property name="maxIdle" value="30"></property>
 		<property name="defaultAutoCommit" value="true"></property>
-	</bean-->
-	<!--bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+	</bean>
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
 		<property name="dataSource" ref="dataSource" />
-	</bean-->
+	</bean>
 	<!-- database config begin -->
     <!-- 事务管理 -->
-    <!--bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">  
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">  
     	<property name="dataSource" ref="dataSource"/>  
- 	 </bean--> 
+ 	 </bean> 
  	 <!--tx:annotation-driven transaction-manager="txManager"></tx:annotation-driven-->
 
 	<!-- web component-scan begin-->
