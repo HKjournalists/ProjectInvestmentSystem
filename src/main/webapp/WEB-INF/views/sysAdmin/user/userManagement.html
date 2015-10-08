@@ -6,8 +6,8 @@
              </div>
              <!-- .panel-heading -->
              <div class="panel-body">
-				<div ng-include="'sysAdmin/user/userMgmtQry.html'"  ng-class="{'qry': 'show', 'add': 'hidden'}[operType]"></div>
-				<div ng-include="'sysAdmin/user/userMgmtEdit.html'" ng-class="{'qry': 'hidden', 'add': 'show'}[operType]"></div>
+				<div ng-include="'sysAdmin/user/userMgmtQry.html'"  ng-class="{'qry': 'show', 'add': 'hidden','edit': 'hidden'}[operType]"></div>
+				<div ng-include="'sysAdmin/user/userMgmtEdit.html'" ng-class="{'qry': 'hidden', 'add': 'show','edit': 'show'}[operType]"></div>
              	 
              </div>
              <!-- .panel-body -->

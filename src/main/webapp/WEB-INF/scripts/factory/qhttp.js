@@ -10,8 +10,7 @@
  */
 angular.module('sbAdminApp')
 .factory('RoleInfo', ['$http', '$q', function ($http, $q) {
-	
-	
+
   return {
 	  
 	  queryall : function() {  
@@ -26,12 +25,17 @@ angular.module('sbAdminApp')
 		  });  
 		  
 		  return deferred.promise;  
-	  },
+	  }
+  };  
+}])
+.factory('UserInfo', ['$http', '$q', function ($http, $q) {
+
+  return {
 	  
-	  query : function(params) {  
+	  queryBasicInfo : function(params) {  
 		  var deferred = $q.defer();
 		  
-		  $http({method: 'GET', url: '../role/getAllRoleList',params:params}).  
+		  $http({method: 'GET', url: '../user/getUsersByCondition',params:params}).  
 		  success(function(data, status, headers, config) {  
 			  deferred.resolve(data); 
 		  }).  
@@ -40,6 +44,50 @@ angular.module('sbAdminApp')
 		  });  
 		  
 		  return deferred.promise;  
-	  } 
+	  },
+	  
+	  queryRoleInfo : function(params) {  
+		  var deferred = $q.defer();
+		  
+		  $http({method: 'GET', url: '../user/getUserRoleList',params:params}).  
+		  success(function(data, status, headers, config) {  
+			  deferred.resolve(data); 
+		  }).  
+		  error(function(data, status, headers, config) {  
+			  deferred.reject(data);  
+		  });  
+		  
+		  return deferred.promise;  
+	  },
+
+	  remove: function(params){
+		  var deferred = $q.defer();
+		  
+		  $http({method: 'GET', url: '../user/deleteUser',params:params}).  
+		  success(function(data, status, headers, config) {  
+			  deferred.resolve(data); 
+		  }).  
+		  error(function(data, status, headers, config) {  
+			  deferred.reject(data);  
+		  });  
+		  
+		  return deferred.promise; 
+	  },
+	  
+	  save: function(params){
+		  var deferred = $q.defer();
+		  
+		  $http({method: 'GET', url: '../user/saveUser',params:params}).  
+		  success(function(data, status, headers, config) {  
+			  deferred.resolve(data); 
+		  }).  
+		  error(function(data, status, headers, config) {  
+			  deferred.reject(data);  
+		  });  
+		  
+		  return deferred.promise; 
+	  }
+		  
   };  
-}]); 
+}])
+; 

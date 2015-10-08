@@ -1,5 +1,6 @@
 package com.icbc.pis.web.controller;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.icbc.pis.datastruct.PaginationStruct;
+import com.icbc.pis.datastruct.UserInfo;
 import com.icbc.pis.role.service.impl.RoleService;
 import com.icbc.pis.user.service.impl.UserRoleService;
 import com.icbc.pis.user.service.impl.UserService;
@@ -38,17 +40,100 @@ public class UserAdminController {
 	@Autowired
 	private UserRoleService userRoleService;
 	
+	private UserInfo GenerateUserInfo(HttpServletRequest request){
+		
+		String userId = request.getParameter("id");
+		
+		String userName = request.getParameter("name");
+		
+		String email = request.getParameter("email");
+		
+		String mobile = request.getParameter("mobile");
+		
+		String ext = request.getParameter("ext");
+		
+		String role = request.getParameter("role");
+		
+		List<UserRole> userRoleList = new ArrayList();
+		
+		for(String roleid : role.split(","))
+		{
+			userRoleList.add(new UserRole(userId,roleid));
+		}
+		
+		UserInfo userInfo = new UserInfo(new User(userId,userName,email,mobile,ext, new Timestamp(System.currentTimeMillis())),userRoleList);
+		
+		return userInfo;
+	}
 	
-	@RequestMapping("/addNewUser")
+	@RequestMapping("/deleteUser")
 	@ResponseBody
-	public String addNewUser(HttpServletRequest request)
+	public String deleteUser(HttpServletRequest request)
+	{
+		String userId = request.getParameter("id");
+		
+		this.userService.deleteById(userId);
+		
+		return null;
+	}
+	
+	
+	@RequestMapping("/getUserRoleList")
+	@ResponseBody
+	public List<Map<String,String>> getUserRoleList(HttpServletRequest request)
+	{
+		logger.debug("begin getAllRoleList");
+		
+		String userId = request.getParameter("id");
+		
+		List<Map<String, String>> resList = new ArrayList<Map<String, String>>();
+
+		List<UserRole> userRoleList =  this.userRoleService.getUserRole(userId);
+		
+		if(userRoleList != null)
+		{
+			for(UserRole userRole : userRoleList)
+			{
+				Map<String,String> map = new HashMap<String,String>();
+				
+				map.put("id", userRole.getRoleId());
+				
+				map.put("name",this.roleService.getRoleById(userRole.getRoleId()).getRoleName());
+				
+				map.put("desc",this.roleService.getRoleById(userRole.getRoleId()).getDesc());
+				
+				resList.add(map);
+			}
+		}
+		
+		logger.debug("end getAllRoleList");
+		
+		return resList;
+		
+		
+	}
+	
+	
+	@RequestMapping("/saveUser")
+	@ResponseBody
+	public String saveUser(HttpServletRequest request)
 	{
 		
 		logger.debug("begin addNewUser");
+		UserInfo user = this.GenerateUserInfo(request);
 		
+		if(this.userService.isExists(user.getUserBasicInfo().getUserId()))
+		{
+			this.userService.update(user);
+		}
+		else
+		{
+
+			this.userService.add(user);
+		}
 		
+		logger.debug("end saveUser");
 		
-		logger.debug("end addNewUser");
 		return null;
 		
 	}
