@@ -23,19 +23,12 @@ angular.module('sbAdminApp')
 		{
 			var search = tableState.search;
 			var pagination = tableState.pagination;
-
-			if(search != undefined)
-			{
-				 params.id = search.predicateObject.id;
-				 params.name = search.predicateObject.name;
+			
+			if(search != undefined && pagination != undefined){
+				
+				angular.extend(params,search.predicateObject,pagination);
 			}
 			
-			
-			if(pagination != undefined)
-			{
-				params.start = pagination.start;
-				params.number = pagination.number;
-			}
 			
 		}
 		
