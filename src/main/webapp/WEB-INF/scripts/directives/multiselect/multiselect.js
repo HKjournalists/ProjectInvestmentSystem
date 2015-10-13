@@ -34,7 +34,7 @@ angular.module('sbAdminApp')
     					
        link: function($scope, $element, $attrs){
            
-    	   	var clk = 0;
+    	   	//var clk = 0;
     	   
 	   	    var _remove = function(_item)
 		    {
@@ -86,15 +86,15 @@ angular.module('sbAdminApp')
     	    	
     	    	//$scope.selected_items = [];
     	    		
-    	    	if($scope.selected_items.length == 0 && clk == 0)
-    	    	{
-    	        	for(var i = 0 ; i < $scope.pre_selected.length; i++)
-    	        	{
-    	        		$scope.selected_items.push($scope.pre_selected[i]);
-    	        	}
-    	    	}
-    	    	
-    	    	clk = 1;
+//    	    	if($scope.selected_items.length == 0 && clk == 0)
+//    	    	{
+//    	        	for(var i = 0 ; i < $scope.pre_selected.length; i++)
+//    	        	{
+//    	        		$scope.selected_items.push($scope.pre_selected[i]);
+//    	        	}
+//    	    	}
+//    	    	
+//    	    	clk = 1;
     	    };      
     	    
     	    $scope.setSelectedItem = function(){

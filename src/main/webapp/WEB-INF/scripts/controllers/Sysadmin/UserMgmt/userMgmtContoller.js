@@ -10,14 +10,21 @@
 
 
 angular.module('sbAdminApp')
-.controller('userCtrl', function($scope){
+.controller('userCtrl',function($scope){
 	$scope.operType = "qry";
 	
-	$scope.addUser = function addUser(){
-		$scope.operType = "add";
+	$scope.onEditUser = function onEditUser(user){
+		$scope.eidtUser = user;
+		$scope.operType = "edit";
 	};
 	
-	$scope.cancel = function(){
+	$scope.onAddUser = function addUser(){
+		$scope.eidtUser.id = "";
+		$scope.operType = "add";
+		
+	};
+	
+	$scope.onCancel = function(){
 		$scope.operType = "qry";
 	}
 })

@@ -10,31 +10,52 @@
 
 
 angular.module('sbAdminApp')
-.controller('userQryCtrl', function($scope, $http){
+.controller('userQryCtrl', ['$scope','UserInfo',function($scope, UserInfo){
 	$scope.displayed = [];
 	
 	$scope.getUserList = function getUserList(tableState) {
 
 		$scope.isLoading = true;
 
-	    var pagination = tableState.pagination || {};
-	    var search = tableState.search || {}; 
-
-	    var params = search.predicateObject || {};  
-	    params.start = pagination.start || 0;
-	    params.number = pagination.number || 10;
-	    $http({url:'../user/getUsersByCondition',params:params ,method:'GET'
-	    	})
-	    	.success(function(result,header,config,status){
-	    		//响应成功
-	    		$scope.displayed = result.data;
-	    		tableState.pagination.numberOfPages = result.numberOfPages;//set the number of pages so the pagination can update
-	    		$scope.isLoading = false;
-	    	})
-	    	.error(function(result,header,config,status){
-	    		//处理响应失败
-	    		alert('failed');
-	    	});
+		var params = {};
+		
+		if(tableState.pagination != undefined)
+		{
+			var search = tableState.search;
+			var pagination = tableState.pagination;
+			
+			if(search != undefined && pagination != undefined){
+				
+				angular.extend(params,search.predicateObject,pagination);
+			}
+			
+			
+		}
+		
+	    UserInfo.queryBasicInfo(params).then(
+	    function(result){
+    		//响应成功
+    		$scope.displayed = result.data;
+    		tableState.pagination.numberOfPages = result.numberOfPages;
+    		$scope.isLoading = false;
+	    },
+	    function(){
+	    	alert('failed');
+	    });
 	    
-	  };
-});
+	    
+	};
+	
+	$scope.onDeleteUser = function(user){
+		
+		var params = {id:user.id};
+		
+		UserInfo.remove(params).then(
+			    function(result){
+		    		alert("remove " + user.id + " sucessfully");
+			    },
+			    function(){
+			    	alert('failed');
+			    });
+	}
+}]);
