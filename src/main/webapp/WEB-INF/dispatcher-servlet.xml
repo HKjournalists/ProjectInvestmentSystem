@@ -2,6 +2,7 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc" 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:aop="http://www.springframework.org/schema/aop"  
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="
 	http://www.springframework.org/schema/beans
@@ -13,7 +14,9 @@
 	http://www.springframework.org/schema/task
 	http://www.springframework.org/schema/task/spring-task-4.0.xsd
 	http://www.springframework.org/schema/tx
-	http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <bean id="appConfigure" class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
         <property name="locations">
@@ -23,7 +26,11 @@
         </property>
     </bean>
 
-
+	<!-- 启动对@AspectJ注解的支持 -->  
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>   
+	
+	<!--通知spring使用cglib而不是jdk的来生成代理方法 AOP可以拦截到Controller -->  
+	<aop:aspectj-autoproxy proxy-target-class="true" />  
 
 	<mvc:annotation-driven>
 		<mvc:message-converters register-defaults="true">
@@ -32,6 +39,7 @@
 			</bean>
 		</mvc:message-converters>
 	</mvc:annotation-driven>
+
 
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
@@ -64,18 +72,20 @@
 	    <property name="dataSource" ref="dataSource" />
 	</bean> 
 	
-	<bean id="jbpmSpringHelper" class="org.jbpm.pvm.internal.processengine.SpringHelper" lazy-init="default" autowire="default" >
+	<bean id="jbpmSpringHelper" class="org.jbpm.pvm.internal.processengine.SpringHelper" lazy-init="false" autowire="default" >
 		<property name="jbpmCfg">
 			<value>jbpm.cfg.xml</value>
 		</property>
 	</bean>
 	
-	<bean id="processEngine" factory-bean="jbpmSpringHelper" factory-method="createProcessEngine" />
-	
+	<bean id="processEngine"  factory-bean="jbpmSpringHelper" factory-method="createProcessEngine" />
+	 
 	<bean id="repositoryService" factory-bean="processEngine" factory-method="getRepositoryService"/>
 	
 	<bean id="executionService" factory-bean="processEngine" factory-method="getExecutionService"/>
-
+	 
+	<bean id="taskService" factory-bean="processEngine" factory-method="getTaskService"/>
+	 
 	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
 	      <property name="sessionFactory" ref="sessionFactory" />
 	</bean>
@@ -141,6 +151,13 @@
 
 	<!-- web component-scan begin-->
 	<context:component-scan base-package="com.icbc.pis.web" />
+	<context:component-scan base-package="com.icbc.pis.workflow.service"/>
+	
+	<!-- user component-scan begin-->
+	<context:component-scan base-package="com.icbc.pis.annotation" />
+	<context:component-scan base-package="com.icbc.pis.aspect" />
+	<!-- user component-scan end-->
+	
 	
 	<!-- user component-scan begin-->
 	<context:component-scan base-package="com.icbc.pis.user.dao.impl" />

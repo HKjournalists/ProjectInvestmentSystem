@@ -157,7 +157,18 @@ angular
        url:'/typography'
    })
       .state('dashboard.icons',{
-       templateUrl:'./ui-elements/icons.html',
+       templateUrl:'./test/jbpm/jbpmtest.html',
+       controller: 'jbpmTestCtrl',
+       resolve: {
+           loadMyFiles:function($ocLazyLoad) {
+             return $ocLazyLoad.load({
+               name:'sbAdminApp',
+               files:[
+               '../scripts/controllers/test/jbpm/jbpmtest.js'
+               ]
+             })
+           }
+         },
        url:'/icons'
    })
       .state('dashboard.grid',{

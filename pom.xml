@@ -22,6 +22,7 @@
 		<apache.commons.fileupload.version>1.2.2</apache.commons.fileupload.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<javamail.version>1.4.1</javamail.version>
+		<aspectj.version>1.6.13</aspectj.version>
 		
 		<!-- 业务 -->
 		<javamail.smtp.host>mail.163.com</javamail.smtp.host>
@@ -30,6 +31,11 @@
 	</properties>
  <dependencies>
 		<!-- Spring -->
+		<dependency>  
+            <groupId>org.springframework</groupId>  
+            <artifactId>spring-aspects</artifactId>  
+            <version>${spring.version}</version>  
+        </dependency>  
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
@@ -66,7 +72,15 @@
             <version>${spring.mock}</version>
             <scope>test</scope>
         </dependency>
+		<!-- AspectJ -->
 
+        <dependency>  
+            <groupId>cglib</groupId>  
+            <artifactId>cglib</artifactId>  
+            <version>2.1_3</version>  
+        </dependency>  
+        
+        
 		<!-- Mysql -->
 		<dependency>
 			<groupId>mysql</groupId>
@@ -157,6 +171,11 @@
  		<groupId>log4j</groupId>
  		<artifactId>log4j</artifactId>
  		<version>1.2.17</version>
+ 	</dependency>
+ 	<dependency>
+ 		<groupId>org.springframework</groupId>
+ 		<artifactId>spring-aop</artifactId>
+ 		<version>4.0.1.RELEASE</version>
  	</dependency>
  </dependencies>
 
