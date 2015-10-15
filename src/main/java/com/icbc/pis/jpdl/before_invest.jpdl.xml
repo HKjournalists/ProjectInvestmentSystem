@@ -11,9 +11,9 @@
       <transition g="-57,-11" name="to dept_risk_verify" to="dept_risk_verify"/>
    </task>
    <task g="11,331,141,52" name="dept_risk_verify">
-      <transition g="-79,-22" name="to exclusive1" to="exclusive1"/>
+      <transition g="-79,-22" name="to exclusive1" to="pass_risk_verify"/>
    </task>
-   <decision g="59,431,48,48" name="exclusive1">
+   <decision g="59,431,48,48" name="pass_risk_verify">
    	  <handler class="com.icbc.pis.workflow.decision.DeptRiskVerifyDecision" />  
       <transition g="-51,-22" name="close" to="close"/>
       <transition g="-10,-18" name="next" to="parallel_verify"/>
