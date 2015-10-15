@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process name="create_investment" xmlns="http://jbpm.org/4.4/jpdl">
+   <start g="55,711,48,48" name="start1">
+      <transition g="-93,-22" name="to 项目要素录入" to="项目要素录入"/>
+   </start>
+   <task g="34,529,92,52" name="项目要素录入">
+      <transition g="-93,-22" name="to 项目资料上传" to="项目资料上传"/>
+   </task>
+   <task g="32,143,92,52" name="项目资料上传">
+      <transition g="-117,-22" name="to 部门层面风险审核" to="部门层面风险审核"/>
+   </task>
+   <task g="207,143,144,53" name="部门层面风险审核">
+      <transition g="-50,-22" name="to end1" to="end1"/>
+      <transition g="-52,-22" name="to fork1" to="fork1"/>
+   </task>
+   <task g="483,401,92,52" name="外部律师意见">
+      <transition g="-49,-22" name="to join1" to="join1"/>
+   </task>
+   <task g="314,412,92,52" name="信用评级">
+      <transition g="-49,-22" name="to join1" to="join1"/>
+   </task>
+   <task g="542,546,92,52" name="公司风险审核">
+      <transition g="1090,337:-50,-22" name="to end1" to="end1"/>
+      <transition g="-93,-22" name="to 投资请示报告" to="投资请示报告"/>
+   </task>
+   <task g="684,538,92,52" name="投资请示报告">
+      <transition g="-129,-22" name="to 项目投资评审会评审" to="项目投资评审会评审"/>
+   </task>
+   <task g="677,633,92,52" name="项目投资评审会评审">
+      <transition g="1083,468:-50,-22" name="to end1" to="end1"/>
+      <transition g="-153,-22" name="to 公司投资管理委员会评审" to="公司投资管理委员会评审"/>
+   </task>
+   <task g="643,713,148,52" name="公司投资管理委员会评审">
+      <transition g="-81,-22" name="to 董事长审批" to="董事长审批"/>
+   </task>
+   <task g="668,802,92,52" name="董事长审批">
+      <transition g="1099,619:-50,-22" name="to end1" to="end1"/>
+      <transition g="-69,-22" name="to 合同审核" to="合同审核"/>
+   </task>
+   <task g="871,797,92,52" name="合同审核">
+      <transition g="-69,-22" name="to 项目缴款" to="项目缴款"/>
+   </task>
+   <task g="1139,799,92,52" name="项目缴款">
+      <transition g="-50,-22" name="to end1" to="end1"/>
+   </task>
+   <end g="1181,56,48,48" name="end1"/>
+   <join g="405,547,48,48" name="join1">
+      <transition g="-46,7" name="to 公司风险审核" to="公司风险审核"/>
+      <transition g="-50,-22" name="to end1" to="end1"/>
+   </join>
+   <fork g="418,180,48,48" name="fork1">
+      <transition g="-79,-22" name="to exclusive1" to="exclusive1"/>
+      <transition g="-79,-22" name="to exclusive2" to="exclusive2"/>
+   </fork>
+   <decision g="326,292,48,48" name="exclusive1">
+      <transition g="-69,-22" name="to 信用评级" to="信用评级"/>
+      <transition g="426,411:-49,-22" name="to join1" to="join1"/>
+   </decision>
+   <decision g="498,290,48,48" name="exclusive2">
+      <transition g="-93,-22" name="to 外部律师意见" to="外部律师意见"/>
+      <transition g="443,412:-49,-22" name="to join1" to="join1"/>
+   </decision>
+</process>
