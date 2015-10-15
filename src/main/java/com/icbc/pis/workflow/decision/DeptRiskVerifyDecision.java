@@ -3,25 +3,40 @@ package com.icbc.pis.workflow.decision;
 import org.jbpm.api.jpdl.DecisionHandler;
 import org.jbpm.api.model.OpenExecution;
 
-public class DeptRiskVerifyDecision implements DecisionHandler {
+public class DeptRiskVerifyDecision extends DecisionAdpater implements DecisionHandler {
 
 	@Override
 	public String decide(OpenExecution exe) {
 		// TODO Auto-generated method stub
 		System.out.println("DeptRiskVerifyDecision...");  
 
-		TransitionTypeEnum transition;
+		TransitionTypeEnum transition = null;
 		
-		if(true)
+		try 
 		{
-			transition = TransitionTypeEnum.NEXT;
-		}
-		else
-		{
-			transition = TransitionTypeEnum.CLOSE;
+			if(this.validation())
+			{
+				transition = TransitionTypeEnum.NEXT;
+			}
+			else
+			{
+				transition = TransitionTypeEnum.CLOSE;
+			}
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		return transition.toString();  
+	}
+
+	@Override
+	void SetNodeType() {
+		// TODO Auto-generated method stub
+		this.nodeType = DecisionNodeEnum.pass_dept_risk_vrf;
 	}
 
 }
