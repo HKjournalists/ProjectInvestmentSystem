@@ -49,7 +49,6 @@ public class RoleAdminController {
 				
 				map.put("name", role.getRoleName());
 				
-				map.put("desc", role.getDesc());
 				
 				resList.add(map);
 			}
