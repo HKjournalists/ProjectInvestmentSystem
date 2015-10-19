@@ -19,6 +19,32 @@ public class JBPMTestController {
 	@Autowired
 	private TaskService taskService;
 	
+	@RequestMapping("/getTaskInWaiting")
+	@ResponseBody
+	public List<Map<String,String>> getTaskInWaiting(HttpServletRequest request)
+	{
+		String userId = request.getParameter("user_id");
+		
+		List<Task> taskList = this.taskService.findGroupTasks(userId); 
+		
+		List<Map<String, String>> resList = new ArrayList<Map<String, String>>();
+		
+		for(Task task : taskList)
+		{
+			
+			Map<String, String> map = new HashMap<String, String>();
+			
+			map.put("id", task.getId());
+			
+			map.put("name",task.getName());
+			
+			resList.add(map);
+		}
+		
+		return resList;
+	}
+	
+	
 	@RequestMapping("/getAllTask")
 	@ResponseBody
 	public List<Map<String, String>> GetAllTaskList(HttpServletRequest request)

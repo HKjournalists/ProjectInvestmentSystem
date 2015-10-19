@@ -1,5 +1,7 @@
 package com.icbc.pis.web.model;
 
+import java.sql.Timestamp;
+
 public class Role implements java.io.Serializable {
 	
 	//Private Fields
@@ -8,16 +10,31 @@ public class Role implements java.io.Serializable {
 	
 	private String roleName;
 	
-	private String desc;
+	private Timestamp lastModifyTime;
+	
+	private String lastModifyUserId;
 
-
-	public Role(String roleId,String roleName,String desc)
+	private String roleCategory;
+	
+	
+	public Role(String roleId,String roleName)
+	{
+		this.roleId = roleId;
+		
+		this.roleName = roleName;
+	}
+	
+	public Role(String roleId,String roleName,String lastModifyUserId,String roleCategory,Timestamp lastModifyTime)
 	{
 		this.roleId = roleId;
 		
 		this.roleName = roleName;
 		
-		this.desc = desc;
+		this.lastModifyTime = lastModifyTime;
+		
+		this.lastModifyUserId = lastModifyUserId;
+		
+		this.roleCategory = roleCategory;
 	}
 	
 	private Role()
@@ -38,13 +55,31 @@ public class Role implements java.io.Serializable {
 	public void setRoleName(String roleName) {
 		this.roleName = roleName;
 	}
-	
-	
-	public String getDesc() {
-		return desc;
+
+	public Timestamp getLastModifyTime() {
+		return lastModifyTime;
 	}
 
-	public void setDesc(String desc) {
-		this.desc = desc;
+	public void setLastModifyTime(Timestamp lastModifyTime) {
+		this.lastModifyTime = lastModifyTime;
 	}
+
+	public String getLastModifyUserId() {
+		return lastModifyUserId;
+	}
+
+	public void setLastModifyUserId(String lastModifyUserId) {
+		this.lastModifyUserId = lastModifyUserId;
+	}
+
+	public String getRoleCategory() {
+		return roleCategory;
+	}
+
+	public void setRoleCategory(String roleCategory) {
+		this.roleCategory = roleCategory;
+	}
+	
+	
+ 
 }

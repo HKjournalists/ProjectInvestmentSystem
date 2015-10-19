@@ -12,4 +12,6 @@ public interface IRoleService {
 	public Role getRoleById(String roleId);
 	
 	public List<Role> getRoles(List<String> roleIdList);
+	
+	public Role getGroupByActivityName(String activityName);
 }

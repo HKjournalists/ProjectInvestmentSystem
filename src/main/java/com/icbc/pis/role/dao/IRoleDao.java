@@ -10,4 +10,5 @@ public interface IRoleDao {
 	
 	public Role getRoleById(String roleId);
 	 
+	public Role getGroupByActivityName(String activityName);
 }

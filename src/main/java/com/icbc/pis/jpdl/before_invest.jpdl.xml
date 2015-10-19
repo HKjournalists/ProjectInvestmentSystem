@@ -5,12 +5,18 @@
       <transition g="-39,-8" name="to attr_input" to="attr_input"/>
    </start>
    <task g="36,128,92,52" name="attr_input">
+	  <assignment-handler class="com.icbc.pis.workflow.assignhandler.TaskAssignment">   
+      </assignment-handler>   
       <transition g="-52,-16" name="to resource_upload" to="resource_upload"/>
    </task>
    <task g="7,231,150,52" name="resource_upload">
+   	  <assignment-handler class="com.icbc.pis.workflow.assignhandler.TaskAssignment">   
+      </assignment-handler>   
       <transition g="-57,-11" name="to dept_risk_verify" to="dept_risk_verify"/>
    </task>
    <task g="11,331,141,52" name="dept_risk_verify">
+      <assignment-handler class="com.icbc.pis.workflow.assignhandler.TaskAssignment">   
+      </assignment-handler>   
       <transition g="-79,-22" name="to exclusive1" to="pass_risk_verify"/>
    </task>
    <decision g="59,431,48,48" name="pass_risk_verify">
@@ -34,15 +40,21 @@
       <transition g="-17,-16" name="skip" to="end_parallel_verify"/>
    </decision>
    <task g="6,670,92,52" name="law_verify">
+      <assignment-handler class="com.icbc.pis.workflow.assignhandler.TaskAssignment">   
+      </assignment-handler>   
       <transition g="-127,-22" name="to end_parallel_verify" to="end_parallel_verify"/>
    </task>
    <task g="214,670,92,52" name="credit_verify">
+      <assignment-handler class="com.icbc.pis.workflow.assignhandler.TaskAssignment">   
+      </assignment-handler>   
       <transition g="15,-7" name="to end_parallel_verify" to="end_parallel_verify"/>
    </task>
    <join g="126,742,48,48" multiplicity="2" name="end_parallel_verify">
       <transition g="-110,-22" name="to corp_risk_verify" to="exclusive6"/>
    </join>
    <task g="162,818,134,52" name="corp_risk_verify">
+      <assignment-handler class="com.icbc.pis.workflow.assignhandler.TaskAssignment">   
+      </assignment-handler>   
       <transition g="-41,-24" name="next" to="exclusive2"/>
    </task>
    <decision g="444,815,48,48" name="exclusive2">
@@ -51,9 +63,13 @@
       <transition g="-15,-22" name="next" to="report_upload"/>
    </decision>
    <task g="380,643,172,52" name="report_upload">
+      <assignment-handler class="com.icbc.pis.workflow.assignhandler.TaskAssignment">   
+      </assignment-handler>   
       <transition g="-92,-22" name="to team_review" to="team_review"/>
    </task>
    <task g="419,546,92,52" name="team_review">
+      <assignment-handler class="com.icbc.pis.workflow.assignhandler.TaskAssignment">   
+      </assignment-handler>   
       <transition g="-79,-22" name="to exclusive3" to="exclusive3"/>
    </task>
    <decision g="439,427,48,48" name="exclusive3">
@@ -62,6 +78,8 @@
       <transition g="-17,-9" name="next" to="committee_review"/>
    </decision>
    <task g="398,325,136,52" name="committee_review">
+      <assignment-handler class="com.icbc.pis.workflow.assignhandler.TaskAssignment">   
+      </assignment-handler>   
       <transition g="-49,-11" name="to exclusive4" to="exclusive4"/>
    </task>
    <decision g="436,227,48,48" name="exclusive4">
@@ -70,6 +88,8 @@
       <transition g="-12,2" name="next" to="director_approve"/>
    </decision>
    <task g="387,124,137,52" name="director_approve">
+      <assignment-handler class="com.icbc.pis.workflow.assignhandler.TaskAssignment">   
+      </assignment-handler>   
       <transition g="-6,-7" name="to exclusive5" to="exclusive5"/>
    </task>
    <decision g="429,31,48,48" name="exclusive5">
@@ -78,9 +98,13 @@
       <transition g="-66,-23" name="next" to="contract_upload"/>
    </decision>
    <task g="621,25,149,52" name="contract_upload">
+      <assignment-handler class="com.icbc.pis.workflow.assignhandler.TaskAssignment">   
+      </assignment-handler>   
       <transition g="-105,-22" name="to payment_input" to="payment_input"/>
    </task>
    <task g="636,139,115,52" name="payment_input">
+      <assignment-handler class="com.icbc.pis.workflow.assignhandler.TaskAssignment">   
+      </assignment-handler>   
       <transition g="-51,-22" name="to finish" to="finish"/>
    </task>
    <end g="669,250,48,48" name="finish"/>
