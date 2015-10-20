@@ -61,7 +61,7 @@ public class UserAdminController {
 			userRoleList.add(new UserRole(userId,roleid));
 		}
 		
-		UserInfo userInfo = new UserInfo(new User(userId,userName,email,mobile,ext, new Timestamp(System.currentTimeMillis())),userRoleList);
+		UserInfo userInfo = new UserInfo(new User(userId,userName,email,mobile,ext, role, role, role, role, role, new Timestamp(System.currentTimeMillis())),userRoleList);
 		
 		return userInfo;
 	}
@@ -122,7 +122,7 @@ public class UserAdminController {
 		logger.debug("begin addNewUser");
 		UserInfo user = this.GenerateUserInfo(request);
 		
-		if(this.userService.isExists(user.getUserBasicInfo().getUserId()))
+		if(this.userService.isExists(user.getUserBasicInfo().getID()))
 		{
 			this.userService.update(user);
 		}
@@ -171,7 +171,7 @@ public class UserAdminController {
 				
 				map.put("name",user.getNAME());
 				
-				map.put("ext", user.getBRANCH_ID());
+				map.put("ext", user.getEXT());
 				
 				map.put("email",user.getEMAIL());
 				
@@ -179,7 +179,7 @@ public class UserAdminController {
 				
 				map.put("role",roleNameList.toString());
 				
-				map.put("createtime", user.getCreateTime().toString());
+				map.put("createtime", user.getLAST_LOGIN().toString());
 				
 				resList.add(map);
 			}
