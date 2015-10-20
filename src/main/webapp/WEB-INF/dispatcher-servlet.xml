@@ -65,7 +65,6 @@
         <property name="hibernateProperties">  
             <props>  
                 <prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>  
-                <prop key="hibernate.hbm2ddl.auto">create-drop</prop>  
                 <prop key="hibernate.show_sql">true</prop>  
             </props>  
         </property>
@@ -85,6 +84,8 @@
 	<bean id="executionService" factory-bean="processEngine" factory-method="getExecutionService"/>
 	 
 	<bean id="taskService" factory-bean="processEngine" factory-method="getTaskService"/>
+	
+	<bean id="identityService" factory-bean="processEngine" factory-method="getIdentityService"/>
 	 
 	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
 	      <property name="sessionFactory" ref="sessionFactory" />
@@ -151,7 +152,10 @@
 
 	<!-- web component-scan begin-->
 	<context:component-scan base-package="com.icbc.pis.web" />
+	
+	<!-- workflow component-scan begin-->
 	<context:component-scan base-package="com.icbc.pis.workflow.service"/>
+	<context:component-scan base-package="com.icbc.pis.workflow.assignhandler"/>
 	
 	<!-- user component-scan begin-->
 	<context:component-scan base-package="com.icbc.pis.annotation" />
@@ -169,5 +173,6 @@
 	<context:component-scan base-package="com.icbc.pis.role.service.impl" />
 	<!-- role component-scan end-->
 	
+ 
 	
 </beans>

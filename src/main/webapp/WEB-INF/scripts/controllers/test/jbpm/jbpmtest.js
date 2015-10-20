@@ -24,6 +24,14 @@ angular.module('sbAdminApp')
 				function(result){
 					$scope.tasklist = [];
 				});
+		
+		jbpmInfo.queryTaskInWaiting().then(
+				function(result){
+					$scope.taskinwaitinglist = result;
+				},
+				function(result){
+					$scope.taskinwaitinglist = [];
+				});
 	};
 	
 	$scope.go = function(productid,taskid)
@@ -34,12 +42,42 @@ angular.module('sbAdminApp')
 				},
 				function(result){
 				});
+		
+//		jbpmInfo.queryall().then(
+//				function(result){
+//					$scope.tasklist = result;
+//				},
+//				function(result){
+//					$scope.tasklist = [];
+//				});
+//		
+//		jbpmInfo.queryTaskInWaiting().then(
+//				function(result){
+//					$scope.taskinwaitinglist = result;
+//				},
+//				function(result){
+//					$scope.taskinwaitinglist = [];
+//				});
 	}
 	
 }])
 .factory('jbpmInfo', ['$http', '$q', function ($http, $q) {
 
   return {
+
+	  queryTaskInWaiting : function() {  
+		  var deferred = $q.defer();
+		  
+		  $http({method: 'GET', cache : false,url: '../jbpmtest/getTaskInWaiting',params:{a:Math.random(),user_id:'000881815'}}).  
+		  success(function(data, status, headers, config) {  
+			  deferred.resolve(data); 
+		  }).  
+		  error(function(data, status, headers, config) {  
+			  deferred.reject(data);  
+		  });  
+		  
+		  return deferred.promise;  
+	  },
 	  
 	  queryall : function() {  
 		  var deferred = $q.defer();

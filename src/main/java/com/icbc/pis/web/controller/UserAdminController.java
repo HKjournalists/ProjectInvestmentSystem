@@ -100,8 +100,6 @@ public class UserAdminController {
 				
 				map.put("name",this.roleService.getRoleById(userRole.getRoleId()).getRoleName());
 				
-				map.put("desc",this.roleService.getRoleById(userRole.getRoleId()).getDesc());
-				
 				resList.add(map);
 			}
 		}

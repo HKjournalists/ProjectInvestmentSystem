@@ -44,5 +44,12 @@ public class RoleService implements IRoleService{
 		return roleList;
 	}
 
+	@Override
+	public Role getGroupByActivityName(String activityName) {
+		// TODO Auto-generated method stub
+		
+		return this.roleDao.getGroupByActivityName(activityName);
+	}
+
 	
 }

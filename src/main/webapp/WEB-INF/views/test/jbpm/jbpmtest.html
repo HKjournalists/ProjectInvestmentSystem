@@ -25,6 +25,23 @@
 	      </tbody>
  	</table>
  
+ 	<table border="1" width="100%">
+	 	<thead>
+	        <tr>
+	          <td>id</td>
+	          <td>name</td>
+	          <td>&nbsp;</td>
+	        </tr>
+	      </thead>
+	      <tbody>
+	      	<tr ng-repeat="task in taskinwaitinglist">
+				<td>{{task.id}}</td>
+				<td>{{task.name}}</td>
+	      	</tr>
+	      </tbody>
+ 	</table>
+ 	
+ 	
          </div>
          <!-- /.panel -->
      </div>
