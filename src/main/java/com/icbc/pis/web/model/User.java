@@ -5,130 +5,144 @@ import java.sql.Timestamp;
 public class User implements java.io.Serializable {
 
 	//Private Fields
-	private String ID;
+	private String id;
 	
-	private String NAME;
+	private String name;
 
-	private String STATUS;
+	private String status;
 	
-	private String EXT;
+	private String ext;
 	
-	private String EMAIL;
+	private String email;
 	
-	private String MOBILE;
+	private String mobile;
 	
-	private String CARD_TYPE;
+	private String cardType;
 	
-	private String CARD_NO;
+	private String cardNo;
 
-	private String MODI_USER;
+	private String modiUser;
 	
-	private String MODI_TIME;
+	private String modiTime;
 	
-	private Timestamp LAST_LOGIN;
+	private Timestamp lastLogin;
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	public void setID(String iD) {
-		ID = iD;
+	public void setId(String id) {
+		this.id = id;
 	}
 
-	public String getNAME() {
-		return NAME;
+	public String getName() {
+		return name;
 	}
 
-	public void setNAME(String nAME) {
-		NAME = nAME;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getSTATUS() {
-		return STATUS;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setSTATUS(String sTATUS) {
-		STATUS = sTATUS;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
-	public String getEXT() {
-		return EXT;
+	public String getExt() {
+		return ext;
 	}
 
-	public void setEXT(String eXT) {
-		EXT = eXT;
+	public void setExt(String ext) {
+		this.ext = ext;
 	}
 
-	public String getEMAIL() {
-		return EMAIL;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setEMAIL(String eMAIL) {
-		EMAIL = eMAIL;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public String getMOBILE() {
-		return MOBILE;
+	public String getMobile() {
+		return mobile;
 	}
 
-	public void setMOBILE(String mOBILE) {
-		MOBILE = mOBILE;
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
 	}
 
-	public String getCARD_TYPE() {
-		return CARD_TYPE;
+	public String getCardType() {
+		return cardType;
 	}
 
-	public void setCARD_TYPE(String cARD_TYPE) {
-		CARD_TYPE = cARD_TYPE;
+	public void setCardType(String cardType) {
+		this.cardType = cardType;
 	}
 
-	public String getCARD_NO() {
-		return CARD_NO;
+	public String getCardNo() {
+		return cardNo;
 	}
 
-	public void setCARD_NO(String cARD_NO) {
-		CARD_NO = cARD_NO;
+	public void setCardNo(String cardNo) {
+		this.cardNo = cardNo;
 	}
 
-	public String getMODI_USER() {
-		return MODI_USER;
+	public String getModiUser() {
+		return modiUser;
 	}
 
-	public void setMODI_USER(String mODI_USER) {
-		MODI_USER = mODI_USER;
+	public void setModiUser(String modiUser) {
+		this.modiUser = modiUser;
 	}
 
-	public String getMODI_TIME() {
-		return MODI_TIME;
+	public String getModiTime() {
+		return modiTime;
 	}
 
-	public void setMODI_TIME(String mODI_TIME) {
-		MODI_TIME = mODI_TIME;
+	public void setModiTime(String modiTime) {
+		this.modiTime = modiTime;
 	}
 
-	public Timestamp getLAST_LOGIN() {
-		return LAST_LOGIN;
+	public Timestamp getLastLogin() {
+		return lastLogin;
 	}
 
-	public void setLAST_LOGIN(Timestamp lAST_LOGIN) {
-		LAST_LOGIN = lAST_LOGIN;
+	public void setLastLogin(Timestamp lastLogin) {
+		this.lastLogin = lastLogin;
 	}
 
-	public User(String iD, String nAME, String sTATUS, String eXT, String eMAIL, String mOBILE, String cARD_TYPE,
-			String cARD_NO, String mODI_USER, String mODI_TIME, Timestamp lAST_LOGIN) {
+	public User(String id, String name, String status, String ext, String email, String mobile, String cardType,
+			String cardNo, String modiUser, String modiTime, Timestamp lastLogin) {
+		
 		super();
-		ID = iD;
-		NAME = nAME;
-		STATUS = sTATUS;
-		EXT = eXT;
-		EMAIL = eMAIL;
-		MOBILE = mOBILE;
-		CARD_TYPE = cARD_TYPE;
-		CARD_NO = cARD_NO;
-		MODI_USER = mODI_USER;
-		MODI_TIME = mODI_TIME;
-		LAST_LOGIN = lAST_LOGIN;
+		
+		this.id = id;
+		
+		this.name = name;
+		
+		this.status = status;
+		
+		this.ext = ext;
+		
+		this.email = email;
+		
+		this.mobile = mobile;
+		
+		this.cardType = cardType;
+		
+		this.mobile = mobile;
+		
+		this.cardNo = cardNo;
+		
+		this.modiUser = modiUser;
+		
+		this.modiTime = modiTime;
+		
+		this.lastLogin = lastLogin;
 	}
 
 	

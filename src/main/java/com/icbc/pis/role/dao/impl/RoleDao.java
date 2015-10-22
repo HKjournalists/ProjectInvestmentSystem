@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.icbc.pis.role.dao.IRoleDao;
 import com.icbc.pis.web.mapper.RoleMapper;
+import com.icbc.pis.web.mapper.UserMapper;
 import com.icbc.pis.web.model.Role;
 import com.icbc.pis.web.model.User;
  
@@ -27,30 +28,42 @@ public class RoleDao implements IRoleDao{
 	@Override
 	public List<Role> getAllRoleList() {
 		// TODO Auto-generated method stub
-		List<Role> rolelist = new ArrayList<Role>();
+		List<Role> rolelist = null;
 		
-		String names[] = {"风控管理员","合规审核员","信用评级人员","老板","项目经理","傻傻的你","痴痴的我","董事长","合规分析员","系统管理员"};
-		
-		for(int i = 0 ; i < names.length; i++)
+		try
 		{
 			
-			int id = i;
+			String sql = "select  *  from PIS_ROLE t";
 			
-			Role role = new Role(((Integer)id).toString(), names[i]);
-		
-			rolelist.add(role);
+			rolelist = jdbcTemplate.query(sql , new RoleMapper() );
+			
+			return rolelist;
+		}
+		catch(Exception e)
+		{
+			return null;
 		}
 		
-		return rolelist;
+		 
 	}
 
 	@Override
 	public Role getRoleById(String roleId) {
 		// TODO Auto-generated method stub
 		
-		String names[] = {"风控管理员","合规审核员","信用评级人员","老板","项目经理","傻傻的你","痴痴的我","董事长","合规分析员","系统管理员"};
+		String sql = "select * from pis_role where id = ?";
 		
-		Role role = new Role(roleId,names[Integer.parseInt(roleId) % names.length]);
+		Role role = null;
+		
+		try 
+		{
+			role = jdbcTemplate.queryForObject(sql, new Object[] { roleId },
+					new RoleMapper());
+		}
+		catch (Exception e) 
+		{
+			logger.error("resuly is 0, exception : " + e.toString());
+		}
 		
 		return role;
 		

@@ -10,7 +10,7 @@
 
 
 angular.module('sbAdminApp')
-.controller('userQryCtrl', ['$scope','UserInfo',function($scope, UserInfo){
+.controller('userQryCtrl', ['$scope','UserService',function($scope, UserService){
 	$scope.displayed = [];
 	
 	$scope.getUserList = function getUserList(tableState) {
@@ -32,11 +32,11 @@ angular.module('sbAdminApp')
 			
 		}
 		
-	    UserInfo.queryBasicInfo(params).then(
+		UserService.queryBasicInfo(params).then(
 	    function(result){
     		//响应成功
     		$scope.displayed = result.data;
-    		tableState.pagination.numberOfPages = result.numberOfPages;
+    		tableState.pagination.numberOfPages = result.numberOfItems / pagination.itemsByPage;
     		$scope.isLoading = false;
 	    },
 	    function(){
@@ -50,7 +50,7 @@ angular.module('sbAdminApp')
 		
 		var params = {id:user.id};
 		
-		UserInfo.remove(params).then(
+		UserService.remove(params).then(
 			    function(result){
 		    		alert("remove " + user.id + " sucessfully");
 			    },

@@ -30,8 +30,6 @@ public class UserService implements ICommonOperService,IUserService  {
 	@Autowired
 	private UserRoleDao userRoleDao;
 	
-	private final String defaultPswd = "111111";
-	
 	@Override
 	public String getUserPwdByUserId(String userId) {
 		

@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapperResultSetExtractor;
 import org.springframework.stereotype.Repository;
 
 import com.icbc.pis.common.dao.ICommonOperDao;
@@ -18,30 +19,33 @@ import com.icbc.pis.web.mapper.UserMapper;
 import com.icbc.pis.web.model.User;
 import com.icbc.pis.web.model.UserRole;
 import com.icbc.pis.web.utils.StringUtil;
-
 @Repository("UserDao")
 public class UserDao implements IUserDao,ICommonOperDao{
 
-	private static final Logger logger = LoggerFactory.getLogger(UserService.class);
+	private static final Logger logger = LoggerFactory.getLogger(UserDao.class);
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	@Override
-	public User getUserByUserId(String userId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public List<User> getAllUserList() {
 		// TODO Auto-generated method stub
-		return null;
+		
+		String sql = "select * from pis_user";
+		
+		List<User> userList = (List<User>) jdbcTemplate.queryForObject(sql, new Object[] {}, new UserMapper());
+		
+		return userList;
 	}
 
 	@Override
 	public User getUserById(String userId) {
+		logger.debug("begin getUserById");
+		
 		String sql = "select * from pis_user where id=?";
-		User user=jdbcTemplate.queryForObject(sql, new Object[] { userId },
-		new UserMapper());
+		
+		User user = jdbcTemplate.queryForObject(sql, new Object[] { userId }, new UserMapper());
+		
+		logger.debug("end getUserById");
 		return user;
 	}
 
@@ -79,57 +83,79 @@ public class UserDao implements IUserDao,ICommonOperDao{
 	@Override
 	public boolean isExists(String id) {
 		// TODO Auto-generated method stub
-		String sql = "select * from accounter_career";
+		//String sql = "select * from accounter_career";
 		return false;
 	}
 
 	@Override
 	public int count(){
 		
-		return 5;
+		int cnt = jdbcTemplate.queryForObject("select count(*) from PIS_USER", Integer.class);
+		return cnt;
 	}
 	
 	@Override
 	public List<User> getUsersByCondition(Map<String, String[]> filterMap) {
 		// TODO Auto-generated method stub
 		
-		String start = StringUtil.getFirst(filterMap.get("start"));
+ 		String start = StringUtil.getFirst(filterMap.get("start"));
 		
 		String number = StringUtil.getFirst(filterMap.get("number"));
 		
-		int iStart = 1;
+		Integer iEnd = Integer.parseInt(start) + Integer.parseInt(number) - 1;
 		
-		int iNum = 10;
+		String end = iEnd.toString();
 		
-		if(StringUtil.isNullOrEmpty(start) || StringUtil.isNullOrEmpty(number))
+		String name = StringUtil.getFirst(filterMap.get("name")) ;
+		
+		String id = StringUtil.getFirst(filterMap.get("id"));
+		
+//		int iStart = 1;
+//		
+//		int iNum = 10;
+		
+//		if(StringUtil.isNullOrEmpty(start) || StringUtil.isNullOrEmpty(number))
+//		{
+//			return null;
+//		}
+//		else
+//		{
+//			iStart = Integer.parseInt(start);
+//			
+//			iNum = Integer.parseInt(number);
+//		}
+		
+//		String sql = " select p.id,p.name,p.status,p.ext,p.email,p.mobile,p.card_type,p.card_no,p.modi_user,p.modi_time,p.last_login " +
+//					 " from (select ROW_NUMBER() OVER(ORDER BY t.id) ROW_NUM," + 
+//							" t.id,t.name, t.status,t.ext,t.email,t.mobile,t.card_type,t.card_no,t.modi_user,t.modi_time,t.last_login " + 
+//							" from pis_user t " +
+//							" where (? is null or t.name like ? ) " +
+//							" and ( ? is null or t.id = ? ) " +
+//					 ") p WHERE P.ROW_NUM between ? AND ? ";
+		
+		
+		try
+		{
+			//String nameCond = StringUtil.isNullOrEmpty(name) ? " ":" t.NAME like ?  ";
+			//String idCond = StringUtil.isNullOrEmpty(id) ? " ":" and  t.ID = ?  ";
+			String sql = " select p.ID,p.NAME,p.STATUS,p.EXT,p.EMAIL,p.MOBILE,p.CARD_TYPE,p.CARD_NO,p.MODI_USER,p.MODI_TIME,p.LAST_LOGIN " +
+					 " from (select ROW_NUMBER() OVER(ORDER BY t.ID) ROW_NUM," + 
+							" t.ID,t.NAME, t.STATUS,t.EXT,t.EMAIL,t.MOBILE,t.CARD_TYPE,t.CARD_NO,t.MODI_USER,t.MODI_TIME,t.LAST_LOGIN " + 
+							" from PIS_USER t " +
+							" where 1 = 1" +
+							" and ( ? is null or t.NAME like ?) " +
+							" and ( ? is null or t.ID = ?) " +
+					 ") p WHERE P.ROW_NUM between ? AND ? ";
+			//(List<User>) jdbcTemplate.queryForObject(sql, new Object[] {name,id,start,end}, new UserMapper());
+			List<User> userList = jdbcTemplate.query(sql ,new Object[] {name,StringUtil.likeWrap(name),id,id,start,end}, new UserMapper() );
+			
+			return userList;
+		}
+		catch(Exception e)
 		{
 			return null;
 		}
-		else
-		{
-			iStart = Integer.parseInt(start);
-			
-			iNum = Integer.parseInt(number);
-		}
-		
-		List<User> userlist = new ArrayList<User>();
-		
-		String names[] = {"yuezhi liu","jennifer","柳栋名","刘悦之","操蛋","麦当劳","开封菜","sara","lala","苍井空"};
-		String ext[] = {"1231","1234","4343","3452","1111","454","5652","1231","123123","3242"};
-		String mobile[] = {"1801811111","1801812323","137980802323","13433434323","134231512313","13856565565","139234234234","234234234","23423423","123123123"};
-		
-		for(int i = 0 ; i < iNum; i++)
-		{
-			int randomIndex = (int) (Math.random() * 10);
-			
-			int id = iStart + i;
-			
-			//User u = new User(((Integer)id).toString(), names[randomIndex], names[randomIndex] + "@icbc.com", mobile[randomIndex], ext[randomIndex], new Timestamp(System.currentTimeMillis()));
-		
-			//userlist.add(u);
-		}
-		
-		return userlist;
+ 
 	}
 
 

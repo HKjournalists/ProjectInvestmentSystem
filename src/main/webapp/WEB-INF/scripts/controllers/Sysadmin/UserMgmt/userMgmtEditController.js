@@ -11,7 +11,7 @@
 
 
 angular.module('sbAdminApp')
-.controller('userEditCtrl', ['$scope','RoleInfo','UserInfo', function($scope,RoleInfo,UserInfo){
+.controller('userEditCtrl', ['$scope','RoleService','UserService', function($scope,RoleService,UserService){
 	
 	
 	$scope.user = {};
@@ -21,7 +21,7 @@ angular.module('sbAdminApp')
 	$scope.$watch('eidtUser.id',function()
 	{
 		//init the role options list 
-		RoleInfo.queryall().then(
+		RoleService.queryall().then(
 			function(result){
 				$scope.options = result;
 			},
@@ -42,7 +42,7 @@ angular.module('sbAdminApp')
 			var params = {id:$scope.user.id};
 			
 			//init the user's role and make them selected
-			UserInfo.queryRoleInfo(params).then(function(result){
+			UserService.queryRoleInfo(params).then(function(result){
 										$scope.selected_items = result;
 									},
 									function(result){
@@ -64,7 +64,7 @@ angular.module('sbAdminApp')
 		
 		params.role = roleidArray.join(',');
 		
-		UserInfo.save(params).then(
+		UserService.save(params).then(
 				function(){
 					alert('save sucessfully');
 					$.scope.onCancel();

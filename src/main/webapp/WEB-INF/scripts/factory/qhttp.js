@@ -9,14 +9,14 @@
  * 
  */
 angular.module('sbAdminApp')
-.factory('RoleInfo', ['$http', '$q', function ($http, $q) {
+.factory('RoleService', ['$http', '$q', function ($http, $q) {
 
   return {
 	  
 	  queryall : function() {  
 		  var deferred = $q.defer();
 		  
-		  $http({method: 'GET', url: '../role/getAllRoleList'}).  
+		  $http.post('../role/getAllRoleList',params).
 		  success(function(data, status, headers, config) {  
 			  deferred.resolve(data); 
 		  }).  
@@ -28,14 +28,14 @@ angular.module('sbAdminApp')
 	  }
   };  
 }])
-.factory('UserInfo', ['$http', '$q', function ($http, $q) {
+.factory('UserService', ['$http', '$q', function ($http, $q) {
 
   return {
 	  
 	  queryBasicInfo : function(params) {  
 		  var deferred = $q.defer();
 		  
-		  $http({method: 'GET', url: '../user/getUsersByCondition',params:params}).  
+		  $http.post('../user/getUsersByCondition',params).
 		  success(function(data, status, headers, config) {  
 			  deferred.resolve(data); 
 		  }).  
@@ -49,7 +49,7 @@ angular.module('sbAdminApp')
 	  queryRoleInfo : function(params) {  
 		  var deferred = $q.defer();
 		  
-		  $http({method: 'GET', url: '../user/getUserRoleList',params:params}).  
+		  $http.post('../user/getUserRoleList',params).
 		  success(function(data, status, headers, config) {  
 			  deferred.resolve(data); 
 		  }).  
@@ -63,7 +63,7 @@ angular.module('sbAdminApp')
 	  remove: function(params){
 		  var deferred = $q.defer();
 		  
-		  $http({method: 'GET', url: '../user/deleteUser',params:params}).  
+		  $http.post('../user/deleteUser',params).
 		  success(function(data, status, headers, config) {  
 			  deferred.resolve(data); 
 		  }).  
@@ -77,7 +77,7 @@ angular.module('sbAdminApp')
 	  save: function(params){
 		  var deferred = $q.defer();
 		  
-		  $http({method: 'GET', url: '../user/saveUser',params:params}).  
+		  $http.post('../user/saveUser',params).
 		  success(function(data, status, headers, config) {  
 			  deferred.resolve(data); 
 		  }).  

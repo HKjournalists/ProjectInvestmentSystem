@@ -22,4 +22,11 @@ public class StringUtil {
 		
 		return strArray[0];
 	}
+	
+	public static String likeWrap(String str)
+	{
+		String like = "%";
+		
+		return "'" + like + str + like + "'";
+	}
 }

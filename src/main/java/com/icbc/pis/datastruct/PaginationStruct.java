@@ -7,25 +7,25 @@ import java.util.Map;
 
 public class PaginationStruct {
 	
-	private int numberOfPages;
+	private int numberOfItems;
 	
 	private List<Map<String,String>> data;
 
-	public PaginationStruct(int numberOfPages,List<Map<String,String>> data)
+	public PaginationStruct(int numberOfItems,List<Map<String,String>> data)
 	{
-		this.numberOfPages = numberOfPages;
+		this.numberOfItems = numberOfItems;
 		
 		this.data = data;
 	}
 	
 	private PaginationStruct(){}
 	
-	public int getNumberOfPages() {
-		return numberOfPages;
+	public int getnumberOfItems() {
+		return numberOfItems;
 	}
 
-	public void setNumberOfPages(int numberOfPages) {
-		this.numberOfPages = numberOfPages;
+	public void setnumberOfItems(int numberOfPages) {
+		this.numberOfItems = numberOfPages;
 	}
 
 	public List<Map<String, String>> getData() {

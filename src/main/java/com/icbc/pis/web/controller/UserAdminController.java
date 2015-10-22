@@ -119,7 +119,7 @@ public class UserAdminController {
 		logger.debug("begin addNewUser");
 		UserInfo user = this.GenerateUserInfo(request);
 		
-		if(this.userService.isExists(user.getUserBasicInfo().getID()))
+		if(this.userService.isExists(user.getUserBasicInfo().getId()))
 		{
 			this.userService.update(user);
 		}
@@ -141,7 +141,8 @@ public class UserAdminController {
 
 		logger.debug("begin getUsersByCondition");
 		//System.out.println("begin getAllUserList");
-		Map<String,String[]> filterCond =  request.getParameterMap();
+		
+ 		Map<String,String[]> filterCond =  request.getParameterMap();
 		
 		List<Map<String, String>> resList = new ArrayList<Map<String, String>>();
 
@@ -151,12 +152,13 @@ public class UserAdminController {
 		{
 			for(User user : userList)
 			{
-				List<UserRole> userRoleList = this.userRoleService.getUserRole(user.getID());
+				List<UserRole> userRoleList = this.userRoleService.getUserRole(user.getId());
 				
 				StringBuilder roleNameList = new StringBuilder();
 				
 				for(UserRole ur : userRoleList)
 				{
+					//String roleName = "";
 					String roleName = this.roleService.getRoleById(ur.getRoleId()).getRoleName();
 					
 					roleNameList.append(roleName + ",");
@@ -164,19 +166,26 @@ public class UserAdminController {
 				
 				Map<String, String> map = new HashMap<String, String>();
 				
-				map.put("id", user.getID());
+				map.put("id", user.getId());
 				
-				map.put("name",user.getNAME());
+				map.put("name",user.getName());
 				
-				map.put("ext", user.getEXT());
+				map.put("ext", user.getExt());
 				
-				map.put("email",user.getEMAIL());
+				map.put("email",user.getEmail());
 				
-				map.put("mobile", user.getMOBILE());
+				map.put("mobile", user.getMobile());
 				
 				map.put("role",roleNameList.toString());
 				
-				map.put("createtime", user.getLAST_LOGIN().toString());
+				if(null != user.getLastLogin())
+				{
+					map.put("lastlogintime", user.getLastLogin().toString());
+				}
+				else
+				{
+					map.put("lastlogintime", "");
+				}
 				
 				resList.add(map);
 			}

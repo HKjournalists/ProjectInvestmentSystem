@@ -8,8 +8,6 @@ import com.icbc.pis.web.model.UserRole;
  
 public interface IUserDao {
 	
-	public User getUserByUserId(String userId);
-
 	public String getUserPswdById(String userId);
 
 	public List<User> getAllUserList();
