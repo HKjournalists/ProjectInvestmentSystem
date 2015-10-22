@@ -20,7 +20,6 @@ import com.icbc.pis.datastruct.UserInfo;
 import com.icbc.pis.role.service.impl.RoleService;
 import com.icbc.pis.user.service.impl.UserRoleService;
 import com.icbc.pis.user.service.impl.UserService;
-import com.icbc.pis.web.api.controller.SysConfigController;
 import com.icbc.pis.web.model.Role;
 import com.icbc.pis.web.model.User;
 import com.icbc.pis.web.model.UserRole;

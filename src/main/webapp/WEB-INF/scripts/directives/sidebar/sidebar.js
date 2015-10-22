@@ -8,7 +8,7 @@
  */
 
 angular.module('sbAdminApp')
-  .directive('sidebar',['$location',function() {
+  .directive('sidebar',['$location','menuService',function(menuService) {
     return {
       templateUrl:'../scripts/directives/sidebar/sidebar.html',
       restrict: 'E',
@@ -31,14 +31,34 @@ angular.module('sbAdminApp')
             $scope.multiCollapseVar = 0;
           else
             $scope.multiCollapseVar = y;
-        };
-        $scope.fullmenu=[{text:"系统管理",url:"eee",icon:"fa-sitemap",hasChild:true,
-            Child:[{text:"用户管理",url:"dashboard.userManagement",icon:"fa-sitemap",hasChild:false},{text:"角色管理",url:"eee",icon:"fa-sitemap",hasChild:false},{text:"日志管理",url:"eee",icon:"fa-sitemap",hasChild:false}]},
-            {text:"投前准备",url:"eee",icon:"fa-sitemap",hasChild:true,Child:[{text:"用户管理",url:"dashboard.userManagement",icon:"fa-sitemap",hasChild:false},{text:"角色管理",url:"eee",icon:"fa-sitemap",hasChild:false},{text:"日志管理",url:"eee",icon:"fa-sitemap",hasChild:false}]},
-            {text:"投资审批",url:"eee",icon:"fa-sitemap",hasChild:true,Child:[{text:"用户管理",url:"dashboard.userManagement",icon:"fa-sitemap",hasChild:false},{text:"角色管理",url:"eee",icon:"fa-sitemap",hasChild:false},{text:"日志管理",url:"eee",icon:"fa-sitemap",hasChild:false}]},
-            {text:"投后管理",url:"eee",icon:"fa-sitemap",hasChild:true,Child:[{text:"用户管理",url:"dashboard.userManagement",icon:"fa-sitemap",hasChild:false},{text:"角色管理",url:"eee",icon:"fa-sitemap",hasChild:false},{text:"日志管理",url:"eee",icon:"fa-sitemap",hasChild:false}]},
-	        ];
-        $scope.menu=$scope.fullmenu;
+        };        	
       }
     }
-  }]);
+  }])
+  .controller('sidebarCtrl', ['$scope','menuService',function($scope, menuService){
+	  menuService.queryall().then(
+      		function(result){
+      	$scope.menu= result;
+      	$scope.fullmenu=result;
+		},
+		function(result){
+			$scope.menu = [];
+		});
+  }])
+.factory('menuService', ['$http', '$q', function ($http, $q) {
+	  return {
+		  test:function() {  return 'ttt';},
+		  queryall : function() {  
+			  var deferred = $q.defer();
+			  $http({method: 'GET', url: '../MenuGenerater'}).  
+			  success(function(data, status, headers, config) {  
+				  deferred.resolve(data); 
+			  }).  
+			  error(function(data, status, headers, config) {  
+				  deferred.reject(data);  
+			  });  
+			  
+			  return deferred.promise;  
+		  }
+	  };  
+	}]);

@@ -173,6 +173,10 @@
 	<context:component-scan base-package="com.icbc.pis.role.service.impl" />
 	<!-- role component-scan end-->
 	
+	<!-- role component-scan begin-->
+	<context:component-scan base-package="com.icbc.pis.Dashboard.dao.impl" />
+	<context:component-scan base-package="com.icbc.pis.Dashboard.service.impl" />
+	<!-- role component-scan end-->
  
 	
 </beans>

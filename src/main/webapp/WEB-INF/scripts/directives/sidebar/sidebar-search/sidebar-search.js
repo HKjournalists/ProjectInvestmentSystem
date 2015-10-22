@@ -19,24 +19,24 @@ angular.module('sbAdminApp')
     	var filter=$filter("menufilter");
         $scope.selectedMenu = 'home';
         $scope.OnSereash=function(){
-            
             if (promise !== null) {
                 $timeout.cancel(promise); 
               }
             promise = $timeout(function () {
-            	$scope.menu=filter($scope.fullmenu,$scope.barSearch);
+            	$scope.isSereash=true;
+            	$scope.Sereashmenu=filter($scope.fullmenu,$scope.barSearch);
                 promise = null;
               }, 400);
             if($scope.barSearch=="")
             	{
-            	$scope.menu=$scope.fullmenu;
+            	$scope.isSereash=false;
             	$timeout.cancel(promise);
             	}
               
         }
         $scope.OnSereashClick=function(){
-
-        	$scope.menu=filter($scope.fullmenu,$scope.barSearch);
+        	$scope.isSereash=true;
+        	$scope.Sereashmenu=filter($scope.fullmenu,$scope.barSearch);
               
         }
       }
@@ -47,9 +47,10 @@ angular.module('sbAdminApp')
                var searh=function(items,name)
                {
         		   var ret=[]
+        		   if(items==null) return ret;
                    for(var i=0;i<items.length;i++)
             	   {
-                   if(items[i].hasChild) ret=ret.concat(searh(items[i].Child,name));
+                   if(items[i].hasChild) ret=ret.concat(searh(items[i].children,name));
                    else
             	   if(items[i].text.indexOf(name)!=-1) ret.push(items[i]);
             	   }

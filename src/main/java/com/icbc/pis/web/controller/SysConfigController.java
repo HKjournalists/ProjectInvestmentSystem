@@ -1,4 +1,4 @@
-package com.icbc.pis.web.api.controller;
+package com.icbc.pis.web.controller;
 
 import java.util.HashMap;
 import java.util.Map;
