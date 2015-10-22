@@ -18,7 +18,7 @@ public class UserMapper implements RowMapper<User>{
 				rs.getString("EXT"), rs.getString("EMAIL"),
 				rs.getString("MOBILE"), rs.getString("CARD_TYPE"), 
 				rs.getString("CARD_NO"), rs.getString("MODI_USER"), 
-				rs.getString("MODI_TIME"), rs.getTimestamp("LAST_LOGIN"));
+				rs.getTimestamp("MODI_TIME"), rs.getTimestamp("LAST_LOGIN"));
 		return u;
 	}
 

@@ -21,7 +21,6 @@ import com.icbc.pis.datastruct.UserInfo;
 import com.icbc.pis.role.service.impl.RoleService;
 import com.icbc.pis.user.service.impl.UserRoleService;
 import com.icbc.pis.user.service.impl.UserService;
-import com.icbc.pis.web.api.controller.SysConfigController;
 import com.icbc.pis.web.model.User;
 import com.icbc.pis.web.model.UserRole;
 
@@ -60,7 +59,7 @@ public class UserAdminController {
 		
 		String role = request.getParameter("role");
 		
-		String modUser = (String) httpSession.getAttribute("UserId");
+		String modUser = (String) httpSession.getAttribute("userId");
 		
 		Timestamp modTime = new Timestamp(System.currentTimeMillis());
 		
@@ -123,7 +122,7 @@ public class UserAdminController {
 	
 	
 	@RequestMapping("/saveUser")
-	@ResponseBody
+	
 	public String saveUser(HttpSession httpSession,HttpServletRequest request)
 	{
 		
@@ -142,6 +141,7 @@ public class UserAdminController {
 		logger.debug("end saveUser");
 		
 		return null;
+		//return "redirect:/views/index.html";
 		
 	}
 	
@@ -206,5 +206,11 @@ public class UserAdminController {
 		logger.debug("finish getUsersByCondition");
 		
 		return paginationStruct;
+	}
+	
+	@RequestMapping("/test")
+	public String test(HttpServletRequest request)
+	{
+		return "redirect:/views/index.html";
 	}
 }

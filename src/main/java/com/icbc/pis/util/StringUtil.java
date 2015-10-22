@@ -1,4 +1,4 @@
-package com.icbc.pis.web.utils;
+package com.icbc.pis.util;
 
 public class StringUtil {
 
@@ -27,6 +27,6 @@ public class StringUtil {
 	{
 		String like = "%";
 		
-		return "'" + like + str + like + "'";
+		return like + str + like;
 	}
 }

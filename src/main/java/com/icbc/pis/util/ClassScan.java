@@ -1,4 +1,4 @@
-package com.icbc.pis.web.utils;
+package com.icbc.pis.util;
 
 import java.io.File;
 import java.io.FileFilter;

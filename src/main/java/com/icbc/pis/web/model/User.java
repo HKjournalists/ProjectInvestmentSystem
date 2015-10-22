@@ -23,7 +23,7 @@ public class User implements java.io.Serializable {
 
 	private String modiUser;
 	
-	private String modiTime;
+	private Timestamp modiTime;
 	
 	private Timestamp lastLogin;
 
@@ -99,11 +99,11 @@ public class User implements java.io.Serializable {
 		this.modiUser = modiUser;
 	}
 
-	public String getModiTime() {
+	public Timestamp getModiTime() {
 		return modiTime;
 	}
 
-	public void setModiTime(String modiTime) {
+	public void setModiTime(Timestamp modiTime) {
 		this.modiTime = modiTime;
 	}
 
@@ -116,7 +116,7 @@ public class User implements java.io.Serializable {
 	}
 
 	public User(String id, String name, String status, String ext, String email, String mobile, String cardType,
-			String cardNo, String modiUser, String modiTime, Timestamp lastLogin) {
+			String cardNo, String modiUser, Timestamp modiTime, Timestamp lastLogin) {
 		
 		super();
 		

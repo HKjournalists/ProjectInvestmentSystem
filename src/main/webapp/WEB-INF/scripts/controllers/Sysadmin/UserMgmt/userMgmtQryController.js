@@ -10,7 +10,7 @@
 
 
 angular.module('sbAdminApp')
-.controller('userQryCtrl', ['$scope','UserService',function($scope, UserService){
+.controller('userQryCtrl', ['$scope','$location','UserService',function($scope,$location, UserService){
 	$scope.displayed = [];
 	
 	$scope.getUserList = function getUserList(tableState) {
@@ -53,9 +53,13 @@ angular.module('sbAdminApp')
 		UserService.remove(params).then(
 			    function(result){
 		    		alert("remove " + user.id + " sucessfully");
+		    		
+		    		$location.path("/views/index.html");
 			    },
 			    function(){
 			    	alert('failed');
 			    });
+		
+		
 	}
 }]);

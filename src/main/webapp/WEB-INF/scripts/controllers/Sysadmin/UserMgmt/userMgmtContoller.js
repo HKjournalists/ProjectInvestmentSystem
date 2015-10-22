@@ -19,6 +19,7 @@ angular.module('sbAdminApp')
 	};
 	
 	$scope.onAddUser = function addUser(){
+		$scope.eidtUser = {};
 		$scope.eidtUser.id = "";
 		$scope.operType = "add";
 		
@@ -26,6 +27,7 @@ angular.module('sbAdminApp')
 	
 	$scope.onCancel = function(){
 		$scope.operType = "qry";
+		//$route.reload();
 	}
 })
 

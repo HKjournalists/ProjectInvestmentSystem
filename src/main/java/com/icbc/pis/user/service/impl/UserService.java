@@ -16,7 +16,6 @@ import com.icbc.pis.user.dao.impl.UserRoleDao;
 import com.icbc.pis.user.service.IUserService;
 import com.icbc.pis.web.model.User;
 import com.icbc.pis.web.model.UserRole;
-import com.icbc.pis.web.utils.StringUtil;
 
 
 @Service("UserService")
@@ -82,30 +81,41 @@ public class UserService implements ICommonOperService,IUserService  {
 	@Transactional
 	public boolean update(Object userInfo) {
 		
-		boolean retFlag = false;
-		
-		UserInfo userinfo = (UserInfo)userInfo;
-		
-		//retFlag = this.userRoleDao.delete(userinfo.getUserBasicInfo().getUserId());
-		
-		if(retFlag == false)
+		try
 		{
-			return retFlag;
-		}
-		
-		for(UserRole ur : userinfo.getRoleList())
-		{
-			retFlag = this.userRoleDao.add(ur);
+			boolean retFlag = false;
+			
+			UserInfo userinfo = (UserInfo)userInfo;
+			
+			retFlag = this.userRoleDao.delete(userinfo.getUserBasicInfo().getId());
 			
 			if(retFlag == false)
 			{
 				return retFlag;
 			}
+			
+			for(UserRole ur : userinfo.getRoleList())
+			{
+				retFlag = this.userRoleDao.add(ur);
+				
+				if(retFlag == false)
+				{
+					return retFlag;
+				}
+			}
+			
+			retFlag = this.userDao.update(userinfo.getUserBasicInfo());
+			
+			return retFlag;
+		}
+		catch(Exception e)
+		{
+			logger.error(e.toString());
+			
+			return false;
 		}
 		
-		retFlag = this.userDao.update(userinfo.getUserBasicInfo());
-		
-		return retFlag;
+
 	}
 
 	@Override

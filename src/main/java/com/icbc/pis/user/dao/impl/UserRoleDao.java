@@ -29,22 +29,12 @@ public class UserRoleDao implements IUserRoleDao,ICommonOperDao {
 	public List<UserRole> getALLRoleListByUserId(String userId) {
 		// TODO Auto-generated method stub
 		
-//		List<UserRole> urList = new ArrayList<UserRole>();
-//		
-//		urList.add(new UserRole(userId,userId));
-//		
-//		Integer id = Integer.parseInt(userId) + 1;
-//		
-//		urList.add(new UserRole(id.toString(),id.toString()));
-//		
-//		return urList;
-		
 		List<UserRole> urList = null;
 		
 		try
 		{
 			
-			String sql = "select  *  from PIS_USER_ROLE_REL where USER_ID = ?" ;
+			String sql = "select * from PIS_USER_ROLE_REL where USER_ID = ?" ;
 			
 			urList = jdbcTemplate.query(sql ,new Object[] {userId}, new UserRoleMapper() );
 			
@@ -52,6 +42,8 @@ public class UserRoleDao implements IUserRoleDao,ICommonOperDao {
 		}
 		catch(Exception e)
 		{
+			logger.error(e.toString());
+			
 			return null;
 		}
 		
@@ -60,7 +52,21 @@ public class UserRoleDao implements IUserRoleDao,ICommonOperDao {
 	@Override
 	public boolean add(Object obj) {
 		// TODO Auto-generated method stub
-		return false;
+		try
+		{
+			UserRole ur = (UserRole)obj;
+			
+			String sql = "insert into PIS_USER_ROLE_REL(USER_ID,ROLE_ID) values (?,?)";
+			
+			int affectedRows = this.jdbcTemplate.update(sql,ur.getUserId(),ur.getRoleId());
+			
+			return affectedRows != 0;
+		}
+		catch(Exception e)
+		{
+			logger.error(e.toString());
+			return false;
+		}
 	}
 
 	@Override
@@ -72,7 +78,21 @@ public class UserRoleDao implements IUserRoleDao,ICommonOperDao {
 	@Override
 	public boolean delete(String id) {
 		// TODO Auto-generated method stub
-		return false;
+		
+		try
+		{
+			String sql = "delete from PIS_USER_ROLE_REL where USER_ID = ?";
+			
+			int affectedRows = this.jdbcTemplate.update(sql,id);
+			
+			return true;
+		}
+		catch(Exception e)
+		{
+			logger.error(e.toString());
+			
+			return false;
+		}
 	}
 
 	@Override

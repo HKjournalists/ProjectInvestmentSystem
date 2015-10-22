@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.icbc.pis.annotation.Decision;
-import com.icbc.pis.web.utils.ClassScan;
+import com.icbc.pis.util.ClassScan;
 
 public class DecisionScanner {
 

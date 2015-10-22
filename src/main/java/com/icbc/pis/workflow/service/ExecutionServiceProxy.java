@@ -6,7 +6,7 @@ import org.jbpm.api.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.icbc.pis.web.utils.StringUtil;
+import com.icbc.pis.util.StringUtil;
 
 @Component("ExecutionServiceProxy")
 public class ExecutionServiceProxy implements ServiceProxyInterface {

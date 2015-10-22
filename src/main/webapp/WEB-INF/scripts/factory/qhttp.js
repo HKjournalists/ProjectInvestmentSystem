@@ -16,7 +16,7 @@ angular.module('sbAdminApp')
 	  queryall : function() {  
 		  var deferred = $q.defer();
 		  
-		  $http.post('../role/getAllRoleList',params).
+		  $http.post('../role/getAllRoleList').
 		  success(function(data, status, headers, config) {  
 			  deferred.resolve(data); 
 		  }).  
@@ -86,8 +86,22 @@ angular.module('sbAdminApp')
 		  });  
 		  
 		  return deferred.promise; 
-	  }
+	  },
 		  
+	  test: function(params){
+		  var deferred = $q.defer();
+		  
+		  $http.post('../user/test').
+		  success(function(data, status, headers, config) {  
+			  deferred.resolve(data); 
+		  }).  
+		  error(function(data, status, headers, config) {  
+			  deferred.reject(data);  
+		  });  
+		  
+		  return deferred.promise; 
+	  }
+	  
   };  
 }])
 ; 

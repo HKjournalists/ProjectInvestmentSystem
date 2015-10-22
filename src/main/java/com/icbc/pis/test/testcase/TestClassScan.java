@@ -2,7 +2,7 @@ package com.icbc.pis.test.testcase;
 
 import java.util.Set;
 
-import com.icbc.pis.web.utils.ClassScan;
+import com.icbc.pis.util.ClassScan;
 
 import junit.framework.TestCase;
 
