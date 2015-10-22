@@ -22,7 +22,7 @@ public class TaskAssignment implements AssignmentHandler  {
 
  		Role role = ServiceHelper.GetInstance().getRoleService().getGroupByActivityName(openExec.getActivity().getName());
 		
-		assignable.addCandidateGroup(role.getRoleId());
+		assignable.addCandidateGroup(role.getRoleId().trim());
 		
 	}
 	
