@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +21,7 @@ import com.icbc.pis.datastruct.UserInfo;
 import com.icbc.pis.role.service.impl.RoleService;
 import com.icbc.pis.user.service.impl.UserRoleService;
 import com.icbc.pis.user.service.impl.UserService;
-import com.icbc.pis.web.model.Role;
+import com.icbc.pis.web.api.controller.SysConfigController;
 import com.icbc.pis.web.model.User;
 import com.icbc.pis.web.model.UserRole;
 
@@ -39,11 +40,17 @@ public class UserAdminController {
 	@Autowired
 	private UserRoleService userRoleService;
 	
-	private UserInfo GenerateUserInfo(HttpServletRequest request){
+	private UserInfo GenerateUserInfo(HttpSession httpSession,HttpServletRequest request){
 		
 		String userId = request.getParameter("id");
 		
 		String userName = request.getParameter("name");
+		
+		String userStatus = "1";
+		
+		String cardNo = request.getParameter("cardNo");
+		
+		String cardType = request.getParameter("cardType");
 		
 		String email = request.getParameter("email");
 		
@@ -53,6 +60,10 @@ public class UserAdminController {
 		
 		String role = request.getParameter("role");
 		
+		String modUser = (String) httpSession.getAttribute("UserId");
+		
+		Timestamp modTime = new Timestamp(System.currentTimeMillis());
+		
 		List<UserRole> userRoleList = new ArrayList();
 		
 		for(String roleid : role.split(","))
@@ -60,14 +71,14 @@ public class UserAdminController {
 			userRoleList.add(new UserRole(userId,roleid));
 		}
 		
-		UserInfo userInfo = new UserInfo(new User(userId,userName,email,mobile,ext, role, role, role, role, role, new Timestamp(System.currentTimeMillis())),userRoleList);
+		UserInfo userInfo = new UserInfo(new User(userId,userName,userStatus,ext,email,mobile, cardType, cardNo,modUser,modTime,null),userRoleList);
 		
 		return userInfo;
 	}
 	
 	@RequestMapping("/deleteUser")
 	@ResponseBody
-	public String deleteUser(HttpServletRequest request)
+	public String deleteUser(HttpSession httpSession,HttpServletRequest request)
 	{
 		String userId = request.getParameter("id");
 		
@@ -113,11 +124,11 @@ public class UserAdminController {
 	
 	@RequestMapping("/saveUser")
 	@ResponseBody
-	public String saveUser(HttpServletRequest request)
+	public String saveUser(HttpSession httpSession,HttpServletRequest request)
 	{
 		
 		logger.debug("begin addNewUser");
-		UserInfo user = this.GenerateUserInfo(request);
+		UserInfo user = this.GenerateUserInfo(httpSession,request);
 		
 		if(this.userService.isExists(user.getUserBasicInfo().getId()))
 		{
@@ -125,7 +136,6 @@ public class UserAdminController {
 		}
 		else
 		{
-
 			this.userService.add(user);
 		}
 		
