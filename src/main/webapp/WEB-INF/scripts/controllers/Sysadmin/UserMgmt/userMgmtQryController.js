@@ -10,7 +10,7 @@
 
 
 angular.module('sbAdminApp')
-.controller('userQryCtrl', ['$scope','$location','UserService',function($scope,$location, UserService){
+.controller('userQryCtrl', ['$scope','$state','UserService',function($scope,$state, UserService){
 	$scope.displayed = [];
 	
 	$scope.getUserList = function getUserList(tableState) {
@@ -36,7 +36,11 @@ angular.module('sbAdminApp')
 	    function(result){
     		//响应成功
     		$scope.displayed = result.data;
-    		tableState.pagination.numberOfPages = result.numberOfItems / pagination.itemsByPage;
+    		
+    		pagination.itemsByPage = 10;
+    		
+    		tableState.pagination.numberOfPages = Math.ceil(result.numberOfItems / pagination.itemsByPage);
+    		
     		$scope.isLoading = false;
 	    },
 	    function(){
@@ -54,7 +58,7 @@ angular.module('sbAdminApp')
 			    function(result){
 		    		alert("remove " + user.id + " sucessfully");
 		    		
-		    		$location.path("/views/index.html");
+		    		$state.reload();
 			    },
 			    function(){
 			    	alert('failed');
@@ -62,4 +66,14 @@ angular.module('sbAdminApp')
 		
 		
 	}
+	
+	$scope.selectUser = function (user){
+		
+		$scope.selectedUser = user;
+	};
+		
+	$scope.isSelected = function (user) {
+		
+		return $scope.selectedUser === user;
+	};
 }]);
