@@ -21,7 +21,14 @@ angular.module('sbAdminApp')
         'details':'@',
         'type':'@',
         'goto':'@'
-  		}
+  		},
+    	link: function($scope, $element, $attrs){
+    		$scope.changeMode=function(mode)
+    		{
+    			alert(1);
+    			$scope.pagestatus=mode;
+    		}
+    	}
   		
   	}
   });
