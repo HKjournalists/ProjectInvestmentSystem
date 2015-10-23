@@ -174,13 +174,15 @@ public class UserDao implements IUserDao,ICommonOperDao{
 	public List<User> getUsersByCondition(Map<String, String[]> filterMap) {
 		// TODO Auto-generated method stub
 		
- 		String start = StringUtil.getFirst(filterMap.get("start"));
+		Integer iStart = Integer.parseInt(StringUtil.getFirst(filterMap.get("start"))) + 1;
 		
 		String number = StringUtil.getFirst(filterMap.get("number"));
 		
-		Integer iEnd = Integer.parseInt(start) + Integer.parseInt(number) - 1;
+		Integer iEnd = iStart + Integer.parseInt(number) - 1;
 		
 		String end = iEnd.toString();
+		
+		String start = iStart.toString();
 		
 		String name = StringUtil.getFirst(filterMap.get("name")) ;
 		

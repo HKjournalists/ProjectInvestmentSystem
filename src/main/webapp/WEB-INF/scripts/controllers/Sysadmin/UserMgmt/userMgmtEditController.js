@@ -11,7 +11,7 @@
 
 
 angular.module('sbAdminApp')
-.controller('userEditCtrl', ['$scope','$location','RoleService','UserService', function($scope,$location,RoleService,UserService){
+.controller('userEditCtrl', ['$scope','$state','RoleService','UserService', function($scope,$state,RoleService,UserService){
 	
 	
 	$scope.user = {};
@@ -79,7 +79,9 @@ angular.module('sbAdminApp')
 		.then(function(){
 					alert('save sucessfully');
 					//$.scope.onCancel();
-					$location.path("/views/index.html");
+					//$location.path("/views/index.html");
+					$state.reload();
+
 				},
 			  function(){
 					alert('save failed');

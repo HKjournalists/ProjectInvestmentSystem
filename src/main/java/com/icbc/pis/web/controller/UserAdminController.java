@@ -140,8 +140,8 @@ public class UserAdminController {
 		
 		logger.debug("end saveUser");
 		
-		return null;
-		//return "redirect:/views/index.html";
+		//return null;
+		return "redirect:/views/index.html";
 		
 	}
 	
