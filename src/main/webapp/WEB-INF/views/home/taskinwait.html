@@ -1,0 +1,35 @@
+<div id="collapseTwo" class="panel-collapse collapse in" ng-controller="taskinwaitCtrl">
+    <div class="panel-body">
+		 <table class="table table-bordered table-striped"  st-pipe="getTaskInWaiting" st-table="displayed">
+			<thead>
+				<tr>
+					<th st-sort="taskId">任务编号</th>
+					<th st-sort="productId">项目编号</th>
+					<th st-sort="productName">项目名称</th>
+					<th st-sort="status">项目状态</th>
+					<th st-sort="oper">操作</th>
+				</tr>
+			</thead>
+			<tbody ng-show="!isLoading" ng-repeat="row in displayed">
+				<tr ng-class-even="'active'" ng-class-odd="'success'">
+					<td>{{row.taskId}}</td>
+					<td>{{row.productId}}</td>
+					<td>{{row.productName}}</td>
+					<td>{{row.status}}</td>
+					<td><a href="" ng-click="onHandle(row)">{{row.oper}}</a></td>
+				</tr>
+			</tbody>
+			<tbody ng-show="isLoading">
+				<tr>
+					<td colspan="5" class="text-center">Loading ... </td>
+				</tr>
+			</tbody>
+			<tfoot>
+			<tr>
+				<td class="text-center" st-pagination="" st-items-by-page="10" colspan="5">
+				</td>
+			</tr>
+			</tfoot>
+		</table>	
+    </div>
+</div>

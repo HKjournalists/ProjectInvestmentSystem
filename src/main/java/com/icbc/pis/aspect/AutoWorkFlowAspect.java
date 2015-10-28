@@ -37,7 +37,7 @@ public class AutoWorkFlowAspect {
     @After(" WorkFlowAspect()")
     public void doAfter(JoinPoint joinPoint){
     	
-//    	System.out.println("=====work flow engine proceed next step=====");  
+    	System.out.println("=====work flow engine proceed next step=====");  
 //    	
 //    	HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
 //    	String taskId = request.getParameter("WKF_TASK_ID");
@@ -54,7 +54,7 @@ public class AutoWorkFlowAspect {
         
     	System.out.println("=====work flow engine proceed next step=====");  
     	
-    	if(StringUtil.isNullOrEmpty(result))
+    	if(!StringUtil.isNullOrEmpty(result))
     	{
         	HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         	String taskId = request.getParameter("WKF_TASK_ID");
@@ -62,9 +62,6 @@ public class AutoWorkFlowAspect {
         	System.out.println("=====WorkFlowAspect : " + taskId ); 
         	this.executionServiceProxy.Proceed("before_invest", productId,taskId);
     	}
-    	
-
-    	
     }  
 
     @AfterThrowing(pointcut = "WorkFlowAspect()", throwing = "e")  

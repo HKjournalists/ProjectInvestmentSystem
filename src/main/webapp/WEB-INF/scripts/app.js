@@ -130,6 +130,7 @@ angular
               name:'sbAdminApp',
               files:[
               '../scripts/controllers/home/home.js',
+              '../scripts/controllers/home/taskinwait.js',
               '../scripts/factory/taskInWaitService.js',
               '../scripts/directives/timeline/timeline.js',
               '../scripts/directives/notifications/notifications.js',

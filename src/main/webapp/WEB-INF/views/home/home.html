@@ -8,9 +8,9 @@
     <!-- /.row -->
     <div class="row">
         
-        <stats number="2" comments="待处理任务" colour="primary" type="tasks" goto="1"></stats>
-        <stats number="1" comments="待查看信息" colour="green" type="info" goto="2"></stats>
-        <stats number="0" comments="待处理警告" colour="yellow" type="bell" goto="3"></stats>
+        <stats number="2" comments="待处理任务" colour="primary" type="tasks" goto="taskinwait"></stats>
+        <stats number="1" comments="待查看信息" colour="green" type="info" goto="infotocheck"></stats>
+        <stats number="0" comments="待处理警告" colour="yellow" type="bell" goto="warntoverify"></stats>
 
     </div>
     
@@ -20,48 +20,14 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion">用户列表</a>
+                    <a data-toggle="collapse" data-parent="#accordion">待办列表</a>
                 </h4>
             </div>
-            <div id="collapseTwo" class="panel-collapse collapse in">
-                <div class="panel-body">
-					 <table class="table table-bordered table-striped"  st-pipe="getTaskInWaiting" st-table="displayed">
-						<thead>
-							<tr>
-								<th st-sort="taskId">任务编号</th>
-								<th st-sort="productId">项目编号</th>
-								<th st-sort="productName">项目名称</th>
-								<th st-sort="status">项目状态</th>
-								<th st-sort="oper">操作</th>
-							</tr>
-							<tr>
-								<th colspan="5"><input class="hidden" st-search="mode"/></th>
-							</tr>
-						</thead>
-						<tbody ng-show="!isLoading" ng-repeat="row in displayed">
-							<tr ng-class-even="'active'" ng-class-odd="'success'">
-								<td>{{row.taskId}}</td>
-								<td>{{row.productId}}</td>
-								<td>{{row.productName}}</td>
-								<td>{{row.status}}</td>
-								<td><a href="" ng-click="onHandle(row)">{{row.oper}}</a></td>
-								
-							</tr>
-						</tbody>
-						<tbody ng-show="isLoading">
-							<tr>
-								<td colspan="5" class="text-center">Loading ... </td>
-							</tr>
-						</tbody>
-						<tfoot>
-						<tr>
-							<td class="text-center" st-pagination="" st-items-by-page="10" colspan="5">
-							</td>
-						</tr>
-						</tfoot>
-					</table>	
-                </div>
-            </div>
+            <div class="panel-body">
+				<div ng-include="'home/taskinwait.html'"  ng-class="{'taskinwait': 'show', 'infotocheck': 'hidden','warntoverify': 'hidden'}[mode]"></div>
+				<div ng-include="'home/infotocheck.html'" ng-class="{'taskinwait': 'hidden', 'infotocheck': 'show','warntoverify': 'hidden'}[mode]"></div>
+             	<div ng-include="'home/warntoverify.html'" ng-class="{'taskinwait': 'hidden', 'infotocheck': 'hidden','warntoverify': 'show'}[mode]"></div>
+             </div>
         </div>
             <!-- /.panel -->
         </div>
