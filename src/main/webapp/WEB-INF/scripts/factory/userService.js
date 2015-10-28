@@ -9,59 +9,6 @@
  * 
  */
 angular.module('sbAdminApp')
-.factory('TaskInWaitService',['$http','$q',function($http, $q){
-	
-	return {
-		getTasks: function(params){
-			
-			var deferred = $q.defer();
-			params.rdm = Math.random();
-			$http.post('../taskInWait/getTasks',params).
-			success(function(data, status, headers, config){
-				deferred.resolve(data);
-			}).
-			error(function(data, status, headers, config){
-				deferred.reject(data);
-			});
-			
-			return deferred.promise;
-		},
-	
-		takeTask: function(params)
-		{
-			var deferred = $q.defer();
-			
-			$http.post('../taskInWait/takeTask',params).
-			success(function(data, status, headers, config){
-				deferred.resolve(data);
-			}).
-			error(function(data, status, headers, config){
-				deferred.reject(data);
-			});
-			
-			return deferred.promise;
-		}
-	};
-}])
-.factory('RoleService', ['$http', '$q', function ($http, $q) {
-
-  return {
-	  
-	  queryall : function() {  
-		  var deferred = $q.defer();
-		  
-		  $http.post('../role/getAllRoleList').
-		  success(function(data, status, headers, config) {  
-			  deferred.resolve(data); 
-		  }).  
-		  error(function(data, status, headers, config) {  
-			  deferred.reject(data);  
-		  });  
-		  
-		  return deferred.promise;  
-	  }
-  };  
-}])
 .factory('UserService', ['$http', '$q', function ($http, $q) {
 
   return {

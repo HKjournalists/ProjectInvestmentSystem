@@ -3,6 +3,7 @@ package com.icbc.pis.user.dao.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jbpm.api.IdentityService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,9 @@ public class UserRoleDao implements IUserRoleDao,ICommonOperDao {
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	
+	@Autowired
+	private IdentityService identityService;
 	
 	@Override 
 	public List<UserRole> getALLRoleListByUserId(String userId) {
@@ -55,6 +59,8 @@ public class UserRoleDao implements IUserRoleDao,ICommonOperDao {
 		try
 		{
 			UserRole ur = (UserRole)obj;
+			
+			this.identityService.createMembership(ur.getUserId(), ur.getRoleId());
 			
 			String sql = "insert into PIS_USER_ROLE_REL(USER_ID,ROLE_ID) values (?,?)";
 			

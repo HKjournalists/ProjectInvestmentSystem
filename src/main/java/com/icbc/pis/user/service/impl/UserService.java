@@ -62,6 +62,8 @@ public class UserService implements ICommonOperService,IUserService  {
 		
 		UserInfo userinfo = (UserInfo)userInfo;
 		
+		retFlag = this.userDao.add(userinfo.getUserBasicInfo());
+		
 		for(UserRole ur : userinfo.getRoleList())
 		{
 			retFlag = this.userRoleDao.add(ur);
@@ -72,8 +74,7 @@ public class UserService implements ICommonOperService,IUserService  {
 			}
 		}
 		
-		retFlag = this.userDao.add(userinfo.getUserBasicInfo());
-		
+
 		return retFlag;
 	}
 

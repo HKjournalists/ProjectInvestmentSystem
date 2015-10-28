@@ -2,7 +2,7 @@
 /**
  * @ngdoc controller
  * @CopyRight:icbc
- * @Description:user management query controller
+ * @Description:main controller of user management 
  * @CreatedBy:Yuezhi.Liu
  * @Date:2015.10.04
  * 
@@ -10,11 +10,11 @@
 
 
 angular.module('sbAdminApp')
-.controller('userQryCtrl', ['$scope','$state','UserService',function($scope,$state, UserService){
+.controller('homeCtrl',['$scope','$state','TaskInWaitService',function($scope,$state,TaskInWaitService){
 	
 	$scope.displayed = [];
 	
-	$scope.getUserList = function getUserList(tableState) {
+	$scope.getTaskInWaiting = function(tableState) {
 
 		$scope.isLoading = true;
 
@@ -33,7 +33,7 @@ angular.module('sbAdminApp')
 			
 		}
 		
-		UserService.queryBasicInfo(params).then(
+		TaskInWaitService.getTasks(params).then(
 	    function(result){
     		//响应成功
     		$scope.displayed = result.data;
@@ -51,30 +51,25 @@ angular.module('sbAdminApp')
 	    
 	};
 	
-	$scope.onDeleteUser = function(user){
+	$scope.$on('EVT_GOTO',function(event,data){
+
+		event.stopPropagation();
 		
-		var params = {id:user.id};
+		$scope.mode = data.mode;
 		
-		UserService.remove(params).then(
-			    function(result){
-		    		alert("remove " + user.id + " sucessfully");
-		    		
-		    		$state.reload();
-			    },
-			    function(){
-			    	alert('failed');
-			    });
-		
-		
-	}
+	});
 	
-	$scope.selectUser = function (user){
+	$scope.onHandle = function(task)
+	{
+		params = {};
+		params.taskId = task.taskId;
 		
-		$scope.selectedUser = user;
-	};
-		
-	$scope.isSelected = function (user) {
-		
-		return $scope.selectedUser === user;
-	};
-}]);
+		TaskInWaitService.takeTask(params)
+		.then(function(result){alert(result);},function(result){alert(result);})
+	}
+}])
+
+
+;
+ 
+

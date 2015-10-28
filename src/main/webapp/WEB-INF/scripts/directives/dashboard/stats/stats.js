@@ -23,10 +23,13 @@ angular.module('sbAdminApp')
         'goto':'@'
   		},
     	link: function($scope, $element, $attrs){
-    		$scope.changeMode=function(mode)
+    		$scope.changeMode = function(mode)
     		{
-    			alert(1);
-    			$scope.pagestatus=mode;
+    			data = {};
+    			
+    			data.mode = mode
+    			
+    			$scope.$emit('EVT_GOTO',data);
     		}
     	}
   		

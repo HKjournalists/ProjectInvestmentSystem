@@ -72,7 +72,7 @@ angular
     $stateProvider
       .state('dashboard', {
         url:'/dashboard',
-        templateUrl: './dashboard/main.html',
+        templateUrl: './home/main.html',
         resolve: {
             loadMyDirectives:function($ocLazyLoad){
                 return $ocLazyLoad.load(
@@ -122,14 +122,15 @@ angular
     })
       .state('dashboard.home',{
         url:'/home',
-        controller: 'MainCtrl',
-        templateUrl:'./dashboard/home.html',
+        controller: 'homeCtrl',
+        templateUrl:'./home/home.html',
         resolve: {
           loadMyFiles:function($ocLazyLoad) {
             return $ocLazyLoad.load({
               name:'sbAdminApp',
               files:[
-              '../scripts/controllers/main.js',
+              '../scripts/controllers/home/home.js',
+              '../scripts/factory/taskInWaitService.js',
               '../scripts/directives/timeline/timeline.js',
               '../scripts/directives/notifications/notifications.js',
               '../scripts/directives/chat/chat.js',
@@ -208,6 +209,22 @@ angular
        templateUrl:'./ui-elements/grid.html',
        url:'/grid'
    })
+    .state('dashboard.test',{
+       templateUrl:'./test/jbpm/jbpmtest.html',
+       url:'/test',
+       controller: 'jbpmTestCtrl',
+       resolve: {
+           loadMyFiles:function($ocLazyLoad) {
+             return $ocLazyLoad.load({
+               name:'sbAdminApp',
+               files:[
+               '../scripts/controllers/test/jbpm/jbpmtest.js'
+               ]
+             })
+           }
+         }
+     })
+     
    .state('dashboard.userManagement',{
         url:'/userManagement',
         controller: 'userCtrl',
@@ -221,7 +238,8 @@ angular
               '../scripts/controllers/Sysadmin/UserMgmt/userMgmtQryController.js',
               '../scripts/controllers/Sysadmin/UserMgmt/userMgmtEditController.js',
               '../scripts/directives/multiselect/multiselect.js',
-              '../scripts/factory/qhttp.js'
+              '../scripts/factory/userService.js',
+              '../scripts/factory/roleService.js'
               ]
             })
           }

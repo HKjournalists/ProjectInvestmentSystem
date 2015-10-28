@@ -65,7 +65,7 @@
         <property name="hibernateProperties">  
             <props>  
                 <prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>  
-                <prop key="hibernate.show_sql">true</prop>  
+                <prop key="hibernate.show_sql">false</prop>  
             </props>  
         </property>
 	    <property name="dataSource" ref="dataSource" />
@@ -145,8 +145,9 @@
 	</bean>
 	<!-- database config begin -->
     <!-- 事务管理 -->
-    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">  
+    <bean id="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">  
     	<property name="dataSource" ref="dataSource"/>  
+    	<property name="sessionFactory" ref="sessionFactory" />  
  	 </bean> 
  	 <tx:annotation-driven transaction-manager="txManager" proxy-target-class="true"></tx:annotation-driven>
 
@@ -177,6 +178,9 @@
 	<context:component-scan base-package="com.icbc.pis.Dashboard.dao.impl" />
 	<context:component-scan base-package="com.icbc.pis.Dashboard.service.impl" />
 	<!-- role component-scan end-->
- 
+	
+ 	<!-- taskinwait component-scan begin-->
+	<context:component-scan base-package="com.icbc.pis.taskinwait.service.impl" />
+	<!-- taskinwait component-scan end-->
 	
 </beans>

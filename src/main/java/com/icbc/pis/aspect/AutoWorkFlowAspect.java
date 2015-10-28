@@ -13,6 +13,7 @@ import org.jbpm.api.ExecutionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.icbc.pis.util.StringUtil;
 import com.icbc.pis.workflow.service.ExecutionServiceProxy;
 import org.springframework.web.context.request.RequestContextHolder;  
 import org.springframework.web.context.request.ServletRequestAttributes; 
@@ -36,14 +37,13 @@ public class AutoWorkFlowAspect {
     @After(" WorkFlowAspect()")
     public void doAfter(JoinPoint joinPoint){
     	
-    	System.out.println("=====work flow engine proceed next step=====");  
-    	
-    	HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-    	String taskId = request.getParameter("WKF_TASK_ID");
-    	String productId = request.getParameter("WKF_RPODUCT_ID");
-    	System.out.println("=====WorkFlowAspect : " + taskId ); 
-    	this.executionServiceProxy.Proceed("before_invest", productId,taskId);
-    	
+//    	System.out.println("=====work flow engine proceed next step=====");  
+//    	
+//    	HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+//    	String taskId = request.getParameter("WKF_TASK_ID");
+//    	String productId = request.getParameter("WKF_RPODUCT_ID");
+//    	System.out.println("=====WorkFlowAspect : " + taskId ); 
+//    	this.executionServiceProxy.Proceed("before_invest", productId,taskId);
     
     }
     
@@ -51,6 +51,20 @@ public class AutoWorkFlowAspect {
     public void doAfterReturning(String result) {  
         System.out.println("=====后置通知=====");  
         System.out.println("---" + result + "---");  
+        
+    	System.out.println("=====work flow engine proceed next step=====");  
+    	
+    	if(StringUtil.isNullOrEmpty(result))
+    	{
+        	HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        	String taskId = request.getParameter("WKF_TASK_ID");
+        	String productId = request.getParameter("WKF_RPODUCT_ID");
+        	System.out.println("=====WorkFlowAspect : " + taskId ); 
+        	this.executionServiceProxy.Proceed("before_invest", productId,taskId);
+    	}
+    	
+
+    	
     }  
 
     @AfterThrowing(pointcut = "WorkFlowAspect()", throwing = "e")  

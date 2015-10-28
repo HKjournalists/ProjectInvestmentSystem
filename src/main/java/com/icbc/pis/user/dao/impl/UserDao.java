@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.jbpm.api.IdentityService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,9 @@ public class UserDao implements IUserDao,ICommonOperDao{
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
+	@Autowired
+	private IdentityService identityService;
+	
 	@Override
 	public List<User> getAllUserList() {
 		// TODO Auto-generated method stub
@@ -81,6 +85,8 @@ public class UserDao implements IUserDao,ICommonOperDao{
 						 "values(?,?,?,?,?,?,?,?,?,?)";
 			
 			int affectedRows = this.jdbcTemplate.update(sql,user.getId(),user.getName(),user.getStatus(),user.getExt(),user.getEmail(),user.getMobile(),user.getCardType(),user.getCardNo(),user.getModiUser(),user.getModiTime());
+			
+			this.identityService.createUser(user.getId(), user.getName(), "");
 			
 			return affectedRows != 0;
 		}

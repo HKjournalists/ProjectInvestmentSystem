@@ -29,7 +29,7 @@ angular.module('sbAdminApp')
 //				function(result){
 //				});
  
-		jbpmInfo.go({a:Math.random(),WKF_TASK_ID:taskid,WKF_RPODUCT_ID:productid})
+		jbpmInfo.go({a:Math.random(),WKF_TASK_ID:taskid,WKF_RPODUCT_ID:'HOHO'})
 			.then(jbpmInfo.queryall)
 			.then(function(result){$scope.tasklist = result;})
 			.then(jbpmInfo.queryTaskInWaiting())

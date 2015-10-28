@@ -42,8 +42,8 @@
 				<td colspan="2"><a href="" ng-click="onAddUser()">新增</a></td>
 			</tr>
 			<tr>
-				<th colspan="2"><input class="hidden" st-search="id" ng-model="id"/></th>
-				<th colspan="2"><input class="hidden" st-search="name" ng-model="name"/></th>
+				<th colspan="4"><input class="hidden" st-search="id" ng-model="id"/></th>
+				<th colspan="5"><input class="hidden" st-search="name" ng-model="name"/></th>
 			</tr>
 		</thead>
 		<tbody ng-show="!isLoading" ng-repeat="row in displayed" ng-click="selectUser(row)" ng-switch on="isSelected(row)">
@@ -59,7 +59,7 @@
 				<td><a href="" ng-click="onDeleteUser(row)">删除  </a></td>
 			</tr>
 			<tr ng-switch-when="true">
-				<td colspan="6">用户角色：{{row.role}}</td>
+				<td colspan="9">用户角色：{{row.role}}</td>
 			</tr>
 		</tbody>
 		<tbody ng-show="isLoading">
