@@ -1,32 +1,34 @@
 
 <div ng-controller="userQryCtrl">
     <div class="panel-group" id="accordion">
-        <div class="panel panel-default">
+        <div class="panel panel-primary templatemo-content-widget white-bg no-padding">
            <div class="panel-heading">
                 <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion">查询条件</a>
                 </h4>
            </div>
-        	<div id="collapseOne" class="panel-collapse collapse in">
-           	<div class="panel-body">
-           		<p>
-           			<lable>统一认证号:</lable>
-            		<input ng-model="id"/>
-            		<lable>用户姓名：</lable>
-            		<input ng-model="name"/>
-            		
-           		</p>
-            	</div>
+           <div class="panel-body">
+	        	<div id="collapseOne" class=" panel-collapse collapse in">
+	           	<div>
+	           		<p>
+	           			<lable>统一认证号:</lable>
+	            		<input ng-model="id"/>
+	            		<lable>用户姓名：</lable>
+	            		<input ng-model="name"/>
+	            		
+	           		</p>
+	            	</div>
+	        	</div>
         	</div>
         </div>
-        <div class="panel panel-default">
+        <div class="panel panel-primary templatemo-content-widget white-bg no-padding">
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion">用户列表</a>
                 </h4>
             </div>
             <div id="collapseTwo" class="panel-collapse collapse in">
-                <div class="panel-body">
+                <div >
                 
                 	 
 	 <table class="table table-bordered table-striped"  st-pipe="getUserList" st-table="displayed">
@@ -41,7 +43,7 @@
 				<th st-sort="createtime">上次登录时间</th>
 				<td colspan="2"><a href="" ng-click="onAddUser()">新增</a></td>
 			</tr>
-			<tr>
+			<tr class="hidden">
 				<th colspan="4"><input class="hidden" st-search="id" ng-model="id"/></th>
 				<th colspan="5"><input class="hidden" st-search="name" ng-model="name"/></th>
 			</tr>
