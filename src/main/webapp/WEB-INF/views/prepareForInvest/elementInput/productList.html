@@ -1,0 +1,94 @@
+ <div  ng-controller="productCtrl">
+	 <div class="row">
+		<div class="row">
+	        <div class="col-lg-12">
+	            <h1 class="page-header">项目列表</h1>
+	        </div>
+	        <!-- /.col-lg-12 -->
+		</div>
+	</div>
+    <div class="row">
+	<div>
+	    <div class="panel-group" id="accordion">
+	        <div class="panel panel-primary templatemo-content-widget white-bg no-padding">
+	           <div class="panel-heading">
+	                <h4 class="panel-title">
+	                    <a data-toggle="collapse" data-parent="#accordion">查询条件</a>
+	                </h4>
+	           </div>
+	           <div class="panel-body">
+		        	<div id="collapseOne" class=" panel-collapse collapse in">
+		           	<div>
+		           		<p>
+		           			<lable>项目编号:</lable>
+		            		<input ng-model="productId"/>
+		            		<lable>项目名称:：</lable>
+		            		<input ng-model="productName"/>
+		            		<lable>项目类型:：</lable>
+		            		<input ng-model="productType"/>
+		            		<button ng-click="onSearch()">查询</button>
+		           		</p>
+		            	</div>
+		        	</div>
+	        	</div>
+	        </div>
+	        <div class="panel panel-primary templatemo-content-widget white-bg no-padding">
+	            <div class="panel-heading">
+	                <h4 class="panel-title">
+	                    <a data-toggle="collapse" data-parent="#accordion">用户列表</a>
+	                </h4>
+	            </div>
+	            <div id="collapseTwo" class="panel-collapse collapse in">
+	                <div >
+						 <table class="table table-bordered table-striped"  st-pipe="getProductList" st-table="displayed">
+							<thead>
+								<tr>
+									<th st-sort="productId">项目编号</th>
+									<th st-sort="productName">项目名称</th>
+									<th st-sort="productType">项目类型</th>
+									<th st-sort="issuerName">发行人</th>
+									<th st-sort="maturityYear">期限（年）</th>
+									<th st-sort="issueScale">发行规模</th>
+									<th st-sort="isIncludeRight">是否含权</th>
+									<th st-sort="rightType">含权类型</th>
+									<td colspan="2"><a href="" ng-click="onAddProduct()">新增</a></td>
+								</tr>
+								
+							</thead>
+							<tbody ng-show="!isLoading" ng-repeat="row in displayed">
+								<tr ng-class-even="'active'" ng-class-odd="'success'">
+									<td>{{row.productId}}</td>
+									<td>{{row.productName}}</td>
+									<td>{{row.productType}}</td>
+									<td>{{row.issuerName}}</td>
+									<td>{{row.maturityYear}}</td>
+									<td>{{row.issueScale}}</td>
+									<td>{{row.isIncludeRight}}</td>
+									<td>{{row.rightType}}</td>
+									<td><a href="" ng-click="onEditProduct(row)">修改</a></td>
+									<td><a href="" ng-click="onDeleteProduct(row)">删除  </a></td>
+								</tr>
+							</tbody>
+							<tbody ng-show="isLoading">
+								<tr>
+									<td colspan="10" class="text-center">Loading ... </td>
+								</tr>
+							</tbody>
+							<tfoot>
+							<tr>
+								<td class="text-center" st-pagination="" st-items-by-page="10" colspan="10">
+								</td>
+							</tr>
+							</tfoot>
+						</table>	
+	
+	                </div>
+	            </div>
+	    	</div>
+	
+	    </div>
+	</div>
+
+	</div>
+
+</div>

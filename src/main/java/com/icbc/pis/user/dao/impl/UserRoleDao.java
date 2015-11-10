@@ -34,45 +34,31 @@ public class UserRoleDao implements IUserRoleDao,ICommonOperDao {
 		// TODO Auto-generated method stub
 		
 		List<UserRole> urList = null;
+
+			
+		String sql = "select * from PIS_USER_ROLE_REL where USER_ID = ?" ;
 		
-		try
-		{
-			
-			String sql = "select * from PIS_USER_ROLE_REL where USER_ID = ?" ;
-			
-			urList = jdbcTemplate.query(sql ,new Object[] {userId}, new UserRoleMapper() );
-			
-			return urList;
-		}
-		catch(Exception e)
-		{
-			logger.error(e.toString());
-			
-			return null;
-		}
+		urList = jdbcTemplate.query(sql ,new Object[] {userId}, new UserRoleMapper() );
+		
+		return urList;
+
 		
 	}
 
 	@Override
 	public boolean add(Object obj) {
 		// TODO Auto-generated method stub
-		try
-		{
-			UserRole ur = (UserRole)obj;
-			
-			this.identityService.createMembership(ur.getUserId(), ur.getRoleId());
-			
-			String sql = "insert into PIS_USER_ROLE_REL(USER_ID,ROLE_ID) values (?,?)";
-			
-			int affectedRows = this.jdbcTemplate.update(sql,ur.getUserId(),ur.getRoleId());
-			
-			return affectedRows != 0;
-		}
-		catch(Exception e)
-		{
-			logger.error(e.toString());
-			return false;
-		}
+
+		UserRole ur = (UserRole)obj;
+		
+		this.identityService.createMembership(ur.getUserId(), ur.getRoleId());
+		
+		String sql = "insert into PIS_USER_ROLE_REL(USER_ID,ROLE_ID) values (?,?)";
+		
+		int affectedRows = this.jdbcTemplate.update(sql,ur.getUserId(),ur.getRoleId());
+		
+		return affectedRows != 0;
+		
 	}
 
 	@Override
@@ -85,20 +71,12 @@ public class UserRoleDao implements IUserRoleDao,ICommonOperDao {
 	public boolean delete(String id) {
 		// TODO Auto-generated method stub
 		
-		try
-		{
-			String sql = "delete from PIS_USER_ROLE_REL where USER_ID = ?";
+		String sql = "delete from PIS_USER_ROLE_REL where USER_ID = ?";
 			
-			int affectedRows = this.jdbcTemplate.update(sql,id);
+		int affectedRows = this.jdbcTemplate.update(sql,id);
 			
-			return true;
-		}
-		catch(Exception e)
-		{
-			logger.error(e.toString());
-			
-			return false;
-		}
+		return true;
+		
 	}
 
 	@Override

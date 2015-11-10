@@ -28,7 +28,7 @@ import com.icbc.pis.web.model.UserRole;
 @RequestMapping("/user")
 public class UserAdminController {
 
-	private static final Logger logger = LoggerFactory.getLogger(SysConfigController.class);
+	private static final Logger logger = LoggerFactory.getLogger(UserAdminController.class);
 
 	@Autowired
 	private UserService userService;

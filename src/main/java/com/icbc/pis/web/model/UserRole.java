@@ -14,7 +14,7 @@ public class UserRole implements java.io.Serializable {
 	}
 
 	public String getUserId() {
-		return userId;
+		return this.userId;
 	}
 
 	public void setUserId(String userId) {
@@ -22,7 +22,7 @@ public class UserRole implements java.io.Serializable {
 	}
 
 	public String getRoleId() {
-		return roleId;
+		return this.roleId;
 	}
 
 	public void setRoleId(String roleId) {

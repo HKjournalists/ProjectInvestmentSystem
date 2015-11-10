@@ -41,7 +41,7 @@ public class Role implements java.io.Serializable {
 	{}
 
 	public String getRoleId() {
-		return roleId;
+		return this.roleId;
 	}
 
 	public void setRoleId(String roleId) {
@@ -49,7 +49,7 @@ public class Role implements java.io.Serializable {
 	}
 
 	public String getRoleName() {
-		return roleName;
+		return this.roleName;
 	}
 
 	public void setRoleName(String roleName) {
@@ -57,7 +57,7 @@ public class Role implements java.io.Serializable {
 	}
 
 	public Timestamp getLastModifyTime() {
-		return lastModifyTime;
+		return this.lastModifyTime;
 	}
 
 	public void setLastModifyTime(Timestamp lastModifyTime) {
@@ -65,7 +65,7 @@ public class Role implements java.io.Serializable {
 	}
 
 	public String getLastModifyUserId() {
-		return lastModifyUserId;
+		return this.lastModifyUserId;
 	}
 
 	public void setLastModifyUserId(String lastModifyUserId) {
@@ -73,7 +73,7 @@ public class Role implements java.io.Serializable {
 	}
 
 	public String getRoleCategory() {
-		return roleCategory;
+		return this.roleCategory;
 	}
 
 	public void setRoleCategory(String roleCategory) {

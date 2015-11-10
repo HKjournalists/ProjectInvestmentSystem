@@ -41,24 +41,16 @@ public class UserDao implements IUserDao,ICommonOperDao{
 	@Override
 	public User getUserById(String userId) {
 		
-		try
-		{
-			logger.debug("begin getUserById");
+		logger.debug("begin getUserById");
 			
-			String sql = "select * from pis_user where status = 1 and id=?";
+		String sql = "select * from pis_user where status = 1 and id=?";
 			
-			User user = this.jdbcTemplate.queryForObject(sql, new Object[] { userId }, new UserMapper());
+		User user = this.jdbcTemplate.queryForObject(sql, new Object[] { userId }, new UserMapper());
 			
-			logger.debug("end getUserById");
+		logger.debug("end getUserById");
 			
-			return user;
-		}
-		catch(Exception e)
-		{
-			logger.error(e.toString());
-			
-			return null;
-		}
+		return user;
+		
 	}
 
 	@Override
@@ -77,47 +69,31 @@ public class UserDao implements IUserDao,ICommonOperDao{
 	public boolean add(Object obj) 
 	{
 
-		try
-		{
-			User user = (User) obj;
+		User user = (User) obj;
 			
-			String sql = "insert into PIS_USER(ID,NAME,STATUS,EXT,EMAIL,MOBILE,CARD_TYPE,CARD_NO,MODI_USER,MODI_TIME)" + 
+		String sql = "insert into PIS_USER(ID,NAME,STATUS,EXT,EMAIL,MOBILE,CARD_TYPE,CARD_NO,MODI_USER,MODI_TIME)" + 
 						 "values(?,?,?,?,?,?,?,?,?,?)";
 			
-			int affectedRows = this.jdbcTemplate.update(sql,user.getId(),user.getName(),user.getStatus(),user.getExt(),user.getEmail(),user.getMobile(),user.getCardType(),user.getCardNo(),user.getModiUser(),user.getModiTime());
+		int affectedRows = this.jdbcTemplate.update(sql,user.getId(),user.getName(),user.getStatus(),user.getExt(),user.getEmail(),user.getMobile(),user.getCardType(),user.getCardNo(),user.getModiUser(),user.getModiTime());
 			
-			this.identityService.createUser(user.getId(), user.getName(), "");
+		this.identityService.createUser(user.getId(), user.getName(), "");
 			
-			return affectedRows != 0;
-		}
-		catch(Exception e)
-		{
-			logger.error(e.toString());
-			
-			return false;
-		}
+		return affectedRows != 0;
+		
 	}
 
 	@Override
 	public boolean update(Object obj) {
 
-		try
-		{
-			User user = (User) obj;
+		User user = (User) obj;
 			
-			String sql = "update PIS_USER set NAME = ?,STATUS = ?,EXT = ?,EMAIL = ?,MOBILE = ?,CARD_TYPE = ?,CARD_NO = ?,MODI_USER = ?,MODI_TIME = ?" + 
+		String sql = "update PIS_USER set NAME = ?,STATUS = ?,EXT = ?,EMAIL = ?,MOBILE = ?,CARD_TYPE = ?,CARD_NO = ?,MODI_USER = ?,MODI_TIME = ?" + 
 						 " where ID = ?";
 			
-			int affectedRows = this.jdbcTemplate.update(sql,user.getName(),user.getStatus(),user.getExt(),user.getEmail(),user.getMobile(),user.getCardType(),user.getCardNo(),user.getModiUser(),user.getModiTime(),user.getId());
+		int affectedRows = this.jdbcTemplate.update(sql,user.getName(),user.getStatus(),user.getExt(),user.getEmail(),user.getMobile(),user.getCardType(),user.getCardNo(),user.getModiUser(),user.getModiTime(),user.getId());
 			
-			return affectedRows != 0;
-		}
-		catch(Exception e)
-		{
-			logger.error(e.toString());
-			
-			return false;
-		}
+		return affectedRows != 0;
+		
 		
 	}
 
@@ -125,55 +101,30 @@ public class UserDao implements IUserDao,ICommonOperDao{
 	public boolean delete(String id) {
 		// TODO Auto-generated method stub
 		
-		try
-		{
-			String sql = "update PIS_USER set STATUS = 2 where ID = ?";
+		String sql = "update PIS_USER set STATUS = 2 where ID = ?";
 			
-			int affectedRows = this.jdbcTemplate.update(sql, id);
+		int affectedRows = this.jdbcTemplate.update(sql, id);
 			
-			return affectedRows != 0;
-		}
-		catch(Exception e)
-		{
-			logger.error(e.toString());
-			
-			return false;
-		}
+		return affectedRows != 0;
+		
 	}
 
 	@Override
 	public boolean isExists(String id) {
 		
-		try
-		{
-			int cnt = this.jdbcTemplate.queryForObject("select count(*) from PIS_USER where status = 1 and id = ?",new Object[] {id}, Integer.class);
+		int cnt = this.jdbcTemplate.queryForObject("select count(*) from PIS_USER where status = 1 and id = ?",new Object[] {id}, Integer.class);
 			
-			return cnt > 0 ? true : false;
-		}
-		catch(Exception e)
-		{
-			logger.error(e.toString());
-			
-			return false;
-		}
+		return cnt > 0 ? true : false;
+		
 	}
 
 	@Override
 	public int count(){
 		
-		try
-		{
+		int cnt = this.jdbcTemplate.queryForObject("select count(*) from PIS_USER where STATUS = 1", Integer.class);
 		
-			int cnt = this.jdbcTemplate.queryForObject("select count(*) from PIS_USER where STATUS = 1", Integer.class);
+		return cnt;
 		
-			return cnt;
-		}
-		catch(Exception e)
-		{
-			logger.error(e.toString());
-			
-			return 0;
-		}
 	}
 	
 	@Override
@@ -194,9 +145,7 @@ public class UserDao implements IUserDao,ICommonOperDao{
 		
 		String id = StringUtil.getFirst(filterMap.get("id"));
 		
-		try
-		{
-			String sql = " select p.ID,p.NAME,p.STATUS,p.EXT,p.EMAIL,p.MOBILE,p.CARD_TYPE,p.CARD_NO,p.MODI_USER,p.MODI_TIME,p.LAST_LOGIN " +
+		String sql = " select p.ID,p.NAME,p.STATUS,p.EXT,p.EMAIL,p.MOBILE,p.CARD_TYPE,p.CARD_NO,p.MODI_USER,p.MODI_TIME,p.LAST_LOGIN " +
 					 " from (select ROW_NUMBER() OVER(ORDER BY t.ID) ROW_NUM," + 
 							" t.ID,t.NAME, t.STATUS,t.EXT,t.EMAIL,t.MOBILE,t.CARD_TYPE,t.CARD_NO,t.MODI_USER,t.MODI_TIME,t.LAST_LOGIN " + 
 							" from PIS_USER t " +
@@ -205,16 +154,10 @@ public class UserDao implements IUserDao,ICommonOperDao{
 							" and ( ? is null or t.ID = ?) " +
 					 ") p WHERE P.ROW_NUM between ? AND ? ";
 			
-			List<User> userList = this.jdbcTemplate.query(sql ,new Object[] {name,StringUtil.likeWrap(name),id,id,start,end}, new UserMapper() );
+		List<User> userList = this.jdbcTemplate.query(sql ,new Object[] {name,StringUtil.likeWrap(name),id,id,start,end}, new UserMapper() );
 			
-			return userList;
-		}
-		catch(Exception e)
-		{
-			logger.error(e.toString());
-			
-			return null;
-		}
+		return userList;
+		
  
 	}
 

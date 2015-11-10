@@ -163,7 +163,6 @@
 	<context:component-scan base-package="com.icbc.pis.aspect" />
 	<!-- user component-scan end-->
 	
-	
 	<!-- user component-scan begin-->
 	<context:component-scan base-package="com.icbc.pis.user.dao.impl" />
 	<context:component-scan base-package="com.icbc.pis.user.service.impl" />
@@ -182,5 +181,16 @@
  	<!-- taskinwait component-scan begin-->
 	<context:component-scan base-package="com.icbc.pis.taskinwait.service.impl" />
 	<!-- taskinwait component-scan end-->
+	
+	<!-- product element component-scan begin-->
+	<context:component-scan base-package="com.icbc.pis.product.dao.impl" />
+	<context:component-scan base-package="com.icbc.pis.product.service.impl" />
+	<!-- product element component-scan end-->
+	
+	<!-- dict item component-scan begin-->
+	<context:component-scan base-package="com.icbc.pis.common.dao.impl" />
+	<context:component-scan base-package="com.icbc.pis.common.service.impl" />
+	<!-- dict item component-scan end-->
+	
 	
 </beans>

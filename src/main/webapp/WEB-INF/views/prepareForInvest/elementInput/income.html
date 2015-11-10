@@ -1,0 +1,101 @@
+<div class="row" ng-controller="prodIncomeCtrl">
+    <div>
+            <div class="panel-body">
+            
+                    <div class="col-lg-10">
+						<form class=" form-horizontal" role="form"  >
+							<div class="form-group">
+								<label class="col-sm-3 control-label">投资收益率类型：</label>
+				            	<select class="form-control  col-sm-6" ng-model="portRatingType">
+                                    <option value ="1">固定利率</option>
+                                    <option value ="2">浮动利率</option>
+                                </select>
+				            </div>
+				            <div class="form-group " ng-if="portRatingType==1">
+				            	<label class="col-sm-3 control-label">投资收益率（%）：</label>
+				            	<input type="text" class="form-control col-sm-6" ng-model="portRating">
+				            </div>
+				            <div class="form-group ">
+				            	<label class="col-sm-3 control-label">基准利率：</label>
+				            	<select class="form-control  col-sm-6" ng-model="benchYieldType">
+                                    <option value ="1">一年期贷款基准利率</option>
+                                    <option value ="2">三年期贷款基准利率</option>
+                                    <option value ="3">五年期贷款基准利率</option>
+                                    <option value ="4">五年期以上贷款基准利率</option>
+                                </select>
+				            </div>
+				            <div class="form-group ">
+				            	<label class="col-sm-3 control-label">基准利率变动系数：</label>
+				            	<input type="text" class="form-control col-sm-6" ng-model="benchYieldRatio">
+				            </div>
+				            
+				            <div class="form-group ">
+				                <label class="col-sm-3 control-label">基准利率调整频率：</label>
+				                <select class="form-control  col-sm-6" ng-model="productType">
+                                    <option value ="1">即时</option>
+                                    <option value ="2">季度</option>
+                                    <option value ="3">半年度</option>
+                                    <option value ="4">年度调整</option>
+                                </select>
+				            </div>
+				            
+				            <div class="form-group ">
+				                <label class="col-sm-3 control-label">基准利率利差（%）：</label>
+				                <input type="text" class="form-control col-sm-6" ng-model="interestMargin">
+				            </div>
+				            
+				            <div class="form-group ">
+				            	<label class="col-sm-3 control-label">投资收益率上限（%）：</label>
+				            	<input type="text" class="form-control col-sm-6" ng-model="protRatingULimit">
+				            </div>
+				            <div class="form-group ">
+				            	<label class="col-sm-3 control-label">投资收益率下限（%）：</label>
+				            	<input type="text" class="form-control col-sm-6" ng-model="protRatingLLimit">
+				            </div>
+				            <div class="form-group ">
+				            	<label class="col-sm-3 control-label">当前投资收益率（%）：</label>
+				            	<input type="text" class="form-control col-sm-6" ng-model="curPortRating">
+				            </div>
+				            <div class="form-group ">
+				            	<label class="col-sm-3 control-label">托管费（%）：</label>
+				            	<input type="text" class="form-control col-sm-6" ng-model="depositFee">
+				            </div>
+				            <div class="form-group ">
+				            	<label class="col-sm-3 control-label">独立监督费（%）：</label>
+				            	<input type="text" class="form-control col-sm-6" ng-model="superviseFee">
+				            </div>
+				            <div class="form-group ">
+				            	<label class="col-sm-3 control-label">财务顾问费（%）：</label>
+				            	<input type="text" class="form-control col-sm-6" ng-model="consultantFee">
+				            </div>
+				            <div class="form-group ">
+				            	<label class="col-sm-3 control-label">其他费用（%）：</label>
+				            	<input type="text" class="form-control col-sm-6" ng-model="otherFee">
+				            </div>
+				            <div class="form-group ">
+				            	<label class="col-sm-3 control-label">合计费用（%）：</label>
+				            	<input type="text" class="form-control col-sm-6" ng-model="totalFee">
+				            </div>
+				            
+				             <div class="form-group ">
+				            	<label class="col-sm-3 control-label">净投资收益率（%）：</label>
+				            	<input type="text" class="form-control col-sm-6" ng-model="netPortRating">
+				            </div>
+				             <div class="form-group ">
+				            	<label class="col-sm-3 control-label">净收益率计算方式：</label>
+				            	<select class="form-control  col-sm-6" ng-model="netPortRatingAlgo">
+                                    <option value ="1">ACT / 360</option>
+                                    <option value ="2">ACT / 365</option>
+                                    <option value ="3">ACT / ACT</option>
+                                    <option value ="4">其他</option>
+                                </select>
+				            </div>
+						</form>
+					</div>
+					
+					
+					
+     		<!-- /.col-lg-12 -->
+ 			</div>
+ 		</div>
+ 	</div>

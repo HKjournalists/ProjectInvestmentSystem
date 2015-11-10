@@ -28,7 +28,7 @@ public class User implements java.io.Serializable {
 	private Timestamp lastLogin;
 
 	public String getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(String id) {
@@ -36,7 +36,7 @@ public class User implements java.io.Serializable {
 	}
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public void setName(String name) {
@@ -44,7 +44,7 @@ public class User implements java.io.Serializable {
 	}
 
 	public String getStatus() {
-		return status;
+		return this.status;
 	}
 
 	public void setStatus(String status) {
@@ -52,7 +52,7 @@ public class User implements java.io.Serializable {
 	}
 
 	public String getExt() {
-		return ext;
+		return this.ext;
 	}
 
 	public void setExt(String ext) {
@@ -60,7 +60,7 @@ public class User implements java.io.Serializable {
 	}
 
 	public String getEmail() {
-		return email;
+		return this.email;
 	}
 
 	public void setEmail(String email) {
@@ -68,7 +68,7 @@ public class User implements java.io.Serializable {
 	}
 
 	public String getMobile() {
-		return mobile;
+		return this.mobile;
 	}
 
 	public void setMobile(String mobile) {
@@ -76,7 +76,7 @@ public class User implements java.io.Serializable {
 	}
 
 	public String getCardType() {
-		return cardType;
+		return this.cardType;
 	}
 
 	public void setCardType(String cardType) {
@@ -84,7 +84,7 @@ public class User implements java.io.Serializable {
 	}
 
 	public String getCardNo() {
-		return cardNo;
+		return this.cardNo;
 	}
 
 	public void setCardNo(String cardNo) {
@@ -92,7 +92,7 @@ public class User implements java.io.Serializable {
 	}
 
 	public String getModiUser() {
-		return modiUser;
+		return this.modiUser;
 	}
 
 	public void setModiUser(String modiUser) {
@@ -100,7 +100,7 @@ public class User implements java.io.Serializable {
 	}
 
 	public Timestamp getModiTime() {
-		return modiTime;
+		return this.modiTime;
 	}
 
 	public void setModiTime(Timestamp modiTime) {
@@ -108,7 +108,7 @@ public class User implements java.io.Serializable {
 	}
 
 	public Timestamp getLastLogin() {
-		return lastLogin;
+		return this.lastLogin;
 	}
 
 	public void setLastLogin(Timestamp lastLogin) {

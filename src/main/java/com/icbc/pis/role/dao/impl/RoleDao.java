@@ -30,19 +30,12 @@ public class RoleDao implements IRoleDao{
 		// TODO Auto-generated method stub
 		List<Role> rolelist = null;
 		
-		try
-		{
+		String sql = "select  *  from PIS_ROLE t";
 			
-			String sql = "select  *  from PIS_ROLE t";
+		rolelist = jdbcTemplate.query(sql , new RoleMapper() );
 			
-			rolelist = jdbcTemplate.query(sql , new RoleMapper() );
-			
-			return rolelist;
-		}
-		catch(Exception e)
-		{
-			return null;
-		}
+		return rolelist;
+		
 		
 		 
 	}
@@ -55,15 +48,10 @@ public class RoleDao implements IRoleDao{
 		
 		Role role = null;
 		
-		try 
-		{
-			role = jdbcTemplate.queryForObject(sql, new Object[] { roleId },
+		
+		role = jdbcTemplate.queryForObject(sql, new Object[] { roleId },
 					new RoleMapper());
-		}
-		catch (Exception e) 
-		{
-			logger.error("resuly is 0, exception : " + e.toString());
-		}
+		
 		
 		return role;
 		
@@ -77,15 +65,10 @@ public class RoleDao implements IRoleDao{
 		
 		Role activityGrp = null;
 		
-		try 
-		{
-			activityGrp = jdbcTemplate.queryForObject(sql, new Object[] { activityName },
+		
+		activityGrp = jdbcTemplate.queryForObject(sql, new Object[] { activityName },
 					new RoleMapper());
-		}
-		catch (Exception e) 
-		{
-			logger.error("resuly is 0, exception : " + e.toString());
-		}
+		
 		
 		return activityGrp;
 	}

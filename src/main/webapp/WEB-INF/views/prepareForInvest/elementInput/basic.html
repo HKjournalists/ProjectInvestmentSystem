@@ -1,0 +1,69 @@
+<div class="row" ng-controller="prodBasicCtrl">
+    <div>
+            <div class="panel-body">
+            
+                    <div class="col-lg-10">
+						<form class=" form-horizontal" role="form"  >
+							<div class="form-group">
+								<label class="col-sm-3 control-label">项目编号：</label>
+				            	<input type="text" class="form-control col-sm-6" ng-model="productId">
+				            </div>
+				            <div class="form-group ">
+				            	<label class="col-sm-3 control-label">内部编号：</label>
+				            	<input type="text" class="form-control col-sm-6" ng-model="productInnerId">
+				            </div>
+				            <div class="form-group ">
+				            	<label class="col-sm-3 control-label">项目名称：</label>
+				            	<input type="text" class="form-control col-sm-6" ng-model="productName">
+				            </div>
+				            <div class="form-group ">
+				            	<label class="col-sm-3 control-label">项目简称：</label>
+				            	<input type="text" class="form-control col-sm-6" ng-model="productBriefName">
+				            </div>
+				            
+				            <div class="form-group ">
+				                <label class="col-sm-3 control-label">合同类型：</label>
+				                <select class="form-control col-sm-6" ng-model="productType" ng-options="pro.value for pro in productTypeList"/>
+				            </div>
+				            
+				            <div class="form-group " ng-if="productType==3" >
+				                <label class="col-sm-3 control-label">信托子类型：</label>
+				                <select class="form-control  col-sm-6" ng-model="trustSubType">
+                                    <option value ="1">结构性融资</option>
+                                    <option value ="2">非结构性融资</option>
+                                </select>
+				            </div>
+				            
+				            
+				            <div class="form-group ">
+				            	<label class="col-sm-3 control-label">是否需要评级：</label>
+				            	<select class="form-control  col-sm-6" ng-model="needCreditVerify">
+				            		<option value ="1">是</option>
+                                    <option value ="2">否</option>
+                                </select>
+				            </div>
+				            <div class="form-group ">
+				            	<label class="col-sm-3 control-label">是否需要外部律师意见：</label>
+				            	<select class="form-control  col-sm-6" ng-model="needLawVerify">
+				            		<option value ="1">是</option>
+                                    <option value ="2">否</option>
+                                </select>
+				            </div>
+				            <div class="form-group ">
+				            	<label class="col-sm-3 control-label">还款计划：</label>
+				            	<select class="form-control  col-sm-6" ng-model="needLawVerify">
+				            		<option value ="1">是</option>
+                                    <option value ="2">否</option>
+                                </select>
+				            </div>
+				            
+				            
+						</form>
+					</div>
+					
+					
+					
+     		<!-- /.col-lg-12 -->
+ 			</div>
+ 		</div>
+ 	</div>

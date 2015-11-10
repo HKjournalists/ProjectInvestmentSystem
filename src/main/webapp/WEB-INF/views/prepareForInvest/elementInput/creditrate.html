@@ -1,0 +1,48 @@
+<div class="row" ng-controller="prodCreditRatingCtrl">
+    <div>
+            <div class="panel-body">
+                    <div class="col-lg-10">
+						<form class=" form-horizontal" role="form"  >
+							<div class="form-group">
+								<label class="col-sm-3 control-label">偿债主体外部信用评级：</label>
+								<select class="form-control col-sm-6" ng-model="outerCompanyRate" ng-options="rate.value for rate in ratingList"/>
+				            </div>
+				            <div class="form-group ">
+				            	<label class="col-sm-3 control-label">偿债主体外部信用评级机构：</label>
+				            	<select class="form-control col-sm-6" ng-model="outerCompanyRateSrc" ng-options="rate.value for rate in ratingOrgList"/>
+				            </div>
+				            <div class="form-group ">
+				            	<label class="col-sm-3 control-label">偿债主体公司内部信用评级：</label>
+				            	<select class="form-control col-sm-6" ng-model="innerCompanyRate" ng-options="rate.value for rate in ratingList"/>
+				            </div>
+				            <div class="form-group ">
+				            	<label class="col-sm-3 control-label">偿债主体工行内部信用评级：</label>
+				            	<select class="form-control col-sm-6" ng-model="icbcCompanyRate" ng-options="rate.value for rate in ratingList"/>
+				            </div>
+				            <div class="form-group ">
+				            	<label class="col-sm-3 control-label">债项外部信用评级：</label>
+				            	<select class="form-control col-sm-6" ng-model="outerBondRate" ng-options="rate.value for rate in ratingList"/>
+				            </div>
+				            <div class="form-group ">
+				            	<label class="col-sm-3 control-label">债项外部信用评级机构：</label>
+				            	<select class="form-control col-sm-6" ng-model="outerBondRateSrc" ng-options="rate.value for rate in ratingOrgList"/>
+				            </div>
+				            
+				            <div class="form-group ">
+				                <label class="col-sm-3 control-label">债项公司内部信用评级：</label>
+				                <select class="form-control col-sm-6" ng-model="innerBondRate" ng-options="rate.value for rate in ratingList"/>
+				            </div>
+				            <div class="form-group ">
+				                <label class="col-sm-3 control-label">其他：</label>
+				                <input type="text" class="form-control col-sm-6" ng-model="remark">
+				            </div>
+				            
+						</form>
+					</div>
+					
+					
+					
+     		<!-- /.col-lg-12 -->
+ 			</div>
+ 		</div>
+ 	</div>

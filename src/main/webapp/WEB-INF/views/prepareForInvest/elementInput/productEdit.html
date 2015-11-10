@@ -1,0 +1,54 @@
+<div ng-controller="productEditCtrl">
+
+	 <div class="row">
+		<div class="row">
+	        <div class="col-lg-12">
+	            <h1 class="page-header">项目要素录入</h1>
+	        </div>
+	        <!-- /.col-lg-12 -->
+		</div>
+	</div>
+    <div>
+       <div class="panel panel-default">
+           <div class="panel-heading">
+               		项目要素
+           </div>
+           <!-- /.panel-heading -->
+           <div class="panel-body">
+               <!-- Nav tabs -->
+               <ul class="nav nav-tabs">
+                   <li><a data-toggle="tab" ng-click="onSwitch('basic')">基本要素</a>
+                   </li>
+                   <li><a data-toggle="tab" ng-click="onSwitch('prodinfo')">项目基础信息</a>
+                   </li>
+                   <li><a data-toggle="tab" ng-click="onSwitch('income')">收益信息</a>
+                   </li>
+                   <li><a data-toggle="tab" ng-click="onSwitch('corporation')">主体信息</a>
+                   </li>
+                   <li><a data-toggle="tab" ng-click="onSwitch('creditrate')">信用评级信息</a>
+                   </li>
+                   <li><a data-toggle="tab" ng-click="onSwitch('other')">其他</a>
+                   </li>
+               </ul>
+
+               <!-- Tab panes -->
+               <div class="tab-content">
+
+					<div ng-include="'prepareForInvest/elementInput/basic.html'"  ng-class="{'basic': 'show', 'prodinfo': 'hidden','income': 'hidden','corporation': 'hidden','creditrate': 'hidden','other': 'hidden'}[tabType]"></div>
+					<div ng-include="'prepareForInvest/elementInput/productInfo.html'" ng-class="{'basic': 'hidden', 'prodinfo': 'show','income': 'hidden','corporation': 'hidden','creditrate': 'hidden','other': 'hidden'}[tabType]"></div>
+               		<div ng-include="'prepareForInvest/elementInput/income.html'" ng-class="{'basic': 'hidden', 'prodinfo': 'hidden','income': 'show','corporation': 'hidden','creditrate': 'hidden','other': 'hidden'}[tabType]"></div>
+               		<div ng-include="'prepareForInvest/elementInput/corporation.html'" ng-class="{'basic': 'hidden', 'prodinfo': 'hidden','income': 'hidden','corporation': 'show','creditrate': 'hidden','other': 'hidden'}[tabType]"></div>
+               		<div ng-include="'prepareForInvest/elementInput/creditrate.html'" ng-class="{'basic': 'hidden', 'prodinfo': 'hidden','income': 'hidden','corporation': 'hidden','creditrate': 'show','other': 'hidden'}[tabType]"></div>
+               		<div ng-include="'prepareForInvest/elementInput/other.html'" ng-class="{'basic': 'hidden', 'prodinfo': 'hidden','income': 'hidden','corporation': 'hidden','creditrate': 'hidden','other': 'show'}[tabType]"></div>
+               
+               </div>
+           </div>
+           <!-- /.panel-body -->
+       </div>
+       <!-- /.panel -->
+   </div>
+
+ 	
+
+
+</div>

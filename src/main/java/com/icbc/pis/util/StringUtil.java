@@ -25,6 +25,11 @@ public class StringUtil {
 	
 	public static String likeWrap(String str)
 	{
+		if(StringUtil.isNullOrEmpty(str))
+		{
+			return "%%";
+		}
+		
 		String like = "%";
 		
 		return like + str + like;

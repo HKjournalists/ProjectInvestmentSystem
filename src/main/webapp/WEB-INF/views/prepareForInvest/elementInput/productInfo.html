@@ -1,0 +1,87 @@
+<div class="row" ng-controller="prodInfoCtrl">
+    <div>
+            <div class="panel-body">
+            
+                    <div class="col-lg-10">
+						<form class=" form-horizontal" role="form"  >
+							<div class="form-group">
+								<label class="col-sm-3 control-label">受托人代码：</label>
+				            	<input type="text" class="form-control col-sm-6" ng-model="trustManager">
+				            </div>
+				            <div class="form-group">
+								<label class="col-sm-3 control-label">受托人名称：</label>
+				            	<input type="text" class="form-control col-sm-6" ng-model="trustManagerName">
+				            </div>
+				            <div class="form-group ">
+				            	<label class="col-sm-3 control-label">发行人代码：</label>
+				            	<input type="text" class="form-control col-sm-6" ng-model="issuerCode">
+				            </div>
+				            <div class="form-group ">
+				            	<label class="col-sm-3 control-label">发行人名称：</label>
+				            	<input type="text" class="form-control col-sm-6" ng-model="issuerName">
+				            </div>
+				            <div class="form-group ">
+				            	<label class="col-sm-3 control-label">发行人所处行业：</label>
+				            	<input type="text" class="form-control col-sm-6" ng-model="dTradeType">
+				            </div>
+				            <div class="form-group ">
+				            	<label class="col-sm-3 control-label">发行人所处行业名称：</label>
+				            	<input type="text" class="form-control col-sm-6" ng-model="dTradeName">
+				            </div>
+				            <div class="form-group ">
+				            	<label class="col-sm-3 control-label">期限（年）：</label>
+				            	<input type="text" class="form-control col-sm-6" ng-model="maturityYear">
+				            </div>
+				            <div class="form-group ">
+				            	<label class="col-sm-3 control-label">发行规模（亿元）：</label>
+				            	<input type="text" class="form-control col-sm-6" ng-model="issueScale">
+				            </div>
+				            <div class="form-group ">
+				                <label class="col-sm-3 control-label">是否含权：</label>
+				                <select class="form-control  col-sm-6" ng-model="isIncludeRight">
+                                    <option value ="0">否</option>
+                                    <option value ="1">是</option>
+                                </select>
+				            </div>
+				            <div class="form-group">
+				                <label class="col-sm-3 control-label">含权类型：</label>
+				                <select class="form-control  col-sm-6" ng-model="rightType">
+                                    <option value ="1">不含权</option>
+                                    <option value ="2">提前赎回</option>
+                                    <option value ="2">可展期</option>
+                                </select>
+				            </div>
+				            <div class="form-group ">
+				            	<label class="col-sm-3 control-label">含权具体说明：</label>
+				            	<input type="text" class="form-control col-sm-6" ng-model="rightDesc">
+				            </div>
+				            
+				            <div class="form-group ">
+				            	<label class="col-sm-3 control-label">该笔项目投资还款计划为：</label>
+				            	<table class="form-control col-sm-8 table table-bordered table-striped">
+					            	<thead>
+										<tr>
+											<th>还款期限</th>
+											<th>还款金额</th>
+											<td colspan="2"><a ng-click="onAddRepayPlan()">新增</a></td>
+										</tr>
+									</thead>
+									<tbody ng-repeat="repayPlan in repayPlanList">
+										<tr ng-class-even="'active'" ng-class-odd="'success'">
+											<td><input type="text" ng-model="repayPlan.eleRepayTime"/></td>
+											<td><input type="text" ng-model="repayPlan.eleRepayAmt"/></td>
+											<td><a href=""  ng-click="onDelRepayPlan('{{$index}}')">删除  </a></td>
+										</tr>
+									</tbody>
+				            	</table>
+				            </div>
+				            </div>
+						</form>
+					</div>
+					
+					
+					
+     		<!-- /.col-lg-12 -->
+ 			</div>
+ 		</div>
+ 	</div>

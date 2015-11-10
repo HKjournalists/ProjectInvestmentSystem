@@ -87,15 +87,21 @@ public class JBPMTestController {
 	@RequestMapping("/start2")
 	@ResponseBody
 	@AutoWorkFlow
-	public void start2(HttpServletRequest request)
+	public String start2(HttpServletRequest request) throws Exception
 	{
-    	String taskId = request.getParameter("WKF_TASK_ID");
-    	String productId = request.getParameter("WKF_RPODUCT_ID");
-    	System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-		System.out.println(taskId);
-		System.out.println(productId);
-		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-		//return "";
+
+
+	    	String taskId = request.getParameter("WKF_TASK_ID");
+	    	String productId = request.getParameter("WKF_RPODUCT_ID");
+	    	System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+			System.out.println(taskId);
+			System.out.println(productId);
+			System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+			Exception e = new Exception();
+			throw e;
+
+		
+		
 		
 	}
 	

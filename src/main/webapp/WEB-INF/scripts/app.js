@@ -246,6 +246,46 @@ angular
           }
         }
       })
+      .state('dashboard.product',{
+        url:'/product',
+        controller: 'productCtrl',
+        templateUrl:'./prepareForInvest/elementInput/productList.html',
+        resolve: {
+          loadMyFiles:function($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name:'sbAdminApp',
+              files:[
+              '../scripts/controllers/prepareForInvest/elemInput/productController.js', 
+              '../scripts/factory/productElemService.js'
+              ]
+            })
+          }
+        }
+      })
+      .state('dashboard.productEdit',{
+        url:'/productEdit/:productId',
+        controller: 'productEditCtrl',
+        templateUrl:'./prepareForInvest/elementInput/productEdit.html',
+        resolve: {
+          loadMyFiles:function($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name:'sbAdminApp',
+              files:[
+              '../scripts/controllers/prepareForInvest/elemInput/productEditController.js',
+              '../scripts/controllers/prepareForInvest/elemInput/prodBasicController.js',
+              '../scripts/controllers/prepareForInvest/elemInput/prodInfoController.js', 
+              '../scripts/controllers/prepareForInvest/elemInput/prodIncomeController.js', 
+              '../scripts/controllers/prepareForInvest/elemInput/prodCorpController.js', 
+              '../scripts/controllers/prepareForInvest/elemInput/prodCreditRatingController.js', 
+              '../scripts/controllers/prepareForInvest/elemInput/prodOtherController.js', 
+              '../scripts/factory/productElemService.js',
+              '../scripts/factory/dictService.js',
+              '../scripts/directives/multiselect/multiselect.js'
+              ]
+            })
+          }
+        }
+      })
      .state('dashboard.sysConfig',{
         url:'/sysConfig',
         controller: 'sysConfigCtrl',
