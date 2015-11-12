@@ -10,7 +10,7 @@
 
 
 angular.module('sbAdminApp')
-.controller('prodCorpCtrl', ['$scope','$state','DictService','ProductElemService',function($scope,$state,dictService, productElemService){
+.controller('prodCorpCtrl', ['$scope','$state','DictService','ProductElemService','ngDialog',function($scope,$state,dictService, productElemService,ngDialog){
 	
 	$scope.intPayDateList = [];
 	
@@ -44,5 +44,12 @@ angular.module('sbAdminApp')
 		$scope.intPayDateList.splice(idx,1);
 	}
 	
+	$scope.showDialog = function()
+	{
+		ngDialog.open({ template: './popup/tradeInfo.html',//模式对话框内容为test.html  
+            className: 'ngdialog-theme-default '
+            //scope:$scope //将scope传给test.html,以便显示地址详细信息  
+        });  
+	}
 	
 }]);

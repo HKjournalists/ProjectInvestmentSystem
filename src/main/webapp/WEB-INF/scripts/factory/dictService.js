@@ -26,7 +26,21 @@ angular.module('sbAdminApp')
 		  });  
 		  
 		  return deferred.promise;  
-	  }
+	  },
+  
+  	 queryTradeTree : function(){
+  		var deferred = $q.defer();
+		  
+		  $http.post('../dict/getTradeLevelList').
+		  success(function(data, status, headers, config) {  
+			  deferred.resolve(data); 
+		  }).  
+		  error(function(data, status, headers, config) {  
+			  deferred.reject(data);  
+		  });  
+		  
+		  return deferred.promise;  
+  	 }
   };  
 }])
 ;

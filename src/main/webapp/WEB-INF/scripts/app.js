@@ -13,7 +13,9 @@ angular
     'ui.router',
     'ui.bootstrap',
     'angular-loading-bar',
-    'smart-table'
+    'smart-table',
+    'ngDialog',
+    'treeControl'
   ],function($httpProvider){
 	// Use x-www-form-urlencoded Content-Type
 	  $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
@@ -278,6 +280,7 @@ angular
               '../scripts/controllers/prepareForInvest/elemInput/prodCorpController.js', 
               '../scripts/controllers/prepareForInvest/elemInput/prodCreditRatingController.js', 
               '../scripts/controllers/prepareForInvest/elemInput/prodOtherController.js', 
+              '../scripts/controllers/popup/tradeInfoController.js', 
               '../scripts/factory/productElemService.js',
               '../scripts/factory/dictService.js',
               '../scripts/directives/multiselect/multiselect.js'
