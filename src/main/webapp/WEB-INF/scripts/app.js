@@ -133,7 +133,7 @@ angular
               files:[
               '../scripts/controllers/home/home.js',
               '../scripts/controllers/home/taskinwait.js',
-              '../scripts/factory/taskInWaitService.js',
+              '../scripts/service/taskInWaitService.js',
               '../scripts/directives/timeline/timeline.js',
               '../scripts/directives/notifications/notifications.js',
               '../scripts/directives/chat/chat.js',
@@ -241,8 +241,8 @@ angular
               '../scripts/controllers/Sysadmin/UserMgmt/userMgmtQryController.js',
               '../scripts/controllers/Sysadmin/UserMgmt/userMgmtEditController.js',
               '../scripts/directives/multiselect/multiselect.js',
-              '../scripts/factory/userService.js',
-              '../scripts/factory/roleService.js'
+              '../scripts/service/userService.js',
+              '../scripts/service/roleService.js'
               ]
             })
           }
@@ -258,7 +258,7 @@ angular
               name:'sbAdminApp',
               files:[
               '../scripts/controllers/prepareForInvest/elemInput/productController.js', 
-              '../scripts/factory/productElemService.js'
+              '../scripts/service/productElemService.js'
               ]
             })
           }
@@ -281,8 +281,9 @@ angular
               '../scripts/controllers/prepareForInvest/elemInput/prodCreditRatingController.js', 
               '../scripts/controllers/prepareForInvest/elemInput/prodOtherController.js', 
               '../scripts/controllers/popup/tradeInfoController.js', 
-              '../scripts/factory/productElemService.js',
-              '../scripts/factory/dictService.js',
+              '../scripts/service/productElemService.js',
+              '../scripts/service/dictService.js',
+              '../scripts/filter/treeTransFilter.js',
               '../scripts/directives/multiselect/multiselect.js'
               ]
             })
