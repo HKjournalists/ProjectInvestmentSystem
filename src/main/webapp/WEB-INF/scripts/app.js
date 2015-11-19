@@ -305,6 +305,27 @@ angular
           }
         }
       })
+      
+      .state('dashboard.deptRiskVerify',{
+          url:'/deptRiskVerify',
+          controller: 'deptRiskCtrl',
+          templateUrl:'./prepareForInvest/deptRisk/deptRiskManagement.html',
+          resolve: {
+            loadMyFiles:function($ocLazyLoad) {
+              return $ocLazyLoad.load({
+                name:'sbAdminApp',
+                files:[
+                '../scripts/controllers/prepareForInvest/deptRisk/deptRiskMgmtController.js',
+                '../scripts/controllers/prepareForInvest/deptRisk/deptRiskMgmtQryController.js',
+                '../scripts/controllers/prepareForInvest/deptRisk/deptRiskMgmtEditController.js',
+                '../scripts/directives/multiselect/multiselect.js',
+                '../scripts/service/deptRiskService.js',
+                '../scripts/service/taskInWaitService.js'
+                ]
+              })
+            }
+          }
+        })  
   }])
 
     

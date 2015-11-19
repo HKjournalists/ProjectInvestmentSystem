@@ -30,10 +30,10 @@ public class TaskInfo {
 			switch(this.oper.getIndex())
 			{
 				case 1:
-					this.activity = ActivityNameMapper.ActivityNameEng2Chi(this.task.getActivityName());
+					this.activity = this.prefix + ActivityNameMapper.ActivityNameEng2Chi(this.task.getActivityName());
 					break;
 				case 2:
-					this.activity = this.prefix + ActivityNameMapper.ActivityNameEng2Chi(this.task.getActivityName());
+					this.activity = ActivityNameMapper.ActivityNameEng2Chi(this.task.getActivityName());
 					break;
 				default :
 					this.activity = ActivityNameMapper.ActivityNameEng2Chi(this.task.getActivityName());

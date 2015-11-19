@@ -1,0 +1,97 @@
+<div ng-controller="deptRiskEditCtrl" style="width:70%;">
+	<div class="row">
+        <div class="panel panel-primary">
+           	<div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion">基本信息</a>
+                </h4>
+           	</div>
+			<div class="panel-collapse collapse in" ng-app="deptrisk">
+           		<div class="panel-body">
+           			<form name="dept_risk" role="form">
+	                    <div class=" form-group row">
+	                    	<div class="col-lg-3">
+	                        	<label>项目编号：</label>
+	                    	</div>
+	                        <div class="col-lg-8"> 
+	                        	<input name="product_id" title="项目编号" readonly  class="form-control" ng-model="deptRisk.productId"/>
+	                        </div>
+	                    </div>
+	                            
+	                    <div class="form-group row">
+	                    	<div class="col-lg-3">
+	                        	<label>项目名称：</label>
+	                    	</div>
+	                        <div class="col-lg-8"> 
+	                        	<input name="product_name" title="项目名称" readonly class="form-control" required ng-model="deptRisk.productName"/>
+	                        </div>
+	                    </div>
+	                    
+	                   <div class="form-group row">
+	                    	<div class="col-lg-3">
+	                        	<label>项目是否合规：</label>
+	                    	</div>
+	                        <div class="col-lg-2"> 
+	                        	<input name="compliance" title="项目是否合规" type="radio" value="1" ng-model="deptRisk.compliance">&nbsp;合格</input>
+	                        </div>
+	                        <div class="col-lg-2">
+	                        	<input name="compliance" title="项目是否合规" type="radio" value="0" ng-model="deptRisk.compliance">&nbsp;不合格</input>
+	                        </div>
+	                        <div class="col-lg-2">
+	                        	<input name="compliance" title="项目是否合规" type="radio" value="-1"  ng-model="deptRisk.compliance">&nbsp;无法确定</input>
+	                        </div>
+	                    </div>  
+	                    
+	                   <div class=" form-group row">
+	                    	<div class="col-lg-3">
+	                        	<label>是否需外部律师意见：</label>
+	                    	</div>
+	                        <div class="col-lg-2"> 
+	                        	<input name="lawyer" title="是否需外部律师意见" type="radio" value="1" ng-model="deptRisk.lawyer">&nbsp;是</input>
+	                        </div>
+	                        <div class="col-lg-2">
+	                        	<input name="lawyer" title="是否需外部律师意见" type="radio" value="0" ng-model="deptRisk.lawyer">&nbsp;否</input>
+	                        </div>
+	                    </div>
+	                    
+	                   <div class="form-group row">
+	                    	<div class="col-lg-3">
+	                        	<label>是否需要信用评级：</label>
+	                    	</div>
+	                        <div class="col-lg-2"> 
+	                        	<input name="credit" title="是否需要信用评级" type="radio" value="1" ng-model="deptRisk.credit">&nbsp;是</input>
+	                        </div>
+	                        <div class="col-lg-2">
+	                        	<input name="credit" title="是否需要信用评级" type="radio" value="0" ng-model="deptRisk.credit">&nbsp;否</input>
+	                        </div>
+	                   </div>
+	                   
+	                   <div class="form-group row">
+	                    	<div class="col-lg-3">
+	                        	<label>备注：</label>
+	                    	</div>
+	                        <div class="col-lg-8"> 
+	                        	<textarea required title="备注" cols="80" rows="6" wrap="wrap" ng-model="deptRisk.remark"></textarea>
+	                        </div>
+	                    </div>  
+                    </form>                  
+            	</div>
+        	</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="panel-body">
+			<div class="form-group row">
+            	<div class="col-lg-3">
+                	<button class='btn btn-primary btn-block' ng-disabled="dept_risk.$invalid" ng-click="onSave()">保存</button>
+            	</div>
+                <div class="col-lg-3"> 
+                	<button class='btn btn-primary btn-block' ng-click="onCancel()">取消</button>
+                </div>
+                <div class="col-lg-3"> 
+                	<button class='btn btn-primary btn-block' ng-disabled="dept_risk.$invalid" ng-click="onPreSave()">暂存</button>
+                </div>
+	        </div> 
+		</div>
+	</div>
+</div>

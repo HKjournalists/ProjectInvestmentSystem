@@ -29,7 +29,7 @@ angular.module('sbAdminApp')
 //				function(result){
 //				});
  
-		jbpmInfo.go({a:Math.random(),WKF_TASK_ID:taskid,WKF_RPODUCT_ID:'NP20151030'})
+		jbpmInfo.go({a:Math.random(),WKF_TASK_ID:taskid,WKF_RPODUCT_ID:'NP20151118.1'})
 			.then(jbpmInfo.queryall)
 			.then(function(result){$scope.tasklist = result;})
 			.then(jbpmInfo.queryTaskInWaiting())
@@ -122,7 +122,7 @@ angular.module('sbAdminApp')
 	  go : function(params){
 		  var deferred = $q.defer();
 		  
-		  $http({method: 'GET',cache:false, url: '../jbpmtest/start2',params:params}).  
+		  $http({method: 'GET',cache:false, url: '../jbpmtest/start',params:params}).  
 		  success(function(data, status, headers, config) {  
 			  deferred.resolve(data); 
 		  }).  
