@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 
 import com.icbc.pis.common.dao.ICommonOperDao;
 import com.icbc.pis.product.dao.IProductRepayInfoDao;
+import com.icbc.pis.web.mapper.ProductRaiseCreditTypeMapper;
+import com.icbc.pis.web.mapper.ProductRepayInfoMapper;
 import com.icbc.pis.web.model.ProductRaiseCreditType;
 import com.icbc.pis.web.model.ProductRepayInfo;
 
@@ -23,9 +25,13 @@ public class ProductRepayInfoDao implements IProductRepayInfoDao,ICommonOperDao 
 	
 	
 	@Override
-	public List<com.icbc.pis.web.model.ProductRepayInfo> getProductRepayInfoById(String productId) {
+	public List<ProductRepayInfo> getProductRepayInfoById(String productId) {
 		// TODO Auto-generated method stub
-		return null;
+		String sql = " select * from PIS_PROD_REPAY_INFO WHERE PRODUCT_ID = ? ";
+		
+		List<ProductRepayInfo> ProductRepayInfoList = this.jdbcTemplate.query(sql ,new Object[] { productId }, new ProductRepayInfoMapper() );
+		
+		return ProductRepayInfoList;
 	}
 
 	@Override

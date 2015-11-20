@@ -54,6 +54,20 @@ angular.module('sbAdminApp')
 		  });  
 		  
 		  return deferred.promise;  
+	  },
+	  
+	  queryProductElementById : function(params) {  
+		  var deferred = $q.defer();
+		  
+		  $http.post('../productelem/queryProductElementById',params).
+		  success(function(data, status, headers, config) {  
+			  deferred.resolve(data); 
+		  }).  
+		  error(function(data, status, headers, config) {  
+			  deferred.reject(data);  
+		  });  
+		  
+		  return deferred.promise;  
 	  }
   };  
 }])

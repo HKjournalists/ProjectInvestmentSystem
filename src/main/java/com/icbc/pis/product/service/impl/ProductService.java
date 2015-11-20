@@ -44,9 +44,19 @@ public class ProductService implements ICommonOperService,IProductService{
 	}
 
 	@Override
-	public ProductElement getProductById(String productId) {
+	public ProductElementInfo getProductById(String productId) {
 		// TODO Auto-generated method stub
-		return null;
+		
+		ProductElement productElement = this.productElementDao.getProductById(productId);
+		
+		List<ProductIntPayDate> productIntPayDateList = this.productIntPayDateDao.getProductIntPayDateById(productId);
+		
+		List<ProductRaiseCreditType> productRaiseCreditTypeList = this.productRaiseCreditTypeDao.getProductRaiseCreditTypeById(productId);
+		
+		List<ProductRepayInfo> productRepayInfoList = this.productRepayInfoDao.getProductRepayInfoById(productId);
+		
+		return new ProductElementInfo(productElement, productRaiseCreditTypeList, productIntPayDateList, productRepayInfoList);
+		
 	}
 
 	@Override

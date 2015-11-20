@@ -138,6 +138,19 @@ public class ProductElemController {
 		return year + this.sequenceService.GetNextIntValue(SequenceEnum.SeqProductID.getSequenceDBName());
 	}
 	
+	
+	@RequestMapping(value = "/queryProductElementById",produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String queryProductElementById(HttpServletRequest request)
+	{
+		
+		String productId = request.getParameter("productId");
+		
+		ProductElementInfo prodEleInfo = this.productService.getProductById(productId);
+		
+		return new Gson().toJson(prodEleInfo);
+	}
+	
 	@RequestMapping("/saveProductElement")
 	@ResponseBody
 	public boolean saveProductElement(HttpSession httpSession,HttpServletRequest request)
@@ -150,7 +163,7 @@ public class ProductElemController {
 		{
 			retFlag = this.productService.update(productElementInfo);
 		}
-		else
+		else 
 		{
 			retFlag = this.productService.add(productElementInfo);
 		}

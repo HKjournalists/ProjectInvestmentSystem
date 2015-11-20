@@ -14,7 +14,7 @@ angular.module('sbAdminApp')
 	
 	$scope.elementFlag = {basic:false,prodinfo:false,income:false,corporation:false,creditrate:false,other:false};
 	
-	$scope.element = [];
+	$scope.element = {};
 	
 	var status = 1;
 	

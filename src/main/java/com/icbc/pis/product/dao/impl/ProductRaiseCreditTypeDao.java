@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 
 import com.icbc.pis.common.dao.ICommonOperDao;
 import com.icbc.pis.product.dao.IProductRaiseCreditTypeDao;
+import com.icbc.pis.web.mapper.ProductIntPayDateMapper;
+import com.icbc.pis.web.mapper.ProductRaiseCreditTypeMapper;
 import com.icbc.pis.web.model.ProductIntPayDate;
 import com.icbc.pis.web.model.ProductRaiseCreditType;
 
@@ -25,7 +27,11 @@ public class ProductRaiseCreditTypeDao implements IProductRaiseCreditTypeDao,ICo
 	@Override
 	public List<ProductRaiseCreditType> getProductRaiseCreditTypeById(String productId) {
 		// TODO Auto-generated method stub
-		return null;
+		String sql = " select * from PIS_PROD_RAISE_CREDIT_TYPE WHERE PRODUCT_ID = ? ";
+		
+		List<ProductRaiseCreditType> productRaiseCreditTypeList = this.jdbcTemplate.query(sql ,new Object[] { productId }, new ProductRaiseCreditTypeMapper() );
+		
+		return productRaiseCreditTypeList;
 	}
 
 	@Override
