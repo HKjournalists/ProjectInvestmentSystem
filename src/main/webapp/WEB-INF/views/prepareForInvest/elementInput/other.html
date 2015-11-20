@@ -6,10 +6,7 @@
 						<form class=" form-horizontal" role="form"  >
 							<div class="form-group">
 								<label class="col-sm-3 control-label">投资意向：</label>
-				            	<select class="form-control  col-sm-6" ng-model="investIntention">
-                                    <option value ="1">自有</option>
-                                    <option value ="2">待持</option>
-                                </select>
+				            	<select class="form-control  col-sm-6" ng-model="investIntention"  ng-options="type.value for type in investIntentionList" />
 				            </div>
 				            <div class="form-group ">
 				            	<label class="col-sm-3 control-label">募集资金用途：</label>
@@ -37,11 +34,7 @@
 				            </div>
 				            <div class="form-group ">
 				                <label class="col-sm-3 control-label">付息方式：</label>
-				                <select class="form-control  col-sm-6" ng-model="intPayType">
-                                    <option value ="1">零息</option>
-                                    <option value ="2">周期性付息</option>
-                                    <option value ="3">到期一次还本付息</option>
-                                </select>
+				                <select class="form-control  col-sm-6" ng-model="intPayType" ng-options="type.value for type in intPayTypelist" />
 				            </div>
 				            
 				            <div class="form-group ">

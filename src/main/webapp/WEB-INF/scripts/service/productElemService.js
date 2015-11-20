@@ -26,6 +26,34 @@ angular.module('sbAdminApp')
 		  });  
 		  
 		  return deferred.promise;  
+	  },
+	  
+	  genProductID : function() {  
+		  var deferred = $q.defer();
+		  
+		  $http.post('../productelem/genProductId').
+		  success(function(data, status, headers, config) {  
+			  deferred.resolve(data); 
+		  }).  
+		  error(function(data, status, headers, config) {  
+			  deferred.reject(data);  
+		  });  
+		  
+		  return deferred.promise;  
+	  },
+	  
+	  saveProductElement : function(params) {  
+		  var deferred = $q.defer();
+		  
+		  $http.post('../productelem/saveProductElement',params).
+		  success(function(data, status, headers, config) {  
+			  deferred.resolve(data); 
+		  }).  
+		  error(function(data, status, headers, config) {  
+			  deferred.reject(data);  
+		  });  
+		  
+		  return deferred.promise;  
 	  }
   };  
 }])

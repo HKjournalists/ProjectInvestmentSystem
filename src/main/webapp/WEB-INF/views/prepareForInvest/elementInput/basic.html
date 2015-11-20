@@ -23,40 +23,23 @@
 				            
 				            <div class="form-group ">
 				                <label class="col-sm-3 control-label">合同类型：</label>
-				                <select class="form-control col-sm-6" ng-model="productType" ng-options="pro.value for pro in productTypeList"/>
+				                <select class="form-control col-sm-6" ng-change="onChangeProductType()" ng-model="productType" ng-options="pro.value for pro in productTypeList"/>
 				            </div>
 				            
-				            <div class="form-group " ng-if="productType==3" >
+				            <div class="form-group " ng-show="productType.key==3" >
 				                <label class="col-sm-3 control-label">信托子类型：</label>
-				                <select class="form-control  col-sm-6" ng-model="trustSubType">
-                                    <option value ="1">结构性融资</option>
-                                    <option value ="2">非结构性融资</option>
-                                </select>
+				                <select class="form-control  col-sm-6" ng-change="onChangeTrustSubType()" ng-model="trustSubType" ng-options="type.value for type in trustSubTypeList" />
 				            </div>
 				            
 				            
 				            <div class="form-group ">
 				            	<label class="col-sm-3 control-label">是否需要评级：</label>
-				            	<select class="form-control  col-sm-6" ng-model="needCreditVerify">
-				            		<option value ="1">是</option>
-                                    <option value ="2">否</option>
-                                </select>
+				            	<select class="form-control  col-sm-6" ng-model="needCreditVerify" ng-options="type.value for type in yesOrNoList" />
 				            </div>
 				            <div class="form-group ">
 				            	<label class="col-sm-3 control-label">是否需要外部律师意见：</label>
-				            	<select class="form-control  col-sm-6" ng-model="needLawVerify">
-				            		<option value ="1">是</option>
-                                    <option value ="2">否</option>
-                                </select>
+				            	<select class="form-control  col-sm-6" ng-model="needLawVerify" ng-options="type.value for type in yesOrNoList" />
 				            </div>
-				            <div class="form-group ">
-				            	<label class="col-sm-3 control-label">还款计划：</label>
-				            	<select class="form-control  col-sm-6" ng-model="needLawVerify">
-				            		<option value ="1">是</option>
-                                    <option value ="2">否</option>
-                                </select>
-				            </div>
-				            
 				            
 						</form>
 					</div>

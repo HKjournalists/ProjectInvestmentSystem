@@ -6,23 +6,27 @@ angular.module('sbAdminApp')
 	
 	dictService.queryTradeTree()
 		.then(function(result){
-			//tradeJsonStr = result;
-			//treeFilter = $filter('tree');
+			
 			tradeTreeObj = angular.fromJson(result);
-			//alert(jsonFilter(tradeTreeObj));
-			//var tree = createSubTree(tradeTreeObj.rootNode);
+			
 			var tree = $filter('treeTransFilter')(tradeTreeObj);
+			
 			$scope.treedata = tree;
 	});
-	
-	
-	
-	
+
     $scope.showSelected = function(sel) 
     {
     	$scope.selectedNode = sel;
     }
 	
+    $scope.onConfirm = function()
+    {
+    	$scope.confirm($scope.selectedNode);
+    }
+    
+//	$scope.$on('ngDialog.opened', function (e, $dialog) {
+//		alert('ngDialog opened: ' + $dialog.attr('id'));
+//	});
 }])
 
 ;

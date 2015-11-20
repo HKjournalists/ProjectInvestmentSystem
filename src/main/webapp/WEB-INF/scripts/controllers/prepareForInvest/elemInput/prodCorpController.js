@@ -14,6 +14,14 @@ angular.module('sbAdminApp')
 	
 	$scope.intPayDateList = [];
 	
+	$scope.queryForDict = function()
+	{
+		dictService.query({type:'INTEREST_FREQUENCY'})
+			.then(function(result){$scope.interestFrequencyList = result});
+	}
+	
+	$scope.queryForDict();
+	
 	dictService.query({type:'RAISE_CREDIT'})
 		.then(function(result){
 				resList = [];
@@ -29,7 +37,7 @@ angular.module('sbAdminApp')
 			})
 		.then(function(){$scope.selected_items = []});
 	
-	$scope.raiseCreditSelectList = [];
+	$scope.selected_items = [];
 	
 	$scope.onAddintPayDate = function()
 	{
@@ -38,18 +46,77 @@ angular.module('sbAdminApp')
 		$scope.intPayDateList.push(item);
 	}
 
-	$scope.onDelintPayDate = function(idx)
+	$scope.onDelntPayDate = function(idx)
 	{
 		var index = idx - 1;
 		$scope.intPayDateList.splice(idx,1);
 	}
 	
-	$scope.showDialog = function()
+	$scope.onSelectTrade =function()
 	{
-		ngDialog.open({ template: './popup/tradeInfo.html',//模式对话框内容为test.html  
-            className: 'ngdialog-theme-default '
-            //scope:$scope //将scope传给test.html,以便显示地址详细信息  
-        });  
+		var dialog = ngDialog.openConfirm({ template: './popup/tradeInfo.html',
+            className: 'ngdialog-theme-default ',
+            closeByDocument:false,
+            scope: $scope
+        })
+        .then(
+        	function(resObj){
+        		$scope.gTradeType = resObj.id;
+        		
+        		$scope.gTradeName = resObj.label;
+            },
+            function(reason){
+            	alert('rejected, reason - ', reason);
+            }
+        );;  
 	}
+	
+	$scope.$on('EVT_SAVE',function(){
+		
+		//event.stopPropagation();
+		
+		var raiseCreditSelectList = new Array($scope.selected_items.length)
+		
+		for(var i = 0; i < $scope.selected_items.length;++i)
+		{
+			raiseCreditSelectList[i] = $scope.selected_items[i].id;
+		}
+		
+		var raiseCreditSelected = raiseCreditSelectList.join(',');
+		
+		var intPayDates = new Array($scope.intPayDateList.length);
+		
+		for(var i = 0; i < $scope.intPayDateList.length;++i)
+		{
+			intPayDates[i] = $scope.intPayDateList[i].intPayDate;
+		}
+		
+		var intPayDatesStr = intPayDates.join(',');
+		
+		var eleObj = {interestFrequency:($scope.interestFrequency == undefined) ? '' :  $scope.interestFrequency.key,
+					  listDate:$scope.listDate,
+					  intPayDateList:intPayDatesStr,
+					  raiseCreditSelectList:raiseCreditSelected,
+					  raiseCreditDesc:$scope.raiseCreditDesc,
+					  guarantee:$scope.guarantee,
+					  guaranteeName:$scope.guaranteeName,
+					  gTradeType:$scope.gTradeType,
+					  gTradeName:$scope.gTradeName,
+					  mortgageRatio:$scope.mortgageRatio,
+					  custodian:$scope.custodian,
+					  custodianName:$scope.custodianName,
+					  superintendent:$scope.superintendent,
+					  superintendentName:$scope.superintendentName,
+					  fincConsultent:$scope.fincConsultent,
+					  fincConsultentName:$scope.fincConsultentName,
+					  otherCorp:$scope.otherCorp,
+					  otherCorpName:$scope.otherCorpName
+					  }
+			
+		$scope.setElement(eleObj);
+		
+		$scope.$emit('EVT_SAVE_DONE',{evtSrc:'corporation'});
+		
+	})
 	
 }]);

@@ -82,39 +82,30 @@ public class UserService implements ICommonOperService,IUserService  {
 	@Transactional
 	public boolean update(Object userInfo) {
 		
-		try
+		boolean retFlag = false;
+		
+		UserInfo userinfo = (UserInfo)userInfo;
+		
+		retFlag = this.userRoleDao.delete(userinfo.getUserBasicInfo().getId());
+		
+		if(retFlag == false)
 		{
-			boolean retFlag = false;
-			
-			UserInfo userinfo = (UserInfo)userInfo;
-			
-			retFlag = this.userRoleDao.delete(userinfo.getUserBasicInfo().getId());
+			return retFlag;
+		}
+		
+		for(UserRole ur : userinfo.getRoleList())
+		{
+			retFlag = this.userRoleDao.add(ur);
 			
 			if(retFlag == false)
 			{
 				return retFlag;
 			}
-			
-			for(UserRole ur : userinfo.getRoleList())
-			{
-				retFlag = this.userRoleDao.add(ur);
-				
-				if(retFlag == false)
-				{
-					return retFlag;
-				}
-			}
-			
-			retFlag = this.userDao.update(userinfo.getUserBasicInfo());
-			
-			return retFlag;
 		}
-		catch(Exception e)
-		{
-			logger.error(e.toString());
-			
-			return false;
-		}
+		
+		retFlag = this.userDao.update(userinfo.getUserBasicInfo());
+		
+		return retFlag;
 		
 
 	}

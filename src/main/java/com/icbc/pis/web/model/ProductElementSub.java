@@ -47,6 +47,17 @@ public class ProductElementSub {
 		
 	}
 	
+	public ProductElementSub(String productId,String eleKey,String eleValue)
+	{
+		this.productId = productId;
+		
+		this.eleGroupId = "0";
+		
+		this.eleKey = eleKey;
+		
+		this.eleValue = eleValue;
+	}
+	
 	public ProductElementSub(String productId,String eleGroupId,String eleKey,String eleValue)
 	{
 		this.productId = productId;

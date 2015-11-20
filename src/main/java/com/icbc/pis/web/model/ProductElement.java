@@ -1,5 +1,10 @@
 package com.icbc.pis.web.model;
 
+import java.util.Map;
+
+import com.icbc.pis.util.DoubleUtil;
+import com.icbc.pis.util.StringUtil;
+
 public class ProductElement {
 
 	//项目编号
@@ -24,8 +29,9 @@ public class ProductElement {
 	private String productBriefName;
 	
 	//发行人代码（项目方代码）
-	private String issureCode;
-	
+	private String issuerCode;
+
+
 	//受托人
 	private String trustManager;
 	
@@ -267,13 +273,7 @@ public class ProductElement {
 		this.productBriefName = productBriefName;
 	}
 
-	public String getIssureCode() {
-		return this.issureCode;
-	}
-
-	public void setIssureCode(String issureCode) {
-		this.issureCode = issureCode;
-	}
+ 
 	
 	public String getTrustManager() {
 		return trustManager;
@@ -662,7 +662,15 @@ public class ProductElement {
 	public String getSuperintendentName() {
 		return this.superintendentName;
 	}
+	
+	public String getIssuerCode() {
+		return issuerCode;
+	}
 
+	public void setIssuerCode(String issuerCode) {
+		this.issuerCode = issuerCode;
+	}
+	
 	public void setSuperintendentName(String superintendentName) {
 		this.superintendentName = superintendentName;
 	}
@@ -786,234 +794,189 @@ public class ProductElement {
 		this.rightType = rightType;
 	}
 	
-	public ProductElement(String productId,
-						  String productType,
-						  String needCreditRating,
-						  String needLawVerify,
-						  String issureCode,
-						  String trustManager,
-						  int maturityYear,
-						  double issueScale,
-						  String isIncludeRight,
-						  String rightType,
-						  String portRatingType,
-						  String benchYieldType,
-						  double benchYieldRatio,
-						  String benchYieldAdjust,
-						  double interestMargin,
-						  double portRatingULimit,
-						  double portRatingLLimit,
-						  double totalFee,
-						  double netPortRating,
-						  String netPortRatingAlgo,
-						  String interestFrequency,
-						  String outerCompanyRate,
-						  String outerCompanyRateSrc,
-						  String outerBondRate,
-						  String outerBondRateSrc,
-						  String status,
-						  String productManagerId
-						  )
-	{
-		this.productId = productId;
-		
-		this.productType = productType;
-		
-		this.needCreditRating = needCreditRating;
-		
-		this.needLawVerify = needLawVerify;
-		
-		this.issureCode = issureCode;
-		
-		this.issueScale = issueScale;
-		
-		this.trustManager = trustManager;
-		
-		this.maturityYear = maturityYear;
-		
-		this.isIncludeRight = isIncludeRight;
-		
-		this.rightType = rightType;
-		
-		this.portRatingType = portRatingType;
-		
-		this.benchYieldType = benchYieldType;
-		
-		this.benchYieldRatio = benchYieldRatio;
-		
-		this.benchYieldAdjust = benchYieldAdjust;
-		
-		this.interestMargin = interestMargin;
-		
-		this.portRatingUpLimit = portRatingULimit;
-		
-		this.portRatingLowLimit = portRatingLLimit;
-		
-		this.totalFee = totalFee;
-		
-		this.netPortRating = netPortRating;
-		
-		this.netPortRatingAlgo = netPortRatingAlgo;
-		
-		this.interestFrequency = interestFrequency;
-		
-		this.outerCompanyRate = outerCompanyRate;
-		
-		this.outerCompanyRateSrc = outerCompanyRateSrc;
-		
-		this.outerBondRate = outerBondRate;
-		
-		this.outerBondRateSrc = outerBondRateSrc;
-		
-		this.status = status;
-		
-		this.productManagerId = productManagerId;
-	}
+//	public ProductElement(String productId,
+//						  String productType,
+//						  String needCreditRating,
+//						  String needLawVerify,
+//						  String issureCode,
+//						  String trustManager,
+//						  int maturityYear,
+//						  double issueScale,
+//						  String isIncludeRight,
+//						  String rightType,
+//						  String portRatingType,
+//						  String benchYieldType,
+//						  double benchYieldRatio,
+//						  String benchYieldAdjust,
+//						  double interestMargin,
+//						  double portRatingULimit,
+//						  double portRatingLLimit,
+//						  double totalFee,
+//						  double netPortRating,
+//						  String netPortRatingAlgo,
+//						  String interestFrequency,
+//						  String outerCompanyRate,
+//						  String outerCompanyRateSrc,
+//						  String outerBondRate,
+//						  String outerBondRateSrc,
+//						  String status,
+//						  String productManagerId
+//						  )
+//	{
+//		this.productId = productId;
+//		
+//		this.productType = productType;
+//		
+//		this.needCreditRating = needCreditRating;
+//		
+//		this.needLawVerify = needLawVerify;
+//		
+//		this.issureCode = issureCode;
+//		
+//		this.issueScale = issueScale;
+//		
+//		this.trustManager = trustManager;
+//		
+//		this.maturityYear = maturityYear;
+//		
+//		this.isIncludeRight = isIncludeRight;
+//		
+//		this.rightType = rightType;
+//		
+//		this.portRatingType = portRatingType;
+//		
+//		this.benchYieldType = benchYieldType;
+//		
+//		this.benchYieldRatio = benchYieldRatio;
+//		
+//		this.benchYieldAdjust = benchYieldAdjust;
+//		
+//		this.interestMargin = interestMargin;
+//		
+//		this.portRatingUpLimit = portRatingULimit;
+//		
+//		this.portRatingLowLimit = portRatingLLimit;
+//		
+//		this.totalFee = totalFee;
+//		
+//		this.netPortRating = netPortRating;
+//		
+//		this.netPortRatingAlgo = netPortRatingAlgo;
+//		
+//		this.interestFrequency = interestFrequency;
+//		
+//		this.outerCompanyRate = outerCompanyRate;
+//		
+//		this.outerCompanyRateSrc = outerCompanyRateSrc;
+//		
+//		this.outerBondRate = outerBondRate;
+//		
+//		this.outerBondRateSrc = outerBondRateSrc;
+//		
+//		this.status = status;
+//		
+//		this.productManagerId = productManagerId;
+//	}
 	
-	public ProductElement(String productId,
-			 			  String productInnerId,
-			 			  String productType,
-			 			  String needCreditRating,
-			 			  String needLawVerify,
-			 			  String productName,
-			 			  String productBriefName,
-			 			  String issureCode,
-			 			  String trustManager,
-			 			  String dTradeType,
-			 			  int maturityYear,
-			 			  double issueScale,
-			 			  String isIncludeRight,
-			 			  String rightType,
-			 			  String rightDesc,
-			 			  String portRatingType,
-			 			  double portRating,
-			 			  String benchYieldType,
-			 			  double benchYieldRatio,
-			 			  String benchYieldAdjust,
-			 			  double interestMargin,
-			 			  double portRatingUpLimit,
-			 			  double portRatingLowLimit,
-			 			  double depositFee,
-			 			  double superviseFee,
-			 			  double consultantFee,
-			 			  double otherFee,
-			 			  double totalFee,
-			 			  double netPortRating,
-			 			  String netPortRatingAlgo,
-			 			  String interestFrequency,
-			 			  String listDate,
-			 			  String raiseCreditDesc,
-			 			  String guarantee,
-			 			  String gTradeType,
-			 			  double mortgageRatio,
-			 			  String custodian,
-			 			  String superintendent,
-			 			  String fincConsultent,
-			 			  String otherCorp,
-			 			  String outerCompanyRate,
-			 			  String outerCompanyRateSrc,
-			 			  String innerCompanyRate,
-			 			  String icbcCompanyRate,
-			 			  String icbcRaiseCreditRate,
-			 			  String outerBondRate,
-			 			  String outerBondRateSrc,
-			 			  String innerBondRate,
-			 			  String remark,
-			 			  String status,
-			 			  String productManagerId,
-			 			  String trustManagerName,
-			 			  String dTradeName,
-						  String guaranteeName,
-						  String issuerName,
-						  String gTradeName,
-						  String custodianName,
-						  String superintendentName,
-						  String fincConsultentName,
-						  String otherCorpName,
-						  String fundUsage,
-						  String maturityDate,
-						  double putValue,
-						  String putDate,
-						  double redemptionValue,
-						  String redemptionDate,
-						  String intPayType,
-						  String intDesc,
-						  String publishDate,
-						  String trustSubType,
-						  String investIntention
-			  )	
+	public ProductElement(Map<String,String> eleMap)	
 	{
-		 this.productId  = productId;
-		 this.productInnerId  = productInnerId;
-		 this.productType  = productType;
-		 this.needCreditRating  = needCreditRating;
-		 this.needLawVerify  = needLawVerify;
-		 this.productName  = productName;
-		 this.productBriefName  = productBriefName;
-		 this.issureCode  = issureCode;
-		 this.trustManager  = trustManager;
-		 this.dTradeType  = dTradeType;
-		 this.maturityYear  = maturityYear;
-		 this.issueScale  = issueScale;
-		 this.isIncludeRight  = isIncludeRight;
-		 this.rightType  = rightType;
-		 this.rightDesc  = rightDesc;
-		 this.portRatingType  = portRatingType;
-		 this.portRating  = portRating;
-		 this.benchYieldType  = benchYieldType;
-		 this.benchYieldRatio  = benchYieldRatio;
-		 this.benchYieldAdjust  = benchYieldAdjust;
-		 this.interestMargin = interestMargin;
-		 this.portRatingUpLimit = portRatingUpLimit;
-		 this.portRatingLowLimit = portRatingLowLimit;
-		 this.depositFee  = depositFee;
-		 this.superviseFee  = superviseFee;
-		 this.consultantFee  = consultantFee;
-		 this.otherFee  = otherFee;
-		 this.totalFee  = totalFee;
-		 this.netPortRating  = netPortRating;
-		 this.netPortRatingAlgo  = netPortRatingAlgo;
-		 this.interestFrequency = interestFrequency;
-		 this.listDate  = listDate;
-		 this.raiseCreditDesc  = raiseCreditDesc;
-		 this.guarantee  = guarantee;
-		 this.gTradeType  = gTradeType;
-		 this.mortgageRatio  = mortgageRatio;
-		 this.custodian  = custodian;
-		 this.superintendent  = superintendent;
-		 this.fincConsultent  = fincConsultent;
-		 this.otherCorp  = otherCorp;
-		 this.outerCompanyRate  = outerCompanyRate;
-		 this.outerCompanyRateSrc  = outerCompanyRateSrc;
-		 this.innerCompanyRate  = innerCompanyRate;
-		 this.icbcCompanyRate  = icbcCompanyRate;
-		 this.icbcRaiseCreditRate  = icbcRaiseCreditRate;
-		 this.outerBondRate  = outerBondRate;
-		 this.outerBondRateSrc  = outerBondRateSrc;
-		 this.innerBondRate  = innerBondRate;
-		 this.remark  = remark;
-		 this.status  = status;
-		 this.productManagerId  = productManagerId;
-		 this.trustManager = trustManager;
-		 this.dTradeName = dTradeName;
-		 this.guaranteeName = guaranteeName;
-		 this.issuerName = issuerName;
-		 this.gTradeName = gTradeName;
-		 this.custodianName = custodianName;
-		 this.superintendentName = superintendentName;
-		 this.fincConsultentName = fincConsultentName;
-		 this.otherCorpName = otherCorpName;
-		 this.fundUsage = fundUsage;
-		 this.maturityDate = maturityDate;
-		 this.putValue = putValue;
-		 this.putDate = putDate;
-		 this.redemptionValue = redemptionValue;
-		 this.redemptionDate = redemptionDate;
-		 this.intPayType = intPayType;
-		 this.intDesc = intDesc;
-		 this.publishDate = publishDate;
-		 this.trustSubType = trustSubType;
-		 this.investIntention = investIntention;
+		
+		 this.productId  = eleMap.get("productId");
+		 
+		 this.productInnerId  = eleMap.get("productInnerId");
+		 
+		 this.productType  = eleMap.get("productType");
+		 
+		 this.needCreditRating  = eleMap.get("needCreditRating");
+		 
+		 if(StringUtil.isNullOrEmpty(this.needCreditRating))
+		 {
+			 this.needCreditRating = "1";
+		 }
+		 this.needLawVerify  = eleMap.get("needLawVerify");
+		 
+		 if(StringUtil.isNullOrEmpty(this.needLawVerify))
+		 {
+			 this.needLawVerify = "1";
+		 }
+		 this.productName  = eleMap.get("productName");
+		 
+		 this.productBriefName  = eleMap.get("productBriefName");
+		 
+		 this.issuerCode  = eleMap.get("issuerCode");
+		 
+		 this.dTradeType  = eleMap.get("dTradeType");
+		 
+		 if(StringUtil.isNullOrEmpty(eleMap.get("maturityYear")))
+		 {
+			 this.maturityYear = 0;
+		 }
+		 else
+		 {
+			 this.maturityYear  = Integer.parseInt(eleMap.get("maturityYear"));
+		 }
+		 
+		 this.issueScale  = DoubleUtil.parseDouble(eleMap.get("issueScale"));;
+		 this.isIncludeRight  = eleMap.get("isIncludeRight");
+		 this.rightType  = eleMap.get("rightType");
+		 this.rightDesc  = eleMap.get("rightDesc");
+		 this.portRatingType  = eleMap.get("portRatingType");
+		 this.portRating  = DoubleUtil.parseDouble(eleMap.get("portRating"));
+		 this.benchYieldType  = eleMap.get("benchYieldType");
+		 this.benchYieldRatio  = DoubleUtil.parseDouble(eleMap.get("benchYieldRatio"));
+		 this.benchYieldAdjust  = eleMap.get("benchYieldAdjust");
+		 this.interestMargin = DoubleUtil.parseDouble(eleMap.get("interestMargin"));
+		 this.portRatingUpLimit = DoubleUtil.parseDouble(eleMap.get("portRatingUpLimit"));
+		 this.portRatingLowLimit = DoubleUtil.parseDouble(eleMap.get("portRatingLowLimit"));
+		 this.depositFee  = DoubleUtil.parseDouble(eleMap.get("depositFee"));
+		 this.superviseFee  = DoubleUtil.parseDouble(eleMap.get("superviseFee"));
+		 this.consultantFee  = DoubleUtil.parseDouble(eleMap.get("consultantFee"));
+		 this.otherFee  = DoubleUtil.parseDouble(eleMap.get("otherFee"));
+		 this.totalFee  = DoubleUtil.parseDouble(eleMap.get("totalFee"));
+		 this.netPortRating  = DoubleUtil.parseDouble(eleMap.get("netPortRating"));
+		 this.netPortRatingAlgo  = eleMap.get("netPortRatingAlgo");
+		 this.interestFrequency = eleMap.get("interestFrequency");
+		 this.listDate  = eleMap.get("listDate");
+		 this.raiseCreditDesc  = eleMap.get("raiseCreditDesc");
+		 this.guarantee  = eleMap.get("guarantee");
+		 this.gTradeType  = eleMap.get("gTradeType");
+		 this.mortgageRatio  = DoubleUtil.parseDouble(eleMap.get("mortgageRatio"));
+		 this.custodian  = eleMap.get("custodian");
+		 this.superintendent  = eleMap.get("superintendent");
+		 this.fincConsultent  = eleMap.get("fincConsultent");
+		 this.otherCorp  = eleMap.get("otherCorp");
+		 this.outerCompanyRate  = eleMap.get("outerCompanyRate");
+		 this.outerCompanyRateSrc  = eleMap.get("outerCompanyRateSrc");
+		 this.innerCompanyRate  = eleMap.get("innerCompanyRate");
+		 this.icbcCompanyRate  = eleMap.get("icbcCompanyRate");
+		 this.icbcRaiseCreditRate  = eleMap.get("icbcRaiseCreditRate");
+		 this.outerBondRate  = eleMap.get("outerBondRate");
+		 this.outerBondRateSrc  = eleMap.get("outerBondRateSrc");
+		 this.innerBondRate  = eleMap.get("innerBondRate");
+		 this.remark  = eleMap.get("remark");
+		 this.status  = eleMap.get("status");
+		 this.productManagerId  = eleMap.get("productManagerId");
+		 this.issuerName = eleMap.get("issuerName");
+		 this.dTradeName = eleMap.get("dTradeName");
+		 this.guaranteeName = eleMap.get("guaranteeName");
+		 this.gTradeName = eleMap.get("gTradeName");
+		 this.custodianName = eleMap.get("custodianName");
+		 this.superintendentName = eleMap.get("superintendentName");
+		 this.fincConsultentName = eleMap.get("fincConsultentName");
+		 this.otherCorpName = eleMap.get("otherCorpName");
+		 this.fundUsage = eleMap.get("fundUsage");
+		 this.maturityDate = eleMap.get("maturityDate");
+		 this.putValue = DoubleUtil.parseDouble(eleMap.get("putValue"));
+		 this.putDate = eleMap.get("putDate");
+		 this.redemptionValue = DoubleUtil.parseDouble(eleMap.get("redemptionValue"));
+		 this.redemptionDate = eleMap.get("redemptionDate");
+		 this.intPayType = eleMap.get("intPayType");
+		 this.intDesc = eleMap.get("intDesc");
+		 this.publishDate = eleMap.get("publishDate");
+		 this.trustSubType = eleMap.get("trustSubType");
+		 this.investIntention = eleMap.get("investIntention");
+		 this.trustManager = eleMap.get("trustManager");
+		 this.trustManagerName = eleMap.get("trustManagerName");
 	}
 	
 }

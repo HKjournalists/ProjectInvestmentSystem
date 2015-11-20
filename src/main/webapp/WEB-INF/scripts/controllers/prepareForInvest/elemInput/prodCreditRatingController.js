@@ -23,4 +23,27 @@ angular.module('sbAdminApp')
 	}
 	
 	$scope.queryForDict();
+	
+	$scope.$on('EVT_SAVE',function(){
+		
+		//event.stopPropagation();
+		
+		var eleObj = {outerCompanyRate:($scope.outerCompanyRate == undefined) ? '' : $scope.outerCompanyRate.key,
+				  outerCompanyRateSrc:($scope.outerCompanyRateSrc == undefined) ? '' : $scope.outerCompanyRateSrc.key,
+				  innerCompanyRate:($scope.innerCompanyRate == undefined) ? '' : $scope.innerCompanyRate.key,
+				  icbcCompanyRate:($scope.icbcCompanyRate == undefined) ? '' : $scope.icbcCompanyRate.key,
+				  outerBondRate:($scope.outerBondRate == undefined) ? '' : $scope.outerBondRate.key,
+				  outerBondRateSrc:($scope.outerBondRateSrc == undefined) ? '' : $scope.outerBondRateSrc.key,
+				  innerBondRate:($scope.innerBondRate == undefined) ? '' : $scope.innerBondRate.key,
+				  remark:$scope.remark
+				  }
+			
+		$scope.setElement(eleObj);
+		
+		$scope.$emit('EVT_SAVE_DONE',{evtSrc:'creditrate'});
+		
+	})
+	
+	
+	
 }]);

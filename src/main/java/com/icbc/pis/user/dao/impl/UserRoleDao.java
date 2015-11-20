@@ -75,7 +75,7 @@ public class UserRoleDao implements IUserRoleDao,ICommonOperDao {
 			
 		int affectedRows = this.jdbcTemplate.update(sql,id);
 			
-		return true;
+		return affectedRows != 0;
 		
 	}
 

@@ -6,11 +6,7 @@
 						<form class=" form-horizontal" role="form"  >
 							<div class="form-group">
 								<label class="col-sm-3 control-label">利息支付频率：</label>
-				            	<select class="form-control  col-sm-6" ng-model="interestFrequency">
-                                    <option value ="1">季度</option>
-                                    <option value ="2">半年度</option>
-                                    <option value ="3">年度</option>
-                                </select>
+				            	<select class="form-control  col-sm-6" ng-model="interestFrequency"  ng-options="type.value for type in interestFrequencyList" />
 				            </div>
 				            <div class="form-group ">
 				            	<label class="col-sm-3 control-label">起息日：</label>
@@ -35,7 +31,7 @@
 				            </div>
 				            <div class="form-group ">
 				            	<label class="col-sm-3 control-label">增信措施：</label>
-				            	<div dropdown-multiselect selected_items="raiseCreditSelectList" options="options"></div>
+				            	<div dropdown-multiselect selected_items="selected_items" options="options"></div>
 				            </div>
 				            
 				            <div class="form-group ">
@@ -49,7 +45,7 @@
 				            </div>
 				            <div class="form-group ">
 				                <label class="col-sm-3 control-label">担保人名称：</label>
-				                <input type="text" class="form-control col-sm-6" ng-click="showDialog()" ng-model="guaranteeName">
+				                <input type="text" class="form-control col-sm-6" ng-model="guaranteeName">
 				            </div>
 				            
 				            <div class="form-group ">
@@ -58,7 +54,7 @@
 				            </div>
 				            <div class="form-group ">
 				            	<label class="col-sm-3 control-label">担保人所处行业名称：</label>
-				            	<input type="text" class="form-control col-sm-6" ng-model="gTradeName">
+				            	<input type="text" class="form-control col-sm-6" ng-model="gTradeName" ng-click="onSelectTrade()">
 				            </div>
 				            <div class="form-group ">
 				            	<label class="col-sm-3 control-label">抵质押物比例（%）：</label>
